@@ -147,24 +147,25 @@
 
 
 
-  <meta name="description" content="2020年2月29日 14点58分  教材：  Advanced Programming in the UNIX Environment《UNIX环境高级编程》 3rd Edition W.Richard Stevens The Design of UNIX Operating System 《UNIX操作系统设计》 Maurice J.Bach   评分标准：  4 labs 40% Fina">
+  <meta name="description" content="File I/O file IO function: read, write, open. close. ioctl, …   C/C++/Java等中也有IO相关的接口 这些语言封装了底层的IO操作   尽量使用高级语言中的流/带有缓冲的IO接口 当我们做底层开发时，使用底层的IO接口 写kernel接口时，需要了解底层的IO接口的规律    File Descriptor 所有打开的文件都用文">
+<meta name="keywords" content="课堂笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Song&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/2020/03/01/系统程序设计1/index.html">
+<meta property="og:title" content="系统程序设计--第节">
+<meta property="og:url" content="http://yoursite.com/2020/02/29/系统程序设计2/index.html">
 <meta property="og:site_name" content="Song&#39;s Blog">
-<meta property="og:description" content="2020年2月29日 14点58分  教材：  Advanced Programming in the UNIX Environment《UNIX环境高级编程》 3rd Edition W.Richard Stevens The Design of UNIX Operating System 《UNIX操作系统设计》 Maurice J.Bach   评分标准：  4 labs 40% Fina">
+<meta property="og:description" content="File I/O file IO function: read, write, open. close. ioctl, …   C/C++/Java等中也有IO相关的接口 这些语言封装了底层的IO操作   尽量使用高级语言中的流/带有缓冲的IO接口 当我们做底层开发时，使用底层的IO接口 写kernel接口时，需要了解底层的IO接口的规律    File Descriptor 所有打开的文件都用文">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-29T11:10:40.483Z">
+<meta property="og:updated_time" content="2020-03-01T08:16:59.347Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Song&#39;s Blog">
-<meta name="twitter:description" content="2020年2月29日 14点58分  教材：  Advanced Programming in the UNIX Environment《UNIX环境高级编程》 3rd Edition W.Richard Stevens The Design of UNIX Operating System 《UNIX操作系统设计》 Maurice J.Bach   评分标准：  4 labs 40% Fina">
+<meta name="twitter:title" content="系统程序设计--第节">
+<meta name="twitter:description" content="File I/O file IO function: read, write, open. close. ioctl, …   C/C++/Java等中也有IO相关的接口 这些语言封装了底层的IO操作   尽量使用高级语言中的流/带有缓冲的IO接口 当我们做底层开发时，使用底层的IO接口 写kernel接口时，需要了解底层的IO接口的规律    File Descriptor 所有打开的文件都用文">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/01/系统程序设计1/">
+  <link rel="canonical" href="http://yoursite.com/2020/02/29/系统程序设计2/">
 
 
 
@@ -174,7 +175,7 @@
   };
 </script>
 
-  <title> | Song's Blog</title>
+  <title>系统程序设计--第节 | Song's Blog</title>
   
 
 
@@ -345,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/系统程序设计1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/29/系统程序设计2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YJ Song">
@@ -362,7 +363,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">系统程序设计--第节
               
             
           </h1>
@@ -387,7 +388,7 @@
                 
               
 
-              <time title="创建时间：2020-03-01 16:02:32" itemprop="dateCreated datePublished" datetime="2020-03-01T16:02:32+08:00">2020-03-01</time>
+              <time title="创建时间：2020-02-29 20:40:00" itemprop="dateCreated datePublished" datetime="2020-02-29T20:40:00+08:00">2020-02-29</time>
             
 
             
@@ -421,237 +422,202 @@
       
 
       
-        <ul>
-<li><p>2020年2月29日 14点58分</p>
-</li>
-<li><p>教材：</p>
-<ul>
-<li>Advanced Programming in the UNIX Environment《UNIX环境高级编程》 3rd Edition W.Richard Stevens</li>
-<li>The Design of UNIX Operating System 《UNIX操作系统设计》 Maurice J.Bach</li>
+        <h1 id="File-I-O"><a href="#File-I-O" class="headerlink" title="File I/O"></a>File I/O</h1><ol>
+<li>file IO function:<ul>
+<li>read, write, open. close. ioctl, …</li>
 </ul>
 </li>
-<li><p>评分标准：</p>
-<ul>
-<li>4 labs 40%</li>
-<li>Final exam 50%</li>
-<li>Quiz and class performance 10%</li>
+<li>C/C++/Java等中也有IO相关的接口<ul>
+<li>这些语言封装了底层的IO操作</li>
 </ul>
 </li>
-<li><p>课程目标：系统调用</p>
-</li>
-<li><p>Topics：</p>
-<ul>
-<li>文件系统/标准IO库</li>
-<li>Unix进程环境和进程控制</li>
-<li>信号机制</li>
-<li>高级IO<ul>
-<li>非阻塞IO，锁概念，流机制，IO服用，memory mapped IO</li>
-</ul>
-</li>
-<li>进程间通信：<ul>
-<li>Pipes，Message Queues，Semaphores，Shared Memory</li>
-</ul>
-</li>
-<li>Linux driver</li>
-<li>并行程序设计</li>
-<li>HADOOP架构<ul>
-<li>HBASE</li>
-</ul>
-</li>
-<li>高性能服务器软件架构分析<ul>
-<li>高性能服务器的设计</li>
-<li>系统性能测试与分析</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>POSIX</strong>：portable operating system interface</p>
-<ul>
-<li>POSIX ≈ UNIX</li>
-<li>Windows: win32 API</li>
-</ul>
-</li>
-</ul>
-<h1 id="第一节"><a href="#第一节" class="headerlink" title="第一节"></a>第一节</h1><h3 id="Files-and-Directories"><a href="#Files-and-Directories" class="headerlink" title="Files and Directories"></a>Files and Directories</h3><ol>
-<li>Filename<ul>
-<li>slash character (/) and the null character</li>
-</ul>
-</li>
-<li>Working Directory</li>
-<li>Home Directory</li>
-</ol>
-<h3 id="Input-and-Output"><a href="#Input-and-Output" class="headerlink" title="Input and Output"></a>Input and Output</h3><ol>
-<li>File Descriptors</li>
-<li>Standard Input, Output, Error –&gt; 0, 1, 2<ul>
-<li>getchar()：从0文件描述符读取内容</li>
-</ul>
-</li>
-<li>Standard I/O<ul>
-<li>一个库，把底层的文件IO又进行一层包装</li>
+<li>尽量使用高级语言中的流/带有缓冲的IO接口<ul>
+<li>当我们做底层开发时，使用底层的IO接口</li>
+<li>写kernel接口时，需要了解底层的IO接口的规律</li>
 </ul>
 </li>
 </ol>
-<h3 id="Threads-and-Thread-IDs"><a href="#Threads-and-Thread-IDs" class="headerlink" title="Threads and Thread IDs"></a>Threads and Thread IDs</h3><ol>
-<li>线程是执行的实体，进程是资源的实体<ul>
-<li>线程共享进程资源</li>
+<h3 id="File-Descriptor"><a href="#File-Descriptor" class="headerlink" title="File Descriptor"></a>File Descriptor</h3><ol>
+<li>所有打开的文件都用文件买哦舒服表示</li>
+<li>0，1，2分别表示标准输入、标准输出和标准错误</li>
+</ol>
+<h3 id="data-structure"><a href="#data-structure" class="headerlink" title="data structure"></a>data structure</h3><ol>
+<li>user file descriptor table –&gt; file table –&gt; inode table</li>
+<li>读写位置存在file table中</li>
+<li>每个进程都有一个自己的fd表，整个系统只有一个file table和inode table</li>
+<li>fd表的结构是固定的，限制了一个进程可以同时打开的文件数目</li>
+<li><strong>操作系统并不会为文件操作提供同步操作</strong></li>
+</ol>
+<h3 id="open"><a href="#open" class="headerlink" title="open"></a>open</h3><ol>
+<li>man 2 open</li>
+<li>return：成功返回文件描述符，失败返回-1</li>
+<li>选项O_SYNC，写操作会先写到缓冲区，再写到磁盘</li>
+<li>file table中每次利用open打开都是不同的，具有独立的游标</li>
+<li>比较老的版本的操作系统支持的文件名长度小，会直接把多余部分截掉<ul>
+<li>可以通过指定宏 <em>POSIX_NO_TRUNC</em> 避免</li>
 </ul>
 </li>
 </ol>
-<h3 id="Error-Handling"><a href="#Error-Handling" class="headerlink" title="Error Handling"></a>Error Handling</h3><ol>
-<li>底层的Error Handling基本和C语言是类似的</li>
-<li>系统会通过调用的返回值<ul>
-<li>-1通常是有错误的，0通常是没错的</li>
-<li>系统会把错误信息存在环境变量errno中</li>
+<h3 id="creat"><a href="#creat" class="headerlink" title="creat"></a>creat</h3><ol>
+<li>int creat(const char *pathname, mode_t mode);<ul>
+<li>Return: 成功创建一个<strong>只读</strong>的文件返回文件描述符，失败返回-1</li>
+</ul>
+</li>
+<li>等价于指定O_CREAT选项的open操作<ul>
+<li>open(pathname, O_REONLY | O_CREAT | O_TRUNC, mode);</li>
 </ul>
 </li>
 </ol>
-<h3 id="User-Identification"><a href="#User-Identification" class="headerlink" title="User Identification"></a>User Identification</h3><ol>
-<li>User ID<ul>
-<li>每一个用户在系统中都有一个用户ID，通过用户ID记录是哪一个用户在登录</li>
-<li>超户的ID是0</li>
+<h3 id="close"><a href="#close" class="headerlink" title="close"></a>close</h3><ol>
+<li>close(fd)</li>
+<li>释放利用的数据结构和指针，以及文件上的锁(<strong>?:加了锁的情况下可以被close吗？</strong>)</li>
+<li>检查被打开文件的link count，如果该值为0，该文件会被回收<ul>
+<li>打开文件后，把文件删除，文件不会立即消失，关闭之后才会被彻底回收</li>
 </ul>
 </li>
-<li>group ID<ul>
-<li>每一个用户都必须属于一个group</li>
-<li>group的密码通常用不到，在设置group的权限时有用</li>
-<li>/etc/group</li>
-<li>一个用户可以属于多个group</li>
-<li>其他的group叫做additional groups</li>
+<li>当进程结束时，所有打开的文件都会自动被kernel回收</li>
+</ol>
+<h3 id="lseek"><a href="#lseek" class="headerlink" title="lseek"></a>lseek</h3><ol>
+<li>off_t lseek(int fd, off_t offset, int whence);<ul>
+<li>Return: 成功返回新的读写位置，失败返回-1</li>
+</ul>
+</li>
+<li>新的读写位置相对于whence参数：<ul>
+<li>SEEK_SET, SEEK_CUR, SEEK_END</li>
+</ul>
+</li>
+<li>得到当前的读写位置<ul>
+<li>off_t currpos = lseek(fd, 0, SEEK_CUR);</li>
+</ul>
+</li>
+<li>一些文件无法改变读写位置，如pipe/流文件(标准输入)，必须FIFO</li>
+</ol>
+<h3 id="a-hole-in-a-file"><a href="#a-hole-in-a-file" class="headerlink" title="a hole in a file"></a>a hole in a file</h3><ol>
+<li>lseek改变读写位置，中间可以跳过一定长度，这段长度填充为0</li>
+<li>倘若读取没有写过的内容：<ul>
+<li>按照字符读取，得到文件结束符</li>
+<li>按照无符号整数读取，得到0</li>
+</ul>
+</li>
+<li><strong>空洞是否占用磁盘空间由文件系统决定</strong></li>
+</ol>
+<h3 id="File-Size"><a href="#File-Size" class="headerlink" title="File Size"></a>File Size</h3><ol>
+<li>st_size，stat结构成员，以字节为单位存储了文件带线啊哦<ul>
+<li>对于符号链接，文件大小是指向文件的文件名的长度</li>
+</ul>
+</li>
+<li>如果将文件空洞读出来再拷贝，那么空洞不会被省略<ul>
+<li>因为读的时候会用0填充</li>
 </ul>
 </li>
 </ol>
-<h3 id="Time-Values"><a href="#Time-Values" class="headerlink" title="Time Values"></a>Time Values</h3><ol>
-<li>Calendar time</li>
-<li>Process time(CPU time)<ul>
-<li>进程在CPU上运行的时间</li>
-<li>计量单位 ticks<ul>
-<li>一秒钟通常有 50/60/100 ticks</li>
+<h3 id="read-write"><a href="#read-write" class="headerlink" title="read/write"></a>read/write</h3><ol>
+<li>ssize_t read(ing fd, void *buf, size_t nbytes);<ul>
+<li>Return: 读出来的文件长度，如果遇到EOF返回0，出错返回-1</li>
+<li>读取一个30个字节的文件，第一次读取100字节，返回30，第二次读返回0</li>
 </ul>
 </li>
+</ol>
+<h3 id="IO-Efficiency"><a href="#IO-Efficiency" class="headerlink" title="IO Efficiency"></a>IO Efficiency</h3><ol>
+<li>每次读的数据对系统是有影响的<ul>
+<li>每次读的数据越多，效率越高</li>
+<li>高到一定程度之后，就不会变化了</li>
 </ul>
 </li>
-<li>进程的运行时间有三种计量方式<ul>
-<li>Clock time(wall clock time)<ul>
-<li>进程从被启动开始的运行时间，其中部分时间可能并不在CPU上运行</li>
-</ul>
-</li>
-<li>User CPU time<ul>
-<li>进程在用户态执行时占据的CPU时间</li>
-</ul>
-</li>
-<li>System(Kernel) CPU time<ul>
-<li>当我们调用系统调用或者终中断等在内核运行时占据的CPU时间</li>
-<li>CPU time = User CPU time + System CPU time</li>
+<li>LINUX中清除系统缓存的命令：<ul>
+<li>sync</li>
+<li>echo 3 &gt; /proc/sys/vm/drop_caches<ul>
+<li>0：不释放（系统默认值）</li>
+<li>1：释放页缓存</li>
+<li>2：释放dentries和inodes</li>
+<li>3：释放所有缓存</li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
-<h3 id="System-Calls-and-Library-Functions"><a href="#System-Calls-and-Library-Functions" class="headerlink" title="System Calls and Library Functions"></a>System Calls and Library Functions</h3><ol>
-<li>System Calls<ul>
-<li>让开发者可以通过这些系统调用接口来使用kernel提供的服务</li>
+<h3 id="Atomic-Operations"><a href="#Atomic-Operations" class="headerlink" title="Atomic Operations"></a>Atomic Operations</h3><ol>
+<li>在文件末尾写入，<ul>
+<li>不合适：lseek–&gt;write</li>
+<li>合适：O_APPEND，保证多个进程</li>
 </ul>
 </li>
 </ol>
-<h3 id="UNIX-standardization"><a href="#UNIX-standardization" class="headerlink" title="UNIX standardization"></a>UNIX standardization</h3><ol>
-<li>相关的standard<ul>
-<li>interface</li>
-<li>library/library location</li>
-<li>data type</li>
+<h4 id="pread"><a href="#pread" class="headerlink" title="pread"></a>pread</h4><ol>
+<li>ssize_t pread(int fd, void *buf, size_t nbytes, off_t offset);<ul>
+<li>Return: 成功返回读到的字节数，遇到EOF返回0，失败返回-1</li>
 </ul>
 </li>
-<li>一些知名的标准<ul>
-<li>ANSI C<ul>
-<li>syntax，semantic，library</li>
-<li>headers (stdio.h)</li>
-</ul>
-</li>
-<li>POSIX-操作系统标准 </li>
-<li>XPG4-欧洲的操作系统标准 (X/Open Portability Guide)<ul>
-<li>operating system interface standard</li>
-<li>Defined in c</li>
-<li>based on UNIX, <strong>but for all OS</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>标准规定了接口，但是没有规定实现，所以不同的厂商只要提供兼容的接口就行</li>
+<li>封装了seek和read，定位到offset，读nbytes</li>
+<li><strong>真实的offset不会变化</strong></li>
 </ol>
-<h3 id="UNIX-implement"><a href="#UNIX-implement" class="headerlink" title="UNIX implement"></a>UNIX implement</h3><ol>
-<li>SVR4 (system 5 release 4)</li>
-<li>4.3+BSD</li>
-<li>Others(AIX, HP-UX, solaris, IRIX)</li>
-<li>LINUX <strong>conform to</strong> POSIX (LINUX 符合 POSIX标准)</li>
-</ol>
-<h3 id="Limits"><a href="#Limits" class="headerlink" title="Limits"></a>Limits</h3><ol>
-<li>Compile-time limits (the largest value of a short integer)<ul>
-<li>在头文件中define了宏，规定了使用的资源不能超过多少</li>
-</ul>
-</li>
-<li>Runtime limits<ul>
-<li>没有明确定义，但是使用过程中不能超过一定大小</li>
-<li>eg：<ul>
-<li>文件名长度，就的版本上不能超过 14 字符，新版本不能超过 255 字符</li>
-<li>进程打开文件的数目，不能超过一定数目</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>我们可以用一些接口来找到这些限制，也可在头文件中找到一些定义的宏来发现这些限制</li>
-</ol>
-<h4 id="ANSI-C-Limits"><a href="#ANSI-C-Limits" class="headerlink" title="ANSI C Limits"></a>ANSI C Limits</h4><ol>
-<li>所有都是 compile-time 限制<ul>
-<li>eg：CHAR_BIT，限制了char的位</li>
-</ul>
-</li>
-</ol>
-<h4 id="POSIX-Limits"><a href="#POSIX-Limits" class="headerlink" title="POSIX Limits"></a>POSIX Limits</h4><ol>
-<li>compile-time<ul>
-<li>eg：_POSIX_LINK_MAX：number of links to a file 8<ul>
-<li>这些值都是可以更改的</li>
+<h3 id="Atomic-Operations-create"><a href="#Atomic-Operations-create" class="headerlink" title="Atomic Operations: create"></a>Atomic Operations: create</h3><ol>
+<li>check and create<ul>
+<li>不合适：open(O_WRONLY) –&gt; ENOENT –&gt; creat</li>
+<li>较为合适：open(O_CREAT | O_EXCL | O_RDWR) –&gt; EEXIST –&gt; open(O_RDWR)<ul>
+<li>在EEXIT和第二次open间，文件可能会被删除，需要再次捕捉错误</li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
-<h4 id="GET-RUN-Time-limits"><a href="#GET-RUN-Time-limits" class="headerlink" title="GET RUN Time limits"></a>GET RUN Time limits</h4><ol>
-<li>#include &lt;unistd.h&gt;<ul>
-<li>long sysconf(int time)</li>
-<li>long pathconf(const char *pathname, int time)</li>
-<li>long fpathconf(int filedes, int name);<ul>
-<li>return: corresponding value if OK, -1 on error</li>
-<li>得到相应的限制</li>
+<h3 id="dup"><a href="#dup" class="headerlink" title="dup"></a>dup</h3><ol>
+<li>j = dup(i)，复制i，j指向与i相同的file table项，共享读写模式和读写位置</li>
+</ol>
+<h3 id="other-dup-operation"><a href="#other-dup-operation" class="headerlink" title="other dup operation"></a>other dup operation</h3><ol>
+<li>fcntl(fd, F_DUPFD, 0);<ul>
+<li>对fd复制，返回新的fd</li>
+</ul>
+</li>
+<li>dup2(fd, fd2);<ul>
+<li>与dup功能一样，只是直接指定了新的文件描述符</li>
+<li>如果fd2本身有文件，则先close</li>
+<li>相当于：<ul>
+<li>close(fd2);</li>
+<li>fcntl(fd, F_DUPFD, fd2);</li>
 </ul>
 </li>
 </ul>
 </li>
 </ol>
-<h4 id="others"><a href="#others" class="headerlink" title="others"></a>others</h4><ol>
-<li>OS version<ul>
-<li>#ifdef LINUX_2_4</li>
+<h3 id="redirect-the-i-o"><a href="#redirect-the-i-o" class="headerlink" title="redirect the i/o"></a>redirect the i/o</h3><ol>
+<li><p>相当于 $a.out &gt; put0.txt</p>
+</li>
+<li><p> fda = open(“put0.txt”, …);<br> close(1);<br> dup(fda);<br> close(fda);<br> printf(“…..”); </p>
+</li>
+</ol>
+<h3 id="fcntl"><a href="#fcntl" class="headerlink" title="fcntl"></a>fcntl</h3><ol>
+<li>int fcntl(int fd, int cmd, …/* int arg */);</li>
+</ol>
+<h3 id="sync-fsync-fdatasync"><a href="#sync-fsync-fdatasync" class="headerlink" title="sync, fsync, fdatasync"></a>sync, fsync, fdatasync</h3><ol>
+<li>#include&lt;unistd.h&gt;</li>
+<li>int fsync(int fd);<ul>
+<li>将缓冲区中所有有关fd的数据写入磁盘</li>
+<li>阻塞式调用，返回时确定已经写完了</li>
 </ul>
 </li>
-<li>Platform<ul>
-<li>#ifdef <em>INTEL</em></li>
+<li>int fdatasync(int fd);<ul>
+<li>将缓冲区中有关fd的数据写入磁盘，只写数据，不写元数据</li>
 </ul>
 </li>
-<li>software version<ul>
-<li>#ifdef DEBUG</li>
-</ul>
-</li>
-<li>macro in command line<ul>
-<li>gcc -D DEBUG</li>
+<li>sync(void);<ul>
+<li>将系统缓冲区中所有的dirty数据按照队列写入磁盘，然后返回</li>
+<li>只是写入工作开始，结束时间无法确定</li>
 </ul>
 </li>
 </ol>
-<h3 id="Primitive-System-Data-Types"><a href="#Primitive-System-Data-Types" class="headerlink" title="Primitive System Data Types"></a>Primitive System Data Types</h3><ol>
-<li>pid_t, dev_t, off_t<ul>
-<li>本质上是证书，长整数等某一种类型，比如pid_t目前基本是int或者unsigned int类型</li>
-<li>typedef  __kernel_off_t  off_t</li>
+<h3 id="ioctl"><a href="#ioctl" class="headerlink" title="ioctl"></a>ioctl</h3><ol>
+<li>int ioctl(int fd, int request, …);</li>
+<li>包含了一些开发者自定义的，标准IO操作不包括的系统特性<ul>
+<li>eg：使用串口通信，还需要设置波特率等参数，不能通过标准读写设定</li>
 </ul>
 </li>
-<li>写程序时，用到接口比如fork()，返回类型是pid_t，那么我们定义一个变量得到返回值时，也应该用pid_t<ul>
-<li>与用int的区别：系统定义pid_t在不同系统或者在系统的不同时期可能是不同的类型，可能演变成一个数据结构</li>
+<li>每一个驱动设备都可以自定义ioctl命令</li>
+</ol>
+<h3 id="dev-fd"><a href="#dev-fd" class="headerlink" title="/dev/fd"></a>/dev/fd</h3><ol>
+<li>/dev/fd/n，表示已经存在的fd</li>
+<li>fd = open(“/dev/fd/0”. mode);<ul>
+<li>相当于 fd = dup(0);</li>
 </ul>
 </li>
 </ol>
@@ -687,6 +653,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
 
       
       
@@ -696,14 +668,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/03/01/软件质量保障与测试1/" rel="prev" title="软件质量保障与测试--第一节">          
+                <i class="fa fa-chevron-left"></i> 软件质量保障与测试--第一节
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/01/系统程序设计2/" rel="next" title>
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/02/29/系统程序设计1/" rel="next" title="系统程序设计--第一节">
+                系统程序设计--第一节 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -797,7 +773,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -879,7 +857,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一节"><span class="nav-text">第一节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Files-and-Directories"><span class="nav-text">Files and Directories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-and-Output"><span class="nav-text">Input and Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Threads-and-Thread-IDs"><span class="nav-text">Threads and Thread IDs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-Handling"><span class="nav-text">Error Handling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Identification"><span class="nav-text">User Identification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Time-Values"><span class="nav-text">Time Values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#System-Calls-and-Library-Functions"><span class="nav-text">System Calls and Library Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNIX-standardization"><span class="nav-text">UNIX standardization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNIX-implement"><span class="nav-text">UNIX implement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Limits"><span class="nav-text">Limits</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ANSI-C-Limits"><span class="nav-text">ANSI C Limits</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POSIX-Limits"><span class="nav-text">POSIX Limits</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GET-RUN-Time-limits"><span class="nav-text">GET RUN Time limits</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#others"><span class="nav-text">others</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Primitive-System-Data-Types"><span class="nav-text">Primitive System Data Types</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#File-I-O"><span class="nav-text">File I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#File-Descriptor"><span class="nav-text">File Descriptor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data-structure"><span class="nav-text">data structure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#open"><span class="nav-text">open</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#creat"><span class="nav-text">creat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#close"><span class="nav-text">close</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lseek"><span class="nav-text">lseek</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#a-hole-in-a-file"><span class="nav-text">a hole in a file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File-Size"><span class="nav-text">File Size</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#read-write"><span class="nav-text">read/write</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IO-Efficiency"><span class="nav-text">IO Efficiency</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Atomic-Operations"><span class="nav-text">Atomic Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pread"><span class="nav-text">pread</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Atomic-Operations-create"><span class="nav-text">Atomic Operations: create</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dup"><span class="nav-text">dup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#other-dup-operation"><span class="nav-text">other dup operation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redirect-the-i-o"><span class="nav-text">redirect the i/o</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fcntl"><span class="nav-text">fcntl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sync-fsync-fdatasync"><span class="nav-text">sync, fsync, fdatasync</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ioctl"><span class="nav-text">ioctl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dev-fd"><span class="nav-text">/dev/fd</span></a></li></ol></li></ol></div>
             
 
           </div>
