@@ -155,7 +155,7 @@
 <meta property="og:site_name" content="Song&#39;s Blog">
 <meta property="og:description" content="第一章 软件测试质量保障与软件测试基础为什么需要软件测试 - 软件测试的重要性 功能问题 性能问题 当软件发生错误时，如果影响是我们不愿承受或者不能承受时，我们需要测试来解决这些漏洞  测试与成本的关系 错误的成本 用户的成本：软件产品的缺陷&amp;amp;错误(数据缺失、软件的错误反应、硬件设备的损坏) 软件开发方的成本： 用户的不满意(形象) 错误更改费用 对损害的赔偿费用     测试的成本，影响">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-01T07:58:51.652Z">
+<meta property="og:updated_time" content="2020-03-03T07:46:15.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件质量保障与测试--第一节">
 <meta name="twitter:description" content="第一章 软件测试质量保障与软件测试基础为什么需要软件测试 - 软件测试的重要性 功能问题 性能问题 当软件发生错误时，如果影响是我们不愿承受或者不能承受时，我们需要测试来解决这些漏洞  测试与成本的关系 错误的成本 用户的成本：软件产品的缺陷&amp;amp;错误(数据缺失、软件的错误反应、硬件设备的损坏) 软件开发方的成本： 用户的不满意(形象) 错误更改费用 对损害的赔偿费用     测试的成本，影响">
@@ -388,7 +388,7 @@
                 
               
 
-              <time title="创建时间：2020-03-01 15:53:00" itemprop="dateCreated datePublished" datetime="2020-03-01T15:53:00+08:00">2020-03-01</time>
+              <time title="创建时间：2020-03-01 09:19:00" itemprop="dateCreated datePublished" datetime="2020-03-01T09:19:00+08:00">2020-03-01</time>
             
 
             
@@ -729,6 +729,51 @@
 <li>自测试、同伴测试、…、测试员测试一些专业的点</li>
 <li>所有不同形式的测试都属于独立测试，只是独立程度从完全不独立到完全独立</li>
 </ol>
+<hr>
+<h2 id="补充部分："><a href="#补充部分：" class="headerlink" title="补充部分："></a>补充部分：</h2><h3 id="ISTQB标准"><a href="#ISTQB标准" class="headerlink" title="ISTQB标准"></a>ISTQB标准</h3><h3 id="PIE模型："><a href="#PIE模型：" class="headerlink" title="PIE模型："></a>PIE模型：</h3><ol>
+<li>传播、感染、执行<ul>
+<li>缺陷-错误-失效</li>
+<li>错误是中间状态，缺陷是静态错误</li>
+</ul>
+</li>
+<li>这个模型说明：<ul>
+<li>测试可能未必执行到缺陷的位置</li>
+<li>测试执行到一个缺陷也不一定能执行到错误的位置，预期结果可能一样，测试用例没有覆盖</li>
+<li>一个测试执行到一个缺陷，可能没有传播到外面，内部功能方面的偏移<ul>
+<li>可测试性不好</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>测试的要求：执行到缺陷，发生真正的偏移，在外部能够观察到</li>
+</ol>
+<h3 id="同学问题"><a href="#同学问题" class="headerlink" title="同学问题"></a>同学问题</h3><ol>
+<li>关于软件质量保证（SQA）视频里说是有计划和系统性的活动，在于预防缺陷，对产品提供足够信心。我理解起来有些抽象。在实际生产中，这是一项开发人员和测试人员都需要遵守的要求呢还是说有专职人员督促，具体的工作有哪些呢？可以提供一些实例吗？</li>
+</ol>
+<ul>
+<li>回答：SQA是专职的人，就是我们称为SQA角色的人。他们不负责测试，但是负责出标准，比如，代码规范，比如测试深度。然后他们会监督整个团队按标准来运作，提前预防一些特定缺陷的产生。<ul>
+<li>质保岗位的人，不会具体的测试</li>
+</ul>
+</li>
+</ul>
+<h3 id="讨论环节"><a href="#讨论环节" class="headerlink" title="讨论环节"></a>讨论环节</h3><ol>
+<li>分小组进行讨论，分别介绍你们遇到过的软件错误、缺陷，带来的影响，以及产生这些错误的原因可能是什么？</li>
+</ol>
+<ul>
+<li></li>
+</ul>
+<ol start="2">
+<li>如何去测试用户登录模块？<ul>
+<li>第一个线索：大家考虑一下是否存在不同的用户登录页面模式？</li>
+<li>第二个线索：考虑一下黑盒测试用例设计方法，例如等价类划分、边界值分析，基于这些技术如何做登录模块的测试</li>
+<li>第三个线索：除了考虑典型的登录场景之外，是否还可以考虑其他的与登录页面UI或交互相关的操作的验证？</li>
+<li>第四个线索：是否需要考虑其他的非功能性需求？</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/qq_42270373/article/details/95230866" target="_blank" rel="noopener">https://blog.csdn.net/qq_42270373/article/details/95230866</a></li>
+</ul>
 
       
     </div>
@@ -858,7 +903,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -885,7 +930,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -902,7 +949,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -967,7 +1016,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-软件测试质量保障与软件测试基础"><span class="nav-text">第一章 软件测试质量保障与软件测试基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要软件测试-软件测试的重要性"><span class="nav-text">为什么需要软件测试 - 软件测试的重要性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试与成本的关系"><span class="nav-text">测试与成本的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试的起源与历史"><span class="nav-text">软件测试的起源与历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试概念"><span class="nav-text">测试概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试和软件质量-Software-Quality"><span class="nav-text">软件测试和软件质量(Software Quality)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义："><span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件生命周期中的质量"><span class="nav-text">软件生命周期中的质量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统-软件产品质量-ISO-25000，GB-T-25000"><span class="nav-text">系统/软件产品质量 - ISO 25000，GB/T 25000</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试是否充分"><span class="nav-text">测试是否充分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#软件测试有什么好处"><span class="nav-text">软件测试有什么好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多少测试才充分？"><span class="nav-text">多少测试才充分？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是测试？"><span class="nav-text">什么是测试？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试的目的"><span class="nav-text">测试的目的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#软件测试的不同目的"><span class="nav-text">软件测试的不同目的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试概念-1"><span class="nav-text">测试概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#“测试”-定义Ⅰ"><span class="nav-text">“测试” - 定义Ⅰ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“测试”-定义Ⅱ"><span class="nav-text">“测试” - 定义Ⅱ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“测试”-定义Ⅲ"><span class="nav-text">“测试” - 定义Ⅲ</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试的基本原则"><span class="nav-text">测试的基本原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原则一-——-穷举测试是不可能的"><span class="nav-text">原则一 —— 穷举测试是不可能的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则二-——-测试只能显示错误的存在"><span class="nav-text">原则二 —— 测试只能显示错误的存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则三-——-测活动依赖于测试内容"><span class="nav-text">原则三 —— 测活动依赖于测试内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则四-——-测试活动应尽早的介入"><span class="nav-text">原则四 —— 测试活动应尽早的介入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#错误的根源和代价"><span class="nav-text">错误的根源和代价</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则五-——-谬误：“不存在缺陷的系统就一定是有用的系统”"><span class="nav-text">原则五 —— 谬误：“不存在缺陷的系统就一定是有用的系统”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则六-——-缺陷的集群现象"><span class="nav-text">原则六 —— 缺陷的集群现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则七-——-重复不会有效率-杀虫剂悖论"><span class="nav-text">原则七 —— 重复不会有效率(杀虫剂悖论)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件质量保障与软件测试"><span class="nav-text">软件质量保障与软件测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试对成功的贡献"><span class="nav-text">测试对成功的贡献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发模型中测试技术的应用"><span class="nav-text">开发模型中测试技术的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#质量管理"><span class="nav-text">质量管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试心理学"><span class="nav-text">测试心理学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试与开发的区别"><span class="nav-text">测试与开发的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试的本质"><span class="nav-text">测试的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试员的全方位沟通"><span class="nav-text">测试员的全方位沟通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试的独立性"><span class="nav-text">测试的独立性</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-软件测试质量保障与软件测试基础"><span class="nav-text">第一章 软件测试质量保障与软件测试基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要软件测试-软件测试的重要性"><span class="nav-text">为什么需要软件测试 - 软件测试的重要性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试与成本的关系"><span class="nav-text">测试与成本的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试的起源与历史"><span class="nav-text">软件测试的起源与历史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试概念"><span class="nav-text">测试概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件测试和软件质量-Software-Quality"><span class="nav-text">软件测试和软件质量(Software Quality)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义："><span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件生命周期中的质量"><span class="nav-text">软件生命周期中的质量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统-软件产品质量-ISO-25000，GB-T-25000"><span class="nav-text">系统/软件产品质量 - ISO 25000，GB/T 25000</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试是否充分"><span class="nav-text">测试是否充分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#软件测试有什么好处"><span class="nav-text">软件测试有什么好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多少测试才充分？"><span class="nav-text">多少测试才充分？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是测试？"><span class="nav-text">什么是测试？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试的目的"><span class="nav-text">测试的目的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#软件测试的不同目的"><span class="nav-text">软件测试的不同目的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试概念-1"><span class="nav-text">测试概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#“测试”-定义Ⅰ"><span class="nav-text">“测试” - 定义Ⅰ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“测试”-定义Ⅱ"><span class="nav-text">“测试” - 定义Ⅱ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“测试”-定义Ⅲ"><span class="nav-text">“测试” - 定义Ⅲ</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试的基本原则"><span class="nav-text">测试的基本原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原则一-——-穷举测试是不可能的"><span class="nav-text">原则一 —— 穷举测试是不可能的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则二-——-测试只能显示错误的存在"><span class="nav-text">原则二 —— 测试只能显示错误的存在</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则三-——-测活动依赖于测试内容"><span class="nav-text">原则三 —— 测活动依赖于测试内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则四-——-测试活动应尽早的介入"><span class="nav-text">原则四 —— 测试活动应尽早的介入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#错误的根源和代价"><span class="nav-text">错误的根源和代价</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则五-——-谬误：“不存在缺陷的系统就一定是有用的系统”"><span class="nav-text">原则五 —— 谬误：“不存在缺陷的系统就一定是有用的系统”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则六-——-缺陷的集群现象"><span class="nav-text">原则六 —— 缺陷的集群现象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原则七-——-重复不会有效率-杀虫剂悖论"><span class="nav-text">原则七 —— 重复不会有效率(杀虫剂悖论)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件质量保障与软件测试"><span class="nav-text">软件质量保障与软件测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试对成功的贡献"><span class="nav-text">测试对成功的贡献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发模型中测试技术的应用"><span class="nav-text">开发模型中测试技术的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#质量管理"><span class="nav-text">质量管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试心理学"><span class="nav-text">测试心理学</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试与开发的区别"><span class="nav-text">测试与开发的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试的本质"><span class="nav-text">测试的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试员的全方位沟通"><span class="nav-text">测试员的全方位沟通</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试的独立性"><span class="nav-text">测试的独立性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充部分："><span class="nav-text">补充部分：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ISTQB标准"><span class="nav-text">ISTQB标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PIE模型："><span class="nav-text">PIE模型：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同学问题"><span class="nav-text">同学问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论环节"><span class="nav-text">讨论环节</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
