@@ -155,7 +155,7 @@
 <meta property="og:site_name" content="Song&#39;s Blog">
 <meta property="og:description" content="命令帮助和快捷使用命令格式 Shell为用户提供命令行的接口 输出提示符(PS1),缺省提示符给出了主机名/用户/当前工作目录/用户类型($表示普通用户, #表示root) 默认提示符，如12345678        - 提示符可以在配置文件中修改    - 等待用户输入一行命令    - 执行该命令，并输出结果2. command [options] arguments    比如 ```rm">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-07T07:56:00.406Z">
+<meta property="og:updated_time" content="2020-03-07T07:57:28.124Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LINUX操作系统--第二节">
 <meta name="twitter:description" content="命令帮助和快捷使用命令格式 Shell为用户提供命令行的接口 输出提示符(PS1),缺省提示符给出了主机名/用户/当前工作目录/用户类型($表示普通用户, #表示root) 默认提示符，如12345678        - 提示符可以在配置文件中修改    - 等待用户输入一行命令    - 执行该命令，并输出结果2. command [options] arguments    比如 ```rm">
@@ -583,6 +583,7 @@
 <li>VALUE里面的命令也可以是别名，此时继续进行别名扩展；但是如果该命令的名字与别名NAME一致，则不会再次进行别名扩展（否则造成递归循环）</li>
 <li>注意等号前后不允许有空格，如果包含空格，需要用单引号或者双引号</li>
 <li>允许在一行设置多个别名<br>  <code>alias name1=value1 name2=value2</code>  </li>
+<li><code>alias [name]</code> 表示查看name所对应的映射</li>
 </ul>
 <ol start="5">
 <li><code>unalias [-a] name [name ...]</code> ： 取消别名<ul>
