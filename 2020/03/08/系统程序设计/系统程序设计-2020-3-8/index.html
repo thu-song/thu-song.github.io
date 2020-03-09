@@ -155,12 +155,12 @@
 <meta property="og:site_name" content="Song&#39;s Blog">
 <meta property="og:description" content="file and directorystat()、fstat()、lstat() 文件状态的访问函数  12345678910/* 由路径名得到 stat */int stat(const char *pathname, struct stat *buf);/* 由文件描述符得到 stat */int fstat(int filedes, struct stat *buf);/* 得到链接的 st">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/effect%20of%20funtions.jpg">
-<meta property="og:updated_time" content="2020-03-09T04:14:29.488Z">
+<meta property="og:image" content="http://yoursite.com/2020/03/08/系统程序设计/系统程序设计-2020-3-8/pictures/1.jpg">
+<meta property="og:updated_time" content="2020-03-09T06:34:50.893Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="系统程序设计--第三节">
 <meta name="twitter:description" content="file and directorystat()、fstat()、lstat() 文件状态的访问函数  12345678910/* 由路径名得到 stat */int stat(const char *pathname, struct stat *buf);/* 由文件描述符得到 stat */int fstat(int filedes, struct stat *buf);/* 得到链接的 st">
-<meta name="twitter:image" content="https://github.com/thu-song/blog-pictures/blob/master/effect%20of%20funtions.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/08/系统程序设计/系统程序设计-2020-3-8/pictures/1.jpg">
 
 
 
@@ -788,11 +788,14 @@
 </tr>
 </tbody></table>
 <ol>
-<li>对文件的某些操作会影响到其父目录的状态<ul>
+<li><p>对文件的某些操作会影响到其父目录的状态</p>
+<ul>
 <li>比如创建了新的文件，那么父目录的mtime会改变</li>
 </ul>
 </li>
-<li>不同函数的效果：<br><img src="https://github.com/thu-song/blog-pictures/blob/master/effect%20of%20funtions.jpg" alt="effect of various funtions"></li>
+<li><p>不同函数的效果：</p>
+<p> <img src="./pictures/1.jpg" alt="effect of various funtions"></p>
+</li>
 </ol>
 <hr>
 <h2 id="utime"><a href="#utime" class="headerlink" title="utime()"></a>utime()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">utime</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">const</span> struct utimebuf *times)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Returns: 0 if OK, -1 on error</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">utimebuf</span>&#123;</span></span><br><span class="line">    <span class="keyword">time_t</span> actime;  <span class="comment">/* access time */</span></span><br><span class="line">    <span class="keyword">time_t</span> modtime; <span class="comment">/* modification time */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
