@@ -156,7 +156,7 @@
 <meta property="og:description" content="第二章 软件测试质量保障 —— 需求工程简介不合格的需求工程当今开发软件系统所面临的挑战 软件危机：落后的软件生产方式无法满足迅速增长的计算机软件需求，从而导致软件开发与维护过程中出现一系列严重问题的现象。 创新性要求 复杂度高 质量要求高 研发速度快 特别在云、大数据、智能、移动互联网等方面  软件项目的成功率统计自1996年后，只有30%左右的项目成功 不成功的原因分析 直接由需求导致的失败或">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91%E8%BF%87%E7%A8%8B%E7%9A%84%E9%97%AE%E9%A2%98.png?raw=true">
-<meta property="og:updated_time" content="2020-03-09T09:06:29.761Z">
+<meta property="og:updated_time" content="2020-03-10T03:33:14.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件质量保障与测试--第二节">
 <meta name="twitter:description" content="第二章 软件测试质量保障 —— 需求工程简介不合格的需求工程当今开发软件系统所面临的挑战 软件危机：落后的软件生产方式无法满足迅速增长的计算机软件需求，从而导致软件开发与维护过程中出现一系列严重问题的现象。 创新性要求 复杂度高 质量要求高 研发速度快 特别在云、大数据、智能、移动互联网等方面  软件项目的成功率统计自1996年后，只有30%左右的项目成功 不成功的原因分析 直接由需求导致的失败或">
@@ -633,6 +633,84 @@
 <li>质量需求的重要性</li>
 <li>质量需求的特征</li>
 </ol>
+<hr>
+<h2 id="上课"><a href="#上课" class="headerlink" title="上课"></a>上课</h2><ol>
+<li>需求文档的编写是需求工程中的重要环节。你认为需求文档可以按照什么方式进行编写？<ul>
+<li>获取需求之后，记录需求，明确需求，通过座谈等方式，跟客户沟通清楚</li>
+<li>结合图的方式，明确产品的结构，每个结构的内容，表格、流程图、用况图、顺序图等，描绘其中的关键点，一图胜千言，每个需求，每个需求的步骤</li>
+<li>结合文字描述</li>
+<li>考虑画什么类型的图，表达是否精准</li>
+</ul>
+</li>
+<li>需求的确认与协商的主要意图是什么？<ul>
+<li>广义对需求规格说明书的测试<ul>
+<li>每个人对需求的理解都是不一样的，比如PPT上那个秋千的例子，进行需求确认就是为了能够使需求更加精准</li>
+<li>归纳的需求时符合客户预期的</li>
+<li>需求评审、文档评审过程</li>
+<li>提早发现问题，</li>
+<li>不同的方式：开会，邮件，走查等</li>
+</ul>
+</li>
+<li>协商：<ul>
+<li>不同的利益相关者他们站的位置不同，看待问题的角度不同，可能会有互相矛盾的需求</li>
+<li>一些功能可能难以实现</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>需求获取的渠道：<ul>
+<li>和客户进行沟通：面对面</li>
+<li>调查技术：问卷、访谈</li>
+<li>新的技术点：头脑风暴、悖论头脑风暴、我们要去避免做到什么</li>
+<li>新的防御技术：拟态章鱼</li>
+<li>文档为中心的技术，系统的考古，遗留系统的技术可能过时了，但是需求点还是适用的</li>
+<li>需求的复用：成熟的领域</li>
+<li>基于角度的阅读：不同利益相关方来看</li>
+<li>实地考察、见习</li>
+</ul>
+</li>
+<li>协商的技术：<ul>
+<li>冲突是一直存在问题</li>
+<li>分析冲突的原因</li>
+<li>合理地沟通</li>
+<li>妥协，找到平衡点</li>
+<li>需求的优先级排序</li>
+<li>民主的方式投票</li>
+<li>上下级</li>
+<li>理论化的方式，评估影响，计算数值，是利益最大化</li>
+<li>定义不同的变体，不同的上下文中有冲突存在，开发不同的软件的变体，使用不同的上下文，符合多种场景需求</li>
+</ul>
+</li>
+<li>对于出题系统的测试计划的点评<ul>
+<li>针对系统的功能和质量需求</li>
+<li>从功能的角度，需求规格说明书，基本的功能</li>
+<li>针对功能点进行功能的测试：<ul>
+<li>用户登录</li>
+<li>具体的功能点：新建项目、启动项目、编写考题、评审考题、再审考题、修改考题、发布考题、作废考题</li>
+</ul>
+</li>
+<li>对于质量属性的测试：<ul>
+<li>安全性测试：用户泄露、考题泄露、等保测试(等级保密)</li>
+<li>兼容性测试：软件兼容，通过Excel导入试题等</li>
+<li>性能测试：点击的响应速度</li>
+<li>可靠性的验证：疲劳性测试，但是出题系统并不是time-critical</li>
+<li>易用性测试：相对于出题系统并不是那么重要，可以通过学习/培训来学到如何使用</li>
+<li>可维护性、可移植性：内部属性，不是对应于客户的指标，并不是完全依照用户需求来做测试，通过评审来做，代码质量</li>
+</ul>
+</li>
+<li>缺失的功能点：<ul>
+<li>用户管理</li>
+</ul>
+</li>
+<li>正向测试和逆向测试</li>
+</ul>
+</li>
+<li>补全需求文档<ul>
+<li>是否有需求不合理的问题，作为改进的任务</li>
+<li>参考</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -679,6 +757,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/10/软件过程/软件过程-2020-3-10/" rel="prev" title="软件过程--第二节">          
+                <i class="fa fa-chevron-left"></i> 软件过程--第二节
+              </a>
             
           </div>
 
@@ -758,7 +840,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">42</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -881,7 +963,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-软件测试质量保障-——-需求工程简介"><span class="nav-text">第二章 软件测试质量保障 —— 需求工程简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#不合格的需求工程"><span class="nav-text">不合格的需求工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当今开发软件系统所面临的挑战"><span class="nav-text">当今开发软件系统所面临的挑战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件项目的成功率统计"><span class="nav-text">软件项目的成功率统计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不成功的原因分析"><span class="nav-text">不成功的原因分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件研发过程的问题"><span class="nav-text">软件研发过程的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不合格的项目需求的主要原因"><span class="nav-text">不合格的项目需求的主要原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改善需求分析对项目成功的重要性"><span class="nav-text">改善需求分析对项目成功的重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求工程及它的四大主要工作"><span class="nav-text">需求工程及它的四大主要工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是需求"><span class="nav-text">什么是需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是利益相关方"><span class="nav-text">什么是利益相关方</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是需求工程"><span class="nav-text">什么是需求工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求和方案"><span class="nav-text">需求和方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求工程四大主要工作"><span class="nav-text">需求工程四大主要工作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#沟通在需求工程中的作用"><span class="nav-text">沟通在需求工程中的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#影响沟通的因素"><span class="nav-text">影响沟通的因素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对需求工程师技能要求"><span class="nav-text">对需求工程师技能要求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求工程师特征"><span class="nav-text">需求工程师特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对需求工程师的七大能力要求"><span class="nav-text">对需求工程师的七大能力要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种需求的类型"><span class="nav-text">三种需求的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#质量需求的重要性及特征"><span class="nav-text">质量需求的重要性及特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#质量需求的重要性"><span class="nav-text">质量需求的重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#质量需求的特征"><span class="nav-text">质量需求的特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结-1"><span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-软件测试质量保障-——-需求工程简介"><span class="nav-text">第二章 软件测试质量保障 —— 需求工程简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#不合格的需求工程"><span class="nav-text">不合格的需求工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当今开发软件系统所面临的挑战"><span class="nav-text">当今开发软件系统所面临的挑战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件项目的成功率统计"><span class="nav-text">软件项目的成功率统计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不成功的原因分析"><span class="nav-text">不成功的原因分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件研发过程的问题"><span class="nav-text">软件研发过程的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不合格的项目需求的主要原因"><span class="nav-text">不合格的项目需求的主要原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改善需求分析对项目成功的重要性"><span class="nav-text">改善需求分析对项目成功的重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求工程及它的四大主要工作"><span class="nav-text">需求工程及它的四大主要工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是需求"><span class="nav-text">什么是需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是利益相关方"><span class="nav-text">什么是利益相关方</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是需求工程"><span class="nav-text">什么是需求工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求和方案"><span class="nav-text">需求和方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求工程四大主要工作"><span class="nav-text">需求工程四大主要工作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#沟通在需求工程中的作用"><span class="nav-text">沟通在需求工程中的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#影响沟通的因素"><span class="nav-text">影响沟通的因素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对需求工程师技能要求"><span class="nav-text">对需求工程师技能要求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求工程师特征"><span class="nav-text">需求工程师特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对需求工程师的七大能力要求"><span class="nav-text">对需求工程师的七大能力要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种需求的类型"><span class="nav-text">三种需求的类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#质量需求的重要性及特征"><span class="nav-text">质量需求的重要性及特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#质量需求的重要性"><span class="nav-text">质量需求的重要性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#质量需求的特征"><span class="nav-text">质量需求的特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结-1"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上课"><span class="nav-text">上课</span></a></li></ol></li></ol></div>
             
 
           </div>

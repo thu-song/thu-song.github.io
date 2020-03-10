@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="标准IO为什么我们需要标准I/O库 减少系统调用的次数，而不改变用户的逻辑、习惯 先把数据缓存到用户空间中，再从用户空间拷贝 建造一个库，维护一个在用户空间的缓冲区    标准I/O 最核心的做法就是把数据缓冲在用户空间 减少系统调用的次数 FILE 结构 记录了和流描述符对应的fd，缓冲区和缓冲区的刷新机制   缓冲机制 Fully buffered (disk) 对于用户缓冲区里的内容，用户调">
+<meta name="keywords" content="课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统程序设计--第三节">
+<meta property="og:url" content="http://yoursite.com/2020/03/10/系统程序设计/系统程序设计-2020-3-10/index.html">
+<meta property="og:site_name" content="Song&#39;s Blog">
+<meta property="og:description" content="标准IO为什么我们需要标准I/O库 减少系统调用的次数，而不改变用户的逻辑、习惯 先把数据缓存到用户空间中，再从用户空间拷贝 建造一个库，维护一个在用户空间的缓冲区    标准I/O 最核心的做法就是把数据缓冲在用户空间 减少系统调用的次数 FILE 结构 记录了和流描述符对应的fd，缓冲区和缓冲区的刷新机制   缓冲机制 Fully buffered (disk) 对于用户缓冲区里的内容，用户调">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/setbuf%20setvbuf%E5%8F%82%E6%95%B0%E5%92%8C%E5%BD%B1%E5%93%8D.jpg?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/fopen%20%E6%89%93%E5%BC%80%E7%9A%84%E6%A8%A1%E5%BC%8F.jpg?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E6%A0%87%E5%87%86IO%E7%9A%84%E6%95%88%E7%8E%87.jpg?raw=true">
+<meta property="og:updated_time" content="2020-03-10T07:55:54.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系统程序设计--第三节">
+<meta name="twitter:description" content="标准IO为什么我们需要标准I/O库 减少系统调用的次数，而不改变用户的逻辑、习惯 先把数据缓存到用户空间中，再从用户空间拷贝 建造一个库，维护一个在用户空间的缓冲区    标准I/O 最核心的做法就是把数据缓冲在用户空间 减少系统调用的次数 FILE 结构 记录了和流描述符对应的fd，缓冲区和缓冲区的刷新机制   缓冲机制 Fully buffered (disk) 对于用户缓冲区里的内容，用户调">
+<meta name="twitter:image" content="https://github.com/thu-song/blog-pictures/blob/master/setbuf%20setvbuf%E5%8F%82%E6%95%B0%E5%92%8C%E5%BD%B1%E5%93%8D.jpg?raw=true">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/10/系统程序设计/系统程序设计-2020-3-10/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>系统程序设计--第三节 | Song's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Song's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/10/系统程序设计/系统程序设计-2020-3-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YJ Song">
+      <meta itemprop="description" content="Show me code!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Song's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">系统程序设计--第三节
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-10 08:13:00" itemprop="dateCreated datePublished" datetime="2020-03-10T08:13:00+08:00">2020-03-10</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="标准IO"><a href="#标准IO" class="headerlink" title="标准IO"></a>标准IO</h1><h2 id="为什么我们需要标准I-O库"><a href="#为什么我们需要标准I-O库" class="headerlink" title="为什么我们需要标准I/O库"></a>为什么我们需要标准I/O库</h2><ol>
+<li>减少系统调用的次数，而不改变用户的逻辑、习惯<ul>
+<li>先把数据缓存到用户空间中，再从用户空间拷贝</li>
+<li>建造一个库，维护一个在用户空间的缓冲区</li>
+</ul>
+</li>
+</ol>
+<h2 id="标准I-O"><a href="#标准I-O" class="headerlink" title="标准I/O"></a>标准I/O</h2><ol>
+<li>最核心的做法就是把数据缓冲在用户空间</li>
+<li>减少系统调用的次数</li>
+<li><strong>FILE 结构</strong><ul>
+<li>记录了和<strong>流</strong>描述符对应的fd，缓冲区和缓冲区的刷新机制</li>
+</ul>
+</li>
+<li>缓冲机制<ul>
+<li>Fully buffered (disk)<ul>
+<li>对于用户缓冲区里的内容，用户调用fread读取缓冲区的内容，这个用户缓冲区对用户是不可见的</li>
+<li>之后是文件系统缓冲区，在kernel中</li>
+<li>最后才是磁盘(物理设备)</li>
+<li>当用户缓冲区的内容完全被读取，标准I/O库会启动一次系统调用从kernel的缓冲区中读取内容(通常为4K)</li>
+<li>4K –&gt; 1次系统调用</li>
+</ul>
+</li>
+<li>Line buffered (terminal)<ul>
+<li>键盘和shell交互</li>
+<li>在shell中输入，回车符才会把缓冲区的内容输送给shell</li>
+<li>输出时也是一样，遇到回车符才会刷新出去</li>
+</ul>
+</li>
+<li>Unbuffered (stderr)<ul>
+<li>所做的输入和输出，跳过缓冲，直接输送给文件系统</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>调用fread是没有系统调用的：<ul>
+<li>【提问】当用户缓冲区的内容完全被读取出来的时候，标准I/O库会启动一次从内核缓冲区的读写，这个启动时通过fread调用的吗？</li>
+</ul>
+</li>
+</ol>
+<h3 id="architecture"><a href="#architecture" class="headerlink" title="architecture"></a>architecture</h3><ol>
+<li><strong>用户程序</strong> –(fread)–&gt; <strong>用户缓冲区(setbuf)</strong> –(read)–&gt; <strong>内核缓冲区</strong> –(页面调度)–&gt; <strong>物理设备(stdin…)</strong></li>
+<li><strong>用户程序</strong> –(fwrite)–&gt; <strong>用户缓冲区(setbuf)</strong> –(fflush/write)–&gt; <strong>内核缓冲区</strong> –(fsync)–&gt; <strong>物理设备(stdout…)</strong></li>
+</ol>
+<hr>
+<h2 id="change-the-buf-setbuf-setvbuf"><a href="#change-the-buf-setbuf-setvbuf" class="headerlink" title="change the buf: setbuf() / setvbuf()"></a>change the buf: setbuf() / setvbuf()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setbuf</span><span class="params">(FILE *fp, <span class="keyword">char</span> *buf)</span></span>;</span><br><span class="line"><span class="comment">/* buf must point to a buffer of length &gt;= BUFSIZ */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setvbuf</span><span class="params">(FILE *fp, <span class="keyword">char</span> *buf, <span class="keyword">int</span> mode, <span class="keyword">size_t</span> size)</span></span>;</span><br><span class="line"><span class="comment">/* 三种不同的缓冲机制：_IOFBF _IOLBF _IONBF */</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>用<code>fopen</code>打开文件时，系统自动分配了一个缓冲区</li>
+<li><code>setbuf</code>中buf长度至少为BUFSIZ(通常为4K)，因为系统通常按照BUFSIZ的大小来使用这个缓冲区</li>
+<li> <img src="https://github.com/thu-song/blog-pictures/blob/master/setbuf%20setvbuf%E5%8F%82%E6%95%B0%E5%92%8C%E5%BD%B1%E5%93%8D.jpg?raw=true" alt="参数和影响"></li>
+</ol>
+<hr>
+<h2 id="fopen"><a href="#fopen" class="headerlink" title="fopen()"></a>fopen()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">FILE *<span class="title">fopen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">const</span> <span class="keyword">char</span> *type)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">FILE *<span class="title">freopen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">const</span> <span class="keyword">char</span> *type, FILE *fp)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">FILE *<span class="title">fdopen</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">char</span> *type)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>当<code>fopen</code>打开路径时，缺省用到了标准I/O库中的缓冲机制</li>
+<li><code>freopen</code>打开pathname路径连接到已经存在的数据结构的fp<ul>
+<li>【提问】不是很懂是什么意思？</li>
+</ul>
+</li>
+<li><code>fdopen</code>对文件描述符操作<ul>
+<li>链接了文件描述符和标准I/O流</li>
+<li>对socket、管道和网络通信操作，没有具体的路径，只有文件描述符</li>
+</ul>
+</li>
+<li>打开的模式：<br> <img src="https://github.com/thu-song/blog-pictures/blob/master/fopen%20%E6%89%93%E5%BC%80%E7%9A%84%E6%A8%A1%E5%BC%8F.jpg?raw=true" alt="type"></li>
+</ol>
+<hr>
+<h2 id="read-and-write-a-stream"><a href="#read-and-write-a-stream" class="headerlink" title="read and write a stream"></a>read and write a stream</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getc</span><span class="params">(FILE *fp)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fgetc</span><span class="params">(FILE *fp)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getchar</span><span class="params">(<span class="keyword">void</span>)</span></span>;  <span class="comment">/* 从标准IO流中读 */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">putc</span><span class="params">(<span class="keyword">int</span> c, FILE *fp)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fputc</span><span class="params">(<span class="keyword">int</span> c, FILE *fp)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="fgets"><a href="#fgets" class="headerlink" title="fgets()"></a>fgets()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">fgets</span><span class="params">(<span class="keyword">char</span> *buf, <span class="keyword">int</span> n, FILE *fp)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">gets</span><span class="params">(<span class="keyword">char</span> *buf)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><strong><code>gets()</code>可能会引起缓冲区溢出</strong></li>
+<li><code>fgets()</code>有长度n，限制了缓冲区溢出</li>
+</ol>
+<h3 id="fputs"><a href="#fputs" class="headerlink" title="fputs()"></a>fputs()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fputs</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str, FILE *fp)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">puts</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>fputs()将以null终止的字符串写入指定的流，最后的’\0’不被写入</li>
+<li>puts()最后会将换行符写入标准输出，fputs()不写换行符</li>
+</ol>
+<hr>
+<h2 id="error-handling"><a href="#error-handling" class="headerlink" title="error handling"></a>error handling</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ferror</span><span class="params">(FILE *fp)</span></span>;   <span class="comment">/* 查看是否有错误 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">feof</span><span class="params">(FILE *fp)</span></span>;     <span class="comment">/* 查看是否到达了流的结尾 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Return: nonzero(true) if consition is true, 0(false) otherwise</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cleraerr</span><span class="params">(FILE *fp)</span></span>;    <span class="comment">/* 清除errno */</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="标准IO的效率"><a href="#标准IO的效率" class="headerlink" title="标准IO的效率"></a>标准IO的效率</h2><p><img src="https://github.com/thu-song/blog-pictures/blob/master/%E6%A0%87%E5%87%86IO%E7%9A%84%E6%95%88%E7%8E%87.jpg?raw=true" alt="效率比较"></p>
+<ol>
+<li><code>getc()</code>本身只需要很少的时间，因为从用户缓冲区读取内容，所以系统调用比较少</li>
+<li><code>getc()</code>和<code>fgetc()</code>的时间差别在于实现方式：使用宏实现时间比较少<ul>
+<li>【提问】为什么不统一使用宏来实现呢？ </li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="fwrite-不能跨平台"><a href="#fwrite-不能跨平台" class="headerlink" title="fwrite()不能跨平台"></a>fwrite()不能跨平台</h2><ol>
+<li><p><code>fread</code>和<code>fwrite</code>必须在相同的系统上</p>
+<ul>
+<li>不同系统上的结构成员的offset可能会不同</li>
+<li>多字节整数为二进制形式可能不同</li>
+</ul>
+</li>
+<li><p>eg：</p>
+ <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> data[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">if</span>(fwrite(&amp;data[<span class="number">2</span>], <span class="keyword">sizeof</span>(<span class="keyword">float</span>), <span class="number">4</span>, fp) != <span class="number">4</span>)</span><br><span class="line">    err_sys(<span class="string">"fwrite error"</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>fwrite()</code>将多字节的文件类型写入文件系统时，只是将内存空间中对浮点数组的表示直接写入<ul>
+<li>如果不同系统的表示方式不同时，不能读到相同的数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="FILE流的读写位置"><a href="#FILE流的读写位置" class="headerlink" title="FILE流的读写位置"></a>FILE流的读写位置</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">ftell</span><span class="params">(FILE *fp)</span></span>;   <span class="comment">/* 获得当前的读写位置 */</span></span><br><span class="line"><span class="comment">// Return: 如果成功返回当前的读写位置，失败返回1L</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fseek</span><span class="params">(FILE *fp, <span class="keyword">long</span> offset, <span class="keyword">int</span> whence)</span></span>;   <span class="comment">/* 指定读写位置 */</span></span><br><span class="line"><span class="comment">// Return: 0 if OK, nonzero on error</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rewind</span><span class="params">(FILE *fp)</span></span>;  <span class="comment">/* 回到最开始的位置 */</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* pos包装了读写位置结构 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fgetpos</span><span class="params">(FILE *fp, <span class="keyword">fpos_t</span> *pos)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fsetpos</span><span class="params">(FILE *fp, <span class="keyword">const</span> <span class="keyword">fpos_t</span> *pos)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="规范化IO"><a href="#规范化IO" class="headerlink" title="规范化IO"></a>规范化IO</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">printf</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> format, ...)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fprintf</span><span class="params">(FILE *<span class="keyword">restrict</span> fp, <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> format, ...)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">sprintf</span></span><br><span class="line"><span class="built_in">snprintf</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">file</span><span class="params">(FILE *fp)</span></span>; <span class="comment">/* fp是一个数据结构，其中包含了fd */</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>即便将标准错误文件重定向，它还是无buffer的，buffer size = 1</li>
+</ol>
+<hr>
+<h2 id="临时文件"><a href="#临时文件" class="headerlink" title="临时文件"></a>临时文件</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">tmpnam</span><span class="params">(<span class="keyword">char</span> *ptr)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">FILE *<span class="title">tmpfile</span><span class="params">(<span class="keyword">void</span>)</span></span>;    <span class="comment">/* 生成一个文件并打开，得到一个fp，关闭时自动被删除 */</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>如果ptr是NULL，那么生成的路径名被存在静态区域，返回一个指向这个地址的指针</li>
+<li>生成的临时文件没有名字，存进文件的内容，之后转存到数据库等，这个文件就不需要了</li>
+</ol>
+<h3 id="tempnam"><a href="#tempnam" class="headerlink" title="tempnam()"></a>tempnam()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">tempnam</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *directory, <span class="keyword">const</span> <span class="keyword">char</span> *prefix)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>如果定义了环境变量TMPDIR，它将用作目录</li>
+<li>如果directory不为NULL，则将其用作目录。</li>
+<li>&lt;stdio.h&gt;中的字符串P_tmpdir用作目录。</li>
+<li>本地目录（通常为/tmp）用作目录。</li>
+</ol>
+<hr>
+<h2 id="标准IO的替代产品："><a href="#标准IO的替代产品：" class="headerlink" title="标准IO的替代产品："></a>标准IO的替代产品：</h2><ol>
+<li>sfio</li>
+<li>Alloc Stream Interface<ul>
+<li>mmap</li>
+</ul>
+</li>
+<li>uClibc C library </li>
+</ol>
+<hr>
+<h2 id="标准IO有什么缺点："><a href="#标准IO有什么缺点：" class="headerlink" title="标准IO有什么缺点："></a>标准IO有什么缺点：</h2><ol>
+<li>C标准库的流是支持定位请求的，是全双工的，读和写是共用的同一个缓冲区，而标准IO库的读写大部分都是操作缓冲区，达到一定条件后才会与内核交涉(即减少了内核调用的次数)，所以，如果相连的读写两个操作之间没有协调(调用冲刷、定位之类的函数)，就会导致缓冲区使用冲突，如果一定要满足这种需求能正常工作，那么缓冲区的管理、流位置与内核中文件位置的同步等都会变得非常复杂。而事实上标准C库的实现并不会考虑也没必要考虑这些不规矩的操作，所以要遵守以上限制。读完之后做好准备再写，写完之后做好准备再读</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/10/软件过程/软件过程-2020-3-10/" rel="next" title="软件过程--第二节">
+                软件过程--第二节 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YJ Song</p>
+              <p class="site-description motion-element" itemprop="description">Show me code!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fdss-song" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yearito.cn/" title="yearito" target="_blank">yearito</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#标准IO"><span class="nav-text">标准IO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么我们需要标准I-O库"><span class="nav-text">为什么我们需要标准I/O库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准I-O"><span class="nav-text">标准I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#architecture"><span class="nav-text">architecture</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-the-buf-setbuf-setvbuf"><span class="nav-text">change the buf: setbuf() / setvbuf()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fopen"><span class="nav-text">fopen()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#read-and-write-a-stream"><span class="nav-text">read and write a stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fgets"><span class="nav-text">fgets()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fputs"><span class="nav-text">fputs()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#error-handling"><span class="nav-text">error handling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准IO的效率"><span class="nav-text">标准IO的效率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fwrite-不能跨平台"><span class="nav-text">fwrite()不能跨平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FILE流的读写位置"><span class="nav-text">FILE流的读写位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规范化IO"><span class="nav-text">规范化IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节"><span class="nav-text">实现细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#临时文件"><span class="nav-text">临时文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tempnam"><span class="nav-text">tempnam()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准IO的替代产品："><span class="nav-text">标准IO的替代产品：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准IO有什么缺点："><span class="nav-text">标准IO有什么缺点：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YJ Song</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+          $('#sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('#footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            offsetX: ,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+</body>
+</html>
