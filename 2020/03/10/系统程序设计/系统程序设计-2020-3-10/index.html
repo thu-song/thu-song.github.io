@@ -150,7 +150,7 @@
   <meta name="description" content="标准IO为什么我们需要标准I/O库 减少系统调用的次数，而不改变用户的逻辑、习惯 先把数据缓存到用户空间中，再从用户空间拷贝 建造一个库，维护一个在用户空间的缓冲区    标准I/O 最核心的做法就是把数据缓冲在用户空间 减少系统调用的次数 FILE 结构 记录了和流描述符对应的fd，缓冲区和缓冲区的刷新机制   缓冲机制 Fully buffered (disk) 对于用户缓冲区里的内容，用户调">
 <meta name="keywords" content="课堂笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="系统程序设计--第三节">
+<meta property="og:title" content="系统程序设计--第四节">
 <meta property="og:url" content="http://yoursite.com/2020/03/10/系统程序设计/系统程序设计-2020-3-10/index.html">
 <meta property="og:site_name" content="Song&#39;s Blog">
 <meta property="og:description" content="标准IO为什么我们需要标准I/O库 减少系统调用的次数，而不改变用户的逻辑、习惯 先把数据缓存到用户空间中，再从用户空间拷贝 建造一个库，维护一个在用户空间的缓冲区    标准I/O 最核心的做法就是把数据缓冲在用户空间 减少系统调用的次数 FILE 结构 记录了和流描述符对应的fd，缓冲区和缓冲区的刷新机制   缓冲机制 Fully buffered (disk) 对于用户缓冲区里的内容，用户调">
@@ -158,9 +158,9 @@
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/setbuf%20setvbuf%E5%8F%82%E6%95%B0%E5%92%8C%E5%BD%B1%E5%93%8D.jpg?raw=true">
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/fopen%20%E6%89%93%E5%BC%80%E7%9A%84%E6%A8%A1%E5%BC%8F.jpg?raw=true">
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E6%A0%87%E5%87%86IO%E7%9A%84%E6%95%88%E7%8E%87.jpg?raw=true">
-<meta property="og:updated_time" content="2020-03-10T07:55:54.380Z">
+<meta property="og:updated_time" content="2020-03-10T07:58:42.718Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统程序设计--第三节">
+<meta name="twitter:title" content="系统程序设计--第四节">
 <meta name="twitter:description" content="标准IO为什么我们需要标准I/O库 减少系统调用的次数，而不改变用户的逻辑、习惯 先把数据缓存到用户空间中，再从用户空间拷贝 建造一个库，维护一个在用户空间的缓冲区    标准I/O 最核心的做法就是把数据缓冲在用户空间 减少系统调用的次数 FILE 结构 记录了和流描述符对应的fd，缓冲区和缓冲区的刷新机制   缓冲机制 Fully buffered (disk) 对于用户缓冲区里的内容，用户调">
 <meta name="twitter:image" content="https://github.com/thu-song/blog-pictures/blob/master/setbuf%20setvbuf%E5%8F%82%E6%95%B0%E5%92%8C%E5%BD%B1%E5%93%8D.jpg?raw=true">
 
@@ -179,7 +179,7 @@
   };
 </script>
 
-  <title>系统程序设计--第三节 | Song's Blog</title>
+  <title>系统程序设计--第四节 | Song's Blog</title>
   
 
 
@@ -367,7 +367,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">系统程序设计--第三节
+          <h1 class="post-title" itemprop="name headline">系统程序设计--第四节
               
             
           </h1>
@@ -629,14 +629,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/03/10/软件过程/软件过程-2020-3-10/" rel="prev" title="软件过程--第二节">          
+                <i class="fa fa-chevron-left"></i> 软件过程--第二节
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/10/软件过程/软件过程-2020-3-10/" rel="next" title="软件过程--第二节">
-                软件过程--第二节 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/09/软件质量保障与测试/软件质量保障与测试-2020-3-9/" rel="next" title="软件质量保障与测试--第二节">
+                软件质量保障与测试--第二节 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
