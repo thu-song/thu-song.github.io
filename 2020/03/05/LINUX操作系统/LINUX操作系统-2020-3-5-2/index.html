@@ -147,18 +147,18 @@
 
 
 
-  <meta name="description" content="命令帮助和快捷使用命令格式 Shell为用户提供命令行的接口 输出提示符(PS1),缺省提示符给出了主机名/用户/当前工作目录/用户类型($表示普通用户, #表示root) 默认提示符，如 song@mars:~$ 提示符可以在配置文件中修改   等待用户输入一行命令 执行该命令，并输出结果   command [options] arguments    比如 rm -rf test(强制删除t">
+  <meta name="description" content="命令格式 Shell为用户提供命令行的接口 输出提示符(PS1),缺省提示符给出了主机名/用户/当前工作目录/用户类型($表示普通用户, #表示root) 默认提示符，如 song@mars:~$ 提示符可以在配置文件中修改   等待用户输入一行命令 执行该命令，并输出结果   command [options] arguments    比如 rm -rf test(强制删除test及其子目录)">
 <meta name="keywords" content="课堂笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LINUX操作系统--第二节">
+<meta property="og:title" content="LINUX操作系统--第二节(命令帮助和快捷使用)">
 <meta property="og:url" content="http://yoursite.com/2020/03/05/LINUX操作系统/LINUX操作系统-2020-3-5-2/index.html">
 <meta property="og:site_name" content="Song&#39;s Blog">
-<meta property="og:description" content="命令帮助和快捷使用命令格式 Shell为用户提供命令行的接口 输出提示符(PS1),缺省提示符给出了主机名/用户/当前工作目录/用户类型($表示普通用户, #表示root) 默认提示符，如 song@mars:~$ 提示符可以在配置文件中修改   等待用户输入一行命令 执行该命令，并输出结果   command [options] arguments    比如 rm -rf test(强制删除t">
+<meta property="og:description" content="命令格式 Shell为用户提供命令行的接口 输出提示符(PS1),缺省提示符给出了主机名/用户/当前工作目录/用户类型($表示普通用户, #表示root) 默认提示符，如 song@mars:~$ 提示符可以在配置文件中修改   等待用户输入一行命令 执行该命令，并输出结果   command [options] arguments    比如 rm -rf test(强制删除test及其子目录)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-07T08:10:16.868Z">
+<meta property="og:updated_time" content="2020-03-12T12:05:39.245Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LINUX操作系统--第二节">
-<meta name="twitter:description" content="命令帮助和快捷使用命令格式 Shell为用户提供命令行的接口 输出提示符(PS1),缺省提示符给出了主机名/用户/当前工作目录/用户类型($表示普通用户, #表示root) 默认提示符，如 song@mars:~$ 提示符可以在配置文件中修改   等待用户输入一行命令 执行该命令，并输出结果   command [options] arguments    比如 rm -rf test(强制删除t">
+<meta name="twitter:title" content="LINUX操作系统--第二节(命令帮助和快捷使用)">
+<meta name="twitter:description" content="命令格式 Shell为用户提供命令行的接口 输出提示符(PS1),缺省提示符给出了主机名/用户/当前工作目录/用户类型($表示普通用户, #表示root) 默认提示符，如 song@mars:~$ 提示符可以在配置文件中修改   等待用户输入一行命令 执行该命令，并输出结果   command [options] arguments    比如 rm -rf test(强制删除test及其子目录)">
 
 
 
@@ -175,7 +175,7 @@
   };
 </script>
 
-  <title>LINUX操作系统--第二节 | Song's Blog</title>
+  <title>LINUX操作系统--第二节(命令帮助和快捷使用) | Song's Blog</title>
   
 
 
@@ -363,7 +363,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LINUX操作系统--第二节
+          <h1 class="post-title" itemprop="name headline">LINUX操作系统--第二节(命令帮助和快捷使用)
               
             
           </h1>
@@ -422,7 +422,7 @@
       
 
       
-        <h1 id="命令帮助和快捷使用"><a href="#命令帮助和快捷使用" class="headerlink" title="命令帮助和快捷使用"></a>命令帮助和快捷使用</h1><h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><ol>
+        <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><ol>
 <li>Shell为用户提供命令行的接口<ul>
 <li>输出提示符(PS1),缺省提示符给出了主机名/用户/当前工作目录/用户类型($表示普通用户, #表示root)<ul>
 <li>默认提示符，如 <code>song@mars:~$</code></li>
@@ -849,6 +849,75 @@
 <li>命令名前加一个反斜杠\表示不进行别名扩展</li>
 <li>命令第一个单词会在别名列表中匹配，递归匹配直到无法再扩展</li>
 </ol>
+<hr>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ol>
+<li><p>下列关于桌面环境相关的描述中，正确的是(            )</p>
+<p> A. X Server为X Client提供输入和显示服务</p>
+<p> B. 显示服务器接受X Client的请求，将X client在窗口上绘制的图形在显示器上呈现</p>
+<p> C. 假设环境变量DISPLAY=:1，现在启动一个X应用，将在本机的编号为1的X Server对应的屏幕上输出</p>
+<p> D. 窗口管理器负责管理X Client对应的窗口,处理窗口的移动、重叠、大小调整等操作</p>
+</li>
+<li><p>假设用户执行命令 mycmd –verbose -atf arg1 – arg2 arg3，请问有哪些选项，每个选项的参数是什么，mycmd的参数是什么？</p>
+</li>
+<li><p>假设你不记得一个用于查找(find)硬盘上的文件(file)的命令了，应该使用什么命令来寻找呢？</p>
+</li>
+<li><p>刚才执行cat arg1 arg2 arg3 arg4命令，现在想要执行gcc arg1 arg2 arg3 arg4，使用命令历史扩展，请给出相应的命令</p>
+</li>
+<li><p>假设你想要查看系统上的硬件相关的情况，比如cpu/hardware的信息，还有usb/pci接口设备以及块设备(block device)，使用自动完成找到ls开头的命令，你能够找出相应的命令吗？ 尝试执行一下这些命令。</p>
+</li>
+<li><p>想要设置一个别名h，显示命令历史的最近20条记录，请给出相应的命令</p>
+</li>
+</ol>
+<h2 id="我的答案-有错误"><a href="#我的答案-有错误" class="headerlink" title="我的答案(有错误)"></a>我的答案(有错误)</h2><ol>
+<li>D(错误)</li>
+<li>选项有：–verbose -a -t -f<br>只有-f有参数，为arg1<br>mycmd的参数为arg2和arg3</li>
+<li>apropos -a find file</li>
+<li>!!:s^cat^gcc 或者 !!:s/cat/gcc</li>
+<li>三个分别是lscpu、lsusb和lsblk</li>
+<li>alias h=’history 20’</li>
+</ol>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
+<li><p>考察X Window系统的一些概念，本来是问：选项中错误的是哪个，其中B是错误的。</p>
+<p> A 显然是正确的，X Server为X client提供显示和输入服务</p>
+<p> B 显示服务器提供的图形化的登录界面</p>
+<p> C 也是正确的， DISPLAY=:1，没有host部分表示localhost，:1表示编号为1的X Server</p>
+<p> D X Client负责窗口内的图形如何绘制，窗口管理器负责将所有X client呈现在显示器上</p>
+</li>
+<li><p>错的同学多一些</p>
+<p> –开头表示长选项，所以 –verbose为选项</p>
+<p> – 表示选项部分结束，之前都是属于选项部分</p>
+<p> -atf arg1  短选项，多个短选项合并，最后一个短选项有参数arg1</p>
+<p> 选项为 –verbose/-a/-t/-f </p>
+<p> arg1</p>
+<p> 命令的参数为去掉选项后的部分，arg2和arg3</p>
+</li>
+<li><p>apropos -a find file</p>
+<p> 有同学用whatis -r find file。表示find/file中任意一个出现</p>
+</li>
+<li><p>命令历史扩展，可以：</p>
+<p> <code>!!:s/cat/gcc</code></p>
+<p> <code>^cat^gcc</code></p>
+<p> <code>gcc !!:*</code></p>
+<p> <code>fc -s cat=gcc</code></p>
+</li>
+<li><p>基本没有问题： </p>
+<p> ls<tab><tab></tab></tab></p>
+<p> <code>lscpu/lshw/lsusb/lspci/lsblk</code></p>
+</li>
+<li><p>别名</p>
+<p> <code>alias h=&#39;history 20&#39;</code></p>
+<p> <code>alias h=&#39;fc -l -20&#39;</code></p>
+<p> 注意=前后不能后空格，后面的命令如果有空格等特殊字符，最好使用引号括起来</p>
+</li>
+</ol>
+<ul>
+<li>注意下面两种错误：<ul>
+<li><code>alias h=&#39;!-20&#39;</code>  别名展开后的内容无法进行命令历史扩展</li>
+<li><code>alias h=history 20</code> 相当于执行了<code>alias h=history</code>和<code>alias 20</code></li>
+</ul>
+</li>
+</ul>
+<p>有同学使用<code>history -20</code>，但是似乎在ubuntu中不支持</p>
 
       
     </div>
@@ -1101,7 +1170,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#命令帮助和快捷使用"><span class="nav-text">命令帮助和快捷使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令格式"><span class="nav-text">命令格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令格式：选项"><span class="nav-text">命令格式：选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外部命令帮助：软件文档和联机手册"><span class="nav-text">外部命令帮助：软件文档和联机手册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#man"><span class="nav-text">man</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Manual-Secion"><span class="nav-text">Manual Secion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#whatis-根据命令名查找，显示命令的NAME部分的内容"><span class="nav-text">whatis: 根据命令名查找，显示命令的NAME部分的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apropos：根据关键字查找命令"><span class="nav-text">apropos：根据关键字查找命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#info：阅读Info文档"><span class="nav-text">info：阅读Info文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#info"><span class="nav-text">info</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#info：阅读文档"><span class="nav-text">info：阅读文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令历史"><span class="nav-text">命令历史</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可以控制命令历史维护的shell变量"><span class="nav-text">可以控制命令历史维护的shell变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#历史记录扩展"><span class="nav-text">历史记录扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令或组合键总结"><span class="nav-text">命令或组合键总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fc"><span class="nav-text">fc</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动完成"><span class="nav-text">自动完成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令别名"><span class="nav-text">命令别名</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令格式"><span class="nav-text">命令格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#命令格式：选项"><span class="nav-text">命令格式：选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外部命令帮助：软件文档和联机手册"><span class="nav-text">外部命令帮助：软件文档和联机手册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#man"><span class="nav-text">man</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Manual-Secion"><span class="nav-text">Manual Secion</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#whatis-根据命令名查找，显示命令的NAME部分的内容"><span class="nav-text">whatis: 根据命令名查找，显示命令的NAME部分的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apropos：根据关键字查找命令"><span class="nav-text">apropos：根据关键字查找命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#info：阅读Info文档"><span class="nav-text">info：阅读Info文档</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#info"><span class="nav-text">info</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#info：阅读文档"><span class="nav-text">info：阅读文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令历史"><span class="nav-text">命令历史</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#可以控制命令历史维护的shell变量"><span class="nav-text">可以控制命令历史维护的shell变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#历史记录扩展"><span class="nav-text">历史记录扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令或组合键总结"><span class="nav-text">命令或组合键总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fc"><span class="nav-text">fc</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动完成"><span class="nav-text">自动完成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令别名"><span class="nav-text">命令别名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业"><span class="nav-text">作业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的答案-有错误"><span class="nav-text">我的答案(有错误)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-text">注意</span></a></li></ol></div>
             
 
           </div>

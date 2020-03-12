@@ -165,7 +165,7 @@
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E6%B5%8B%E8%AF%95%E9%98%B6%E6%AE%B5%E6%B4%BB%E5%8A%A8.png?raw=true">
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E6%B5%8B%E8%AF%95%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E6%A1%86%E6%9E%B6.png?raw=true">
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A%E6%96%87%E6%A1%A3.png?raw=true">
-<meta property="og:updated_time" content="2020-03-11T07:10:17.183Z">
+<meta property="og:updated_time" content="2020-03-12T07:09:29.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件过程--第二节(大型软件敏捷开发流程)">
 <meta name="twitter:description" content="第一章 大型软件开发特点大型软件开发团队的特点 成员多，代码量大 多团队，跨职能 不只开发人员，还涉及来自于市场、制造、服务、财务、采购等方面人员   跨地域 支付宝，在上海、杭州和成都都有开发团队 华为研发团队，国内分布9个研究所 Linux，开源社区，分布全球   不同阶段，开发团队人员存在不稳定性 离职等 模块调用，软件开发工程师到系统工程师   软件工程最核心的挑战：如何让分布在不同地域随">
@@ -459,7 +459,8 @@
 <li><p>《人类简史》，说当人类在远古时期，任何一个村落只有150人左右，因为当时没有语言这样一个工具，一旦超过150人，就没有办法维系起来一个人群。所以当人数超过150人的时候，组织方式已经跟以前完全不一样了。所以，对于大型软件团队，如何协同这么大规模人员协同开发？</p>
 </li>
 <li><p>假如，一个桌面级的操作系统代码规模在千万行数量级，加上配套软件，总规模超过一亿行；如果再加上一个完整的软件生态系统，那么总规模应该不少于十亿行。再加上各个功能之间需要兼容性，可维护性，可管理性等这些随着代码的越来越多可推敲，需考虑的问题也会越来越多，是项技术难度非常大的工作。如何确保团队开发的一致性？</p>
-<pre><code>高效的软件开发团队，是建立在合理的**开发流程**及团队成员密切合作的基础之上。</code></pre></li>
+<p> 高效的软件开发团队，是建立在合理的<strong>开发流程</strong>及团队成员密切合作的基础之上。</p>
+</li>
 </ol>
 <h3 id="流程-process-在大型软件开发中的定位"><a href="#流程-process-在大型软件开发中的定位" class="headerlink" title="流程(process)在大型软件开发中的定位"></a>流程(process)在大型软件开发中的定位</h3><ol>
 <li><p>流程，是为了实现客户价值和企业商业目标而形成的一套规范业务运作规则和机制</p>
@@ -692,6 +693,92 @@
 <td align="left">1、理解大型软件开发团队，需求协同机制，过程看板等</td>
 </tr>
 </tbody></table>
+<hr>
+<h2 id="课上讨论"><a href="#课上讨论" class="headerlink" title="课上讨论"></a>课上讨论</h2><ol>
+<li><p>防灾设计</p>
+</li>
+<li><p>如何保证长途运输中，软件没有被篡改？</p>
+<ul>
+<li>保证软件的完整性</li>
+<li>数字签名、比较校验码等方式发现程序是否被篡改</li>
+<li>区块链</li>
+</ul>
+</li>
+<li><p>开源软件和商用软件有什么不同？</p>
+<ul>
+<li>更加敏捷，更面向结果而不是过程</li>
+<li>除了代码本身，也有license系统</li>
+<li>开源软件适用于多种场景，考虑可扩展性<ul>
+<li>商用软件面临客户需求变化，可扩展性从生命周期</li>
+<li>商用软件的可扩展性更加重要</li>
+</ul>
+</li>
+<li>很多商用软件不提供源代码，有限的开源</li>
+</ul>
+</li>
+<li><p>如果让你加入一个有千万行代码、上千人的开发团队，你会采取哪些活动，快速成长与发展？</p>
+<ul>
+<li>全局掌握，了解自己所处的位置，了解分工</li>
+</ul>
+</li>
+<li><p>流程包含哪些要素？</p>
+</li>
+<li><p>大型软件开发流程和同学们了解的软件开发流程有哪些差别？如何理解这些差别？</p>
+<ul>
+<li>人员不稳定，更需要规范的代码<ul>
+<li>代码的一致性和连贯性</li>
+<li>代码的自注释水平</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>配置管理的目的和任务是什么？</p>
+<ul>
+<li>目的：系统地控制配置变更，维护配置的完整性和可跟踪性</li>
+<li>主要任务：标识系统在不同的时间点上的配置 ，展现软件的演化过程</li>
+<li>正向可追踪，逆向可回溯</li>
+</ul>
+</li>
+<li><p>如果进行创业，如何写一份商业计划书？</p>
+<ul>
+<li>商业逻辑和业务逻辑</li>
+<li>如何将idea变现</li>
+</ul>
+</li>
+<li><p>请举一些常用软件不合理的需求？</p>
+<ul>
+<li>“为了方便定位问题，增加telnet端口”：明文传递</li>
+<li>“运行LOG记录”</li>
+</ul>
+</li>
+<li><p>你的商业计划书，在需求阶段，怎么论证自己做了正确的问题？</p>
+</li>
+<li><p>大型软件STORY划分的标准是什么？</p>
+</li>
+<li><p>同学们所理解的敏捷，哪些在本次介绍的整个端到端流程中有体现，哪些没有体现？</p>
+</li>
+<li><p>你碰到过哪些软件崩溃的问题</p>
+</li>
+<li><p>如果你来领导一个10人左右的开发团队完成一个软件项目的开发，那么你需要哪些方面的工程、管理和工具上的支持？</p>
+</li>
+<li><p>迭代化开发与瀑布模型这样的线性开发过程相比有什么优势？</p>
+</li>
+<li><p>以课件中介绍的需求、设计和测试文档为例，说一说软件开发文档有什么作用，以及如何平衡文档撰写与维护和文档带来的收益之间的矛盾</p>
+</li>
+</ol>
+<hr>
+<h2 id="扩展-安全编码"><a href="#扩展-安全编码" class="headerlink" title="扩展 安全编码"></a>扩展 安全编码</h2><ol>
+<li>声明变量时必须加上var关键字<ul>
+<li>不使用var声明变量，变量就会暴露在全局作用于中，这样可能覆盖全局作用域中的同名变量，暴露到全局变量也可能会导致信息泄露问题</li>
+</ul>
+</li>
+<li>软件的坏味道：全局变量太多</li>
+<li>禁止使用eval()函数来处理来自外部的不可信数据<ul>
+<li>存在安全隐患，容易被恶意用户利用，且IE9中存在内存泄漏问题</li>
+<li>将字符串直接作为JavaScript执行，会引起跨站脚本攻击问题</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
@@ -739,8 +826,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/11/LINUX操作系统/LINUX操作系统-2020-3-11/" rel="prev" title>          
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2020/03/11/计算机体系结构/计算机体系结构-2020-3-11/" rel="prev" title="计算机体系结构--第二节(指令集体系结构)">          
+                <i class="fa fa-chevron-left"></i> 计算机体系结构--第二节(指令集体系结构)
               </a>
             
           </div>
@@ -944,7 +1031,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-大型软件开发特点"><span class="nav-text">第一章 大型软件开发特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大型软件开发团队的特点"><span class="nav-text">大型软件开发团队的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型软件开发团队的协同管理"><span class="nav-text">大型软件开发团队的协同管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程-process-在大型软件开发中的定位"><span class="nav-text">流程(process)在大型软件开发中的定位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-软件的开发流程"><span class="nav-text">第二章 软件的开发流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流程的定义"><span class="nav-text">流程的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件开发过程"><span class="nav-text">软件开发过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型软件开发流程框架"><span class="nav-text">大型软件开发流程框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型软件开发流程活动"><span class="nav-text">大型软件开发流程活动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（一）需求分析阶段活动"><span class="nav-text">（一）需求分析阶段活动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（二）软件设计与迭代开发"><span class="nav-text">（二）软件设计与迭代开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（三）测试阶段活动"><span class="nav-text">（三）测试阶段活动</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-课程演练简介"><span class="nav-text">第三章 课程演练简介</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-大型软件开发特点"><span class="nav-text">第一章 大型软件开发特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大型软件开发团队的特点"><span class="nav-text">大型软件开发团队的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型软件开发团队的协同管理"><span class="nav-text">大型软件开发团队的协同管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程-process-在大型软件开发中的定位"><span class="nav-text">流程(process)在大型软件开发中的定位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-软件的开发流程"><span class="nav-text">第二章 软件的开发流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流程的定义"><span class="nav-text">流程的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件开发过程"><span class="nav-text">软件开发过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型软件开发流程框架"><span class="nav-text">大型软件开发流程框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型软件开发流程活动"><span class="nav-text">大型软件开发流程活动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（一）需求分析阶段活动"><span class="nav-text">（一）需求分析阶段活动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（二）软件设计与迭代开发"><span class="nav-text">（二）软件设计与迭代开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（三）测试阶段活动"><span class="nav-text">（三）测试阶段活动</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-课程演练简介"><span class="nav-text">第三章 课程演练简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课上讨论"><span class="nav-text">课上讨论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展-安全编码"><span class="nav-text">扩展 安全编码</span></a></li></ol></div>
             
 
           </div>
