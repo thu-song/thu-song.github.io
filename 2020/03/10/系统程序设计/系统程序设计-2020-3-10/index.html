@@ -158,7 +158,7 @@
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/setbuf%20setvbuf%E5%8F%82%E6%95%B0%E5%92%8C%E5%BD%B1%E5%93%8D.jpg?raw=true">
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/fopen%20%E6%89%93%E5%BC%80%E7%9A%84%E6%A8%A1%E5%BC%8F.jpg?raw=true">
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E6%A0%87%E5%87%86IO%E7%9A%84%E6%95%88%E7%8E%87.jpg?raw=true">
-<meta property="og:updated_time" content="2020-03-16T08:34:24.741Z">
+<meta property="og:updated_time" content="2020-03-16T11:15:08.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="系统程序设计--第四节(标准IO)">
 <meta name="twitter:description" content="为什么我们需要标准I/O库 减少系统调用的次数，而不改变用户的逻辑、习惯 先把数据缓存到用户空间中，再从用户空间拷贝 建造一个库，维护一个在用户空间的缓冲区    标准I/O 最核心的做法就是把数据缓冲在用户空间 减少系统调用的次数 FILE 结构 记录了和流描述符对应的fd，缓冲区和缓冲区的刷新机制   缓冲机制 Fully buffered (disk) 对于用户缓冲区里的内容，用户调用fre">
@@ -539,6 +539,8 @@
 </li>
 </ul>
 </li>
+<li><p><strong>fwrite</strong>和<strong>write</strong>都是二进制写</p>
+</li>
 </ol>
 <hr>
 <h2 id="FILE流的读写位置"><a href="#FILE流的读写位置" class="headerlink" title="FILE流的读写位置"></a>FILE流的读写位置</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">ftell</span><span class="params">(FILE *fp)</span></span>;   <span class="comment">/* 获得当前的读写位置 */</span></span><br><span class="line"><span class="comment">// Return: 如果成功返回当前的读写位置，失败返回1L</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fseek</span><span class="params">(FILE *fp, <span class="keyword">long</span> offset, <span class="keyword">int</span> whence)</span></span>;   <span class="comment">/* 指定读写位置 */</span></span><br><span class="line"><span class="comment">// Return: 0 if OK, nonzero on error</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rewind</span><span class="params">(FILE *fp)</span></span>;  <span class="comment">/* 回到最开始的位置 */</span></span><br></pre></td></tr></table></figure>
@@ -581,6 +583,30 @@
 <hr>
 <h2 id="标准IO有什么缺点："><a href="#标准IO有什么缺点：" class="headerlink" title="标准IO有什么缺点："></a>标准IO有什么缺点：</h2><ol>
 <li>C标准库的流是支持定位请求的，是全双工的，读和写是共用的同一个缓冲区，而标准IO库的读写大部分都是操作缓冲区，达到一定条件后才会与内核交涉(即减少了内核调用的次数)，所以，如果相连的读写两个操作之间没有协调(调用冲刷、定位之类的函数)，就会导致缓冲区使用冲突，如果一定要满足这种需求能正常工作，那么缓冲区的管理、流位置与内核中文件位置的同步等都会变得非常复杂。而事实上标准C库的实现并不会考虑也没必要考虑这些不规矩的操作，所以要遵守以上限制。读完之后做好准备再写，写完之后做好准备再读</li>
+</ol>
+<hr>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><ol>
+<li>为什么缓冲区要分为用户缓冲区和系统缓冲区呢 多一层缓冲区会在什么地方上有明显的改善呢？<ul>
+<li>效率</li>
+<li>同步</li>
+</ul>
+</li>
+<li>两个线程同时访问getpwent返回的pwd，二者会产生冲突<ul>
+<li>因为pwd是在库中，是静态变量</li>
+<li>getpwent不是线程安全的<ul>
+<li>不可以重进入</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>属于多个组时，是在组对应的项中定义的</li>
+<li>Linux有一个底层的服务，所有的服务？</li>
+<li><code>/proc</code>看起来是root下面的一个目录，实则是一个虚拟的文件目录<ul>
+<li>把内存中有关进程的所有信息格式化成了类似文件系统的形式</li>
+<li>很多进程，一个进程的各种信息都在这儿</li>
+<li>查看进程信息的接口</li>
+</ul>
+</li>
 </ol>
 
       
@@ -711,7 +737,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -834,7 +860,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么我们需要标准I-O库"><span class="nav-text">为什么我们需要标准I/O库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准I-O"><span class="nav-text">标准I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#architecture"><span class="nav-text">architecture</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-the-buf-setbuf-setvbuf"><span class="nav-text">change the buf: setbuf() / setvbuf()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fopen"><span class="nav-text">fopen()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#read-and-write-a-stream"><span class="nav-text">read and write a stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fgets"><span class="nav-text">fgets()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fputs"><span class="nav-text">fputs()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#error-handling"><span class="nav-text">error handling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准IO的效率"><span class="nav-text">标准IO的效率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fwrite-不能跨平台"><span class="nav-text">fwrite()不能跨平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FILE流的读写位置"><span class="nav-text">FILE流的读写位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规范化IO"><span class="nav-text">规范化IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节"><span class="nav-text">实现细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#临时文件"><span class="nav-text">临时文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tempnam"><span class="nav-text">tempnam()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准IO的替代产品："><span class="nav-text">标准IO的替代产品：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准IO有什么缺点："><span class="nav-text">标准IO有什么缺点：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么我们需要标准I-O库"><span class="nav-text">为什么我们需要标准I/O库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准I-O"><span class="nav-text">标准I/O</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#architecture"><span class="nav-text">architecture</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-the-buf-setbuf-setvbuf"><span class="nav-text">change the buf: setbuf() / setvbuf()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fopen"><span class="nav-text">fopen()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#read-and-write-a-stream"><span class="nav-text">read and write a stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fgets"><span class="nav-text">fgets()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fputs"><span class="nav-text">fputs()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#error-handling"><span class="nav-text">error handling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准IO的效率"><span class="nav-text">标准IO的效率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fwrite-不能跨平台"><span class="nav-text">fwrite()不能跨平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FILE流的读写位置"><span class="nav-text">FILE流的读写位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#规范化IO"><span class="nav-text">规范化IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现细节"><span class="nav-text">实现细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#临时文件"><span class="nav-text">临时文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tempnam"><span class="nav-text">tempnam()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准IO的替代产品："><span class="nav-text">标准IO的替代产品：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准IO有什么缺点："><span class="nav-text">标准IO有什么缺点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课堂讨论"><span class="nav-text">课堂讨论</span></a></li></ol></div>
             
 
           </div>
