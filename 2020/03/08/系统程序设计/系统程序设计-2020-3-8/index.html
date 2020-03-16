@@ -147,19 +147,19 @@
 
 
 
-  <meta name="description" content="file and directorystat()、fstat()、lstat() 文件状态的访问函数  12345678910/* 由路径名得到 stat */int stat(const char *pathname, struct stat *buf);/* 由文件描述符得到 stat */int fstat(int filedes, struct stat *buf);/* 得到链接的 st">
+  <meta name="description" content="stat()、fstat()、lstat() 文件状态的访问函数  12345678910/* 由路径名得到 stat */int stat(const char *pathname, struct stat *buf);/* 由文件描述符得到 stat */int fstat(int filedes, struct stat *buf);/* 得到链接的 stat */int lstat(con">
 <meta name="keywords" content="课堂笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="系统程序设计--第三节">
+<meta property="og:title" content="系统程序设计--第三节(file and directory)">
 <meta property="og:url" content="http://yoursite.com/2020/03/08/系统程序设计/系统程序设计-2020-3-8/index.html">
 <meta property="og:site_name" content="Song&#39;s Blog">
-<meta property="og:description" content="file and directorystat()、fstat()、lstat() 文件状态的访问函数  12345678910/* 由路径名得到 stat */int stat(const char *pathname, struct stat *buf);/* 由文件描述符得到 stat */int fstat(int filedes, struct stat *buf);/* 得到链接的 st">
+<meta property="og:description" content="stat()、fstat()、lstat() 文件状态的访问函数  12345678910/* 由路径名得到 stat */int stat(const char *pathname, struct stat *buf);/* 由文件描述符得到 stat */int fstat(int filedes, struct stat *buf);/* 得到链接的 stat */int lstat(con">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/effect%20of%20funtions.jpg?raw=true">
-<meta property="og:updated_time" content="2020-03-09T11:56:07.108Z">
+<meta property="og:updated_time" content="2020-03-16T08:34:16.090Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统程序设计--第三节">
-<meta name="twitter:description" content="file and directorystat()、fstat()、lstat() 文件状态的访问函数  12345678910/* 由路径名得到 stat */int stat(const char *pathname, struct stat *buf);/* 由文件描述符得到 stat */int fstat(int filedes, struct stat *buf);/* 得到链接的 st">
+<meta name="twitter:title" content="系统程序设计--第三节(file and directory)">
+<meta name="twitter:description" content="stat()、fstat()、lstat() 文件状态的访问函数  12345678910/* 由路径名得到 stat */int stat(const char *pathname, struct stat *buf);/* 由文件描述符得到 stat */int fstat(int filedes, struct stat *buf);/* 得到链接的 stat */int lstat(con">
 <meta name="twitter:image" content="https://github.com/thu-song/blog-pictures/blob/master/effect%20of%20funtions.jpg?raw=true">
 
 
@@ -177,7 +177,7 @@
   };
 </script>
 
-  <title>系统程序设计--第三节 | Song's Blog</title>
+  <title>系统程序设计--第三节(file and directory) | Song's Blog</title>
   
 
 
@@ -365,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">系统程序设计--第三节
+          <h1 class="post-title" itemprop="name headline">系统程序设计--第三节(file and directory)
               
             
           </h1>
@@ -424,7 +424,7 @@
       
 
       
-        <h1 id="file-and-directory"><a href="#file-and-directory" class="headerlink" title="file and directory"></a>file and directory</h1><h2 id="stat-、fstat-、lstat"><a href="#stat-、fstat-、lstat" class="headerlink" title="stat()、fstat()、lstat()"></a>stat()、fstat()、lstat()</h2><ol>
+        <h2 id="stat-、fstat-、lstat"><a href="#stat-、fstat-、lstat" class="headerlink" title="stat()、fstat()、lstat()"></a>stat()、fstat()、lstat()</h2><ol>
 <li>文件状态的访问函数</li>
 <li> <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 由路径名得到 stat */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">stat</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, struct stat *buf)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 由文件描述符得到 stat */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fstat</span><span class="params">(<span class="keyword">int</span> filedes, struct stat *buf)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 得到链接的 stat */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lstat</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, struct stat *buf)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// return：0 if success，-1 on error</span></span><br></pre></td></tr></table></figure>
 
@@ -927,8 +927,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/09/软件质量保障与测试/软件质量保障与测试-2020-3-9/" rel="prev" title="软件质量保障与测试--第二节(第二章 软件测试质量保障 —— 需求工程简介)">          
-                <i class="fa fa-chevron-left"></i> 软件质量保障与测试--第二节(第二章 软件测试质量保障 —— 需求工程简介)
+              <a href="/2020/03/09/软件质量保障与测试/软件质量保障与测试-2020-3-9/" rel="prev" title="软件质量保障与测试--第二章 软件测试质量保障 —— 需求工程简介">          
+                <i class="fa fa-chevron-left"></i> 软件质量保障与测试--第二章 软件测试质量保障 —— 需求工程简介
               </a>
             
           </div>
@@ -1009,7 +1009,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">45</span>
+                    <span class="site-state-item-count">46</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1132,7 +1132,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#file-and-directory"><span class="nav-text">file and directory</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#stat-、fstat-、lstat"><span class="nav-text">stat()、fstat()、lstat()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#struct-stat"><span class="nav-text">struct stat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#file-type"><span class="nav-text">file type</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#user-ID-of-process"><span class="nav-text">user ID of process</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set-user-id"><span class="nav-text">set-user-id</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件访问权限"><span class="nav-text">文件访问权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录的执行权限"><span class="nav-text">目录的执行权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件访问权限-1"><span class="nav-text">文件访问权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建文件和目录的owner"><span class="nav-text">新建文件和目录的owner</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#access"><span class="nav-text">access()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#umask"><span class="nav-text">umask()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-text">chmod()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#粘住位"><span class="nav-text">粘住位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chown"><span class="nav-text">chown()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-Size"><span class="nav-text">File Size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#truncate"><span class="nav-text">truncate()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#link-和-unlink"><span class="nav-text">link 和 unlink</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux特性：可以unlink正在打开的文件"><span class="nav-text">Linux特性：可以unlink正在打开的文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rename"><span class="nav-text">rename()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#符号链接"><span class="nav-text">符号链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#symlink-readlink"><span class="nav-text">symlink() / readlink()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-Times"><span class="nav-text">File Times</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#utime"><span class="nav-text">utime()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir-rmdir"><span class="nav-text">mkdir() / rmdir()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#read-directories"><span class="nav-text">read directories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chdir-fchdir-getcwd"><span class="nav-text">chdir() / fchdir() / getcwd()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#special-file-device-file"><span class="nav-text">special file / device file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sync-void"><span class="nav-text">sync(void)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上课讨论"><span class="nav-text">上课讨论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么我们需要标准IO"><span class="nav-text">为什么我们需要标准IO</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#stat-、fstat-、lstat"><span class="nav-text">stat()、fstat()、lstat()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#struct-stat"><span class="nav-text">struct stat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#file-type"><span class="nav-text">file type</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#user-ID-of-process"><span class="nav-text">user ID of process</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set-user-id"><span class="nav-text">set-user-id</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件访问权限"><span class="nav-text">文件访问权限</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录的执行权限"><span class="nav-text">目录的执行权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件访问权限-1"><span class="nav-text">文件访问权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建文件和目录的owner"><span class="nav-text">新建文件和目录的owner</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#access"><span class="nav-text">access()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#umask"><span class="nav-text">umask()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chmod"><span class="nav-text">chmod()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#粘住位"><span class="nav-text">粘住位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chown"><span class="nav-text">chown()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-Size"><span class="nav-text">File Size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#truncate"><span class="nav-text">truncate()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#link-和-unlink"><span class="nav-text">link 和 unlink</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux特性：可以unlink正在打开的文件"><span class="nav-text">Linux特性：可以unlink正在打开的文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rename"><span class="nav-text">rename()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#符号链接"><span class="nav-text">符号链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#symlink-readlink"><span class="nav-text">symlink() / readlink()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#File-Times"><span class="nav-text">File Times</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#utime"><span class="nav-text">utime()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir-rmdir"><span class="nav-text">mkdir() / rmdir()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#read-directories"><span class="nav-text">read directories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chdir-fchdir-getcwd"><span class="nav-text">chdir() / fchdir() / getcwd()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#special-file-device-file"><span class="nav-text">special file / device file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sync-void"><span class="nav-text">sync(void)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上课讨论"><span class="nav-text">上课讨论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么我们需要标准IO"><span class="nav-text">为什么我们需要标准IO</span></a></li></ol></div>
             
 
           </div>
