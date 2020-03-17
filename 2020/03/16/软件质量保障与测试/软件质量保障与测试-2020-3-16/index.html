@@ -171,7 +171,7 @@
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E6%B4%BB%E5%8A%A8%E5%9B%BE-%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BE.png?raw=true">
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E7%8A%B6%E6%80%81%E5%9B%BE%E5%85%83%E7%B4%A0.png?raw=true">
 <meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%8A%B6%E6%80%81%E5%9B%BE.png?raw=true">
-<meta property="og:updated_time" content="2020-03-16T14:57:29.471Z">
+<meta property="og:updated_time" content="2020-03-17T02:08:49.915Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件质量保障与测试--第三章 软件测试质量保障-需求文档与建模技术">
 <meta name="twitter:description" content="模型的概念 模型是已存在的现实或将要被创建的现实的抽象表现 模型特性： 表示特性：模型映射现实 归纳特性：模型化简和归纳所代表的的现实 使用特性：模型为特定的目的而构建    模型语言 句法：使用符号或符号组合 符号：模型基础元素 使用模型语言的先进之处： 减少歧义；清晰 相比自然语言描述   集中在需求的某一个角度 数据、功能、行为角度     模型语言与自然语言相结合 总体的模型描绘总体的架构">
@@ -604,6 +604,8 @@
 <li><p>实体联系图图例：</p>
 <p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E5%AE%9E%E4%BD%93%E8%81%94%E7%B3%BB%E5%9B%BE%E7%9A%84%E5%9B%BE%E4%BE%8B.png?raw=true" alt="图例：实体联系图"></p>
 </li>
+</ol>
+<h3 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h3><ol>
 <li><p>UML类图基本元素：</p>
 <p> <img src="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0.png?raw=true" alt="UML类图基本元素"></p>
 <ul>
@@ -612,21 +614,27 @@
 </li>
 <li><p>UML类图关系：</p>
 <p> <img src="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%85%B3%E7%B3%BB-1.png?raw=true" alt="UML类图关系-1"><br> <img src="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%85%B3%E7%B3%BB-2.png?raw=true" alt="UML类图关系-2"><br> <img src="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%85%B3%E7%B3%BB-3.png?raw=true" alt="UML类图关系-3"></p>
+<ul>
+<li><strong>更正：组合关系中，局部离开整体，局部不能完整存在</strong></li>
+</ul>
 </li>
 </ol>
 <hr>
 <h2 id="基于功能视角的数据建模"><a href="#基于功能视角的数据建模" class="headerlink" title="基于功能视角的数据建模"></a>基于功能视角的数据建模</h2><ol>
-<li><p>数据流图（Data Flow Diagram）</p>
-<ul>
+<li>数据流图（Data Flow Diagram）<ul>
 <li>需求的功能视角要处理的是把从环境中接收到的输入数据转换成释放到系统环境中的输出数据</li>
 <li>通常情况下，例如在汤姆·戴马克（Tom DeMarco）所著的“结构化分析”（Structured Analysis）一书中，<strong>把数据流图用作功能模型</strong></li>
 <li>系统和系统环境的图形表示称为环境图（也称上下文图，context diagram），在特定情况下，如果数据流图是用来定义系统边界的话，数据流图也称为环境图</li>
 <li>由于在数据流图中没有控制流程，或者比如说进程的内部工作方式并没有显示出来，因此，数据流图要用附加的、结构化形式的说明加以补充</li>
 </ul>
 </li>
+</ol>
+<h3 id="数据流图"><a href="#数据流图" class="headerlink" title="数据流图"></a>数据流图</h3><ol>
 <li><p>数据流图元素:</p>
 <p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE%E5%85%83%E7%B4%A0.png?raw=true" alt="数据流图元素"></p>
 </li>
+</ol>
+<h3 id="活动图"><a href="#活动图" class="headerlink" title="活动图"></a>活动图</h3><ol>
 <li><p>活动图(UML Activity Diagram)</p>
 <ul>
 <li>从功能的角度，活动图适合对系统活动的顺序进行建模</li>
@@ -647,19 +655,16 @@
 </ol>
 <hr>
 <h2 id="基于行为视角的数据建模"><a href="#基于行为视角的数据建模" class="headerlink" title="基于行为视角的数据建模"></a>基于行为视角的数据建模</h2><ol>
-<li><p>在需求建模中，系统的动态行为是从行为的角度来建模的</p>
-<ul>
+<li>在需求建模中，系统的动态行为是从行为的角度来建模的<ul>
 <li>从这个角度来看，重点在于能够发现一个系统的各种状态以及造成状态变化的事件</li>
 </ul>
 </li>
-<li><p>动态描述系统行为</p>
-</li>
-<li><p>状态图包括系统的状态、状态间的转换、及触发状态转换的事件。</p>
-</li>
-<li><p>一种是基于Mealy 1955年及Moore 1956年的状态图</p>
-</li>
-<li><p>一种是UML State Diagrams（OMG2007）。它吸收到前一种的模式，并得到了加强。</p>
-</li>
+<li>动态描述系统行为</li>
+<li>状态图包括系统的状态、状态间的转换、及触发状态转换的事件。</li>
+<li>一种是基于Mealy 1955年及Moore 1956年的状态图</li>
+<li>一种是UML State Diagrams（OMG2007）。它吸收到前一种的模式，并得到了加强。</li>
+</ol>
+<h3 id="状态图"><a href="#状态图" class="headerlink" title="状态图"></a>状态图</h3><ol>
 <li><p>状态图元素：</p>
 <p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E7%8A%B6%E6%80%81%E5%9B%BE%E5%85%83%E7%B4%A0.png?raw=true" alt="状态图元素"></p>
 </li>
@@ -922,7 +927,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型的概念"><span class="nav-text">模型的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型语言"><span class="nav-text">模型语言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标模型-Goal-Models"><span class="nav-text">目标模型(Goal Models)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用与或树-AND-OR-Tree"><span class="nav-text">使用与或树(AND/OR Tree)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标描述的七个原则-扩展知识"><span class="nav-text">目标描述的七个原则(扩展知识)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用例-用况"><span class="nav-text">用例/用况</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用UML建模语言的用例图"><span class="nav-text">使用UML建模语言的用例图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML用例图基本元素"><span class="nav-text">UML用例图基本元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用例规格说明书"><span class="nav-text">用例规格说明书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求的三个视角"><span class="nav-text">需求的三个视角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于数据视角的数据建模"><span class="nav-text">基于数据视角的数据建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实体联系图"><span class="nav-text">实体联系图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于功能视角的数据建模"><span class="nav-text">基于功能视角的数据建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于行为视角的数据建模"><span class="nav-text">基于行为视角的数据建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型的概念"><span class="nav-text">模型的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型语言"><span class="nav-text">模型语言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标模型-Goal-Models"><span class="nav-text">目标模型(Goal Models)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用与或树-AND-OR-Tree"><span class="nav-text">使用与或树(AND/OR Tree)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标描述的七个原则-扩展知识"><span class="nav-text">目标描述的七个原则(扩展知识)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用例-用况"><span class="nav-text">用例/用况</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用UML建模语言的用例图"><span class="nav-text">使用UML建模语言的用例图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML用例图基本元素"><span class="nav-text">UML用例图基本元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用例规格说明书"><span class="nav-text">用例规格说明书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求的三个视角"><span class="nav-text">需求的三个视角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于数据视角的数据建模"><span class="nav-text">基于数据视角的数据建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实体联系图"><span class="nav-text">实体联系图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML类图"><span class="nav-text">UML类图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于功能视角的数据建模"><span class="nav-text">基于功能视角的数据建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据流图"><span class="nav-text">数据流图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#活动图"><span class="nav-text">活动图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于行为视角的数据建模"><span class="nav-text">基于行为视角的数据建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态图"><span class="nav-text">状态图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
