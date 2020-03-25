@@ -147,18 +147,18 @@
 
 
 
-  <meta name="description" content="多处理器系统有的计算机系统只包含单一的CPU有的包含不同类型的CPU如果把每一个CPU都看成一个系统所以称为tightly-coupled系统 提高了吞吐量经济资源提高了可靠性：多个核，其中一个核坏了 多个处理器可以有相同类型：如果类型不一致，非对称如果类型一样，也可能是非对称的 对称指的是，一旦启动，多个CPU是一样的，不加区分 bootstrap 只能在一个处理器上运行在上电时，只有一个处理器">
+  <meta name="description" content="多处理器系统 有的计算机系统只包含单一的CPU；有的包含不同类型的CPU  如果把每一个CPU都看成一个系统，所以称为tightly-coupled系统  多核的好处：  提高了吞吐量 经济资源 提高了可靠性：多个核，其中一个核坏了   多个处理器可以有相同类型：  如果类型不一致，非对称 如果类型一样，也可能是非对称的   对称指的是，一旦启动，多个CPU是一样的，不加区分  bootstrap">
 <meta name="keywords" content="课堂笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="操作系统Ⅰ--第二节">
+<meta property="og:title" content="操作系统Ⅰ--第一节(上课)">
 <meta property="og:url" content="http://yoursite.com/2020/03/11/操作系统/操作系统Ⅰ-2020-3-11/index.html">
 <meta property="og:site_name" content="Song&#39;s Blog">
-<meta property="og:description" content="多处理器系统有的计算机系统只包含单一的CPU有的包含不同类型的CPU如果把每一个CPU都看成一个系统所以称为tightly-coupled系统 提高了吞吐量经济资源提高了可靠性：多个核，其中一个核坏了 多个处理器可以有相同类型：如果类型不一致，非对称如果类型一样，也可能是非对称的 对称指的是，一旦启动，多个CPU是一样的，不加区分 bootstrap 只能在一个处理器上运行在上电时，只有一个处理器">
+<meta property="og:description" content="多处理器系统 有的计算机系统只包含单一的CPU；有的包含不同类型的CPU  如果把每一个CPU都看成一个系统，所以称为tightly-coupled系统  多核的好处：  提高了吞吐量 经济资源 提高了可靠性：多个核，其中一个核坏了   多个处理器可以有相同类型：  如果类型不一致，非对称 如果类型一样，也可能是非对称的   对称指的是，一旦启动，多个CPU是一样的，不加区分  bootstrap">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-16T08:59:40.189Z">
+<meta property="og:updated_time" content="2020-03-25T00:08:19.607Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="操作系统Ⅰ--第二节">
-<meta name="twitter:description" content="多处理器系统有的计算机系统只包含单一的CPU有的包含不同类型的CPU如果把每一个CPU都看成一个系统所以称为tightly-coupled系统 提高了吞吐量经济资源提高了可靠性：多个核，其中一个核坏了 多个处理器可以有相同类型：如果类型不一致，非对称如果类型一样，也可能是非对称的 对称指的是，一旦启动，多个CPU是一样的，不加区分 bootstrap 只能在一个处理器上运行在上电时，只有一个处理器">
+<meta name="twitter:title" content="操作系统Ⅰ--第一节(上课)">
+<meta name="twitter:description" content="多处理器系统 有的计算机系统只包含单一的CPU；有的包含不同类型的CPU  如果把每一个CPU都看成一个系统，所以称为tightly-coupled系统  多核的好处：  提高了吞吐量 经济资源 提高了可靠性：多个核，其中一个核坏了   多个处理器可以有相同类型：  如果类型不一致，非对称 如果类型一样，也可能是非对称的   对称指的是，一旦启动，多个CPU是一样的，不加区分  bootstrap">
 
 
 
@@ -175,7 +175,7 @@
   };
 </script>
 
-  <title>操作系统Ⅰ--第二节 | Song's Blog</title>
+  <title>操作系统Ⅰ--第一节(上课) | Song's Blog</title>
   
 
 
@@ -363,7 +363,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">操作系统Ⅰ--第二节
+          <h1 class="post-title" itemprop="name headline">操作系统Ⅰ--第一节(上课)
               
             
           </h1>
@@ -422,13 +422,46 @@
       
 
       
-        <h2 id="多处理器系统"><a href="#多处理器系统" class="headerlink" title="多处理器系统"></a>多处理器系统</h2><p>有的计算机系统只包含单一的CPU<br>有的包含不同类型的CPU<br>如果把每一个CPU都看成一个系统<br>所以称为tightly-coupled系统</p>
-<p>提高了吞吐量<br>经济资源<br>提高了可靠性：多个核，其中一个核坏了</p>
-<p>多个处理器可以有相同类型：<br>如果类型不一致，非对称<br>如果类型一样，也可能是非对称的</p>
-<p>对称指的是，一旦启动，多个CPU是一样的，不加区分</p>
-<p>bootstrap 只能在一个处理器上运行<br>在上电时，只有一个处理器被启动</p>
-<h2 id="冯诺依曼结构"><a href="#冯诺依曼结构" class="headerlink" title="冯诺依曼结构"></a>冯诺依曼结构</h2><p>CPU以cache作为中介，以透明的方式访问memory，获得指令和数据</p>
-<p>在CPU和设备之间：<br>    - CPU可以直接对设备进行读写：IO request<br>        - 设备本身不会做任何事情，必须由CPU产生IO request<br>    - 设备做某些事情，围绕data<br>    - 设备可以产生中断</p>
+        <h2 id="多处理器系统"><a href="#多处理器系统" class="headerlink" title="多处理器系统"></a>多处理器系统</h2><ol>
+<li><p>有的计算机系统只包含单一的CPU；有的包含不同类型的CPU</p>
+</li>
+<li><p>如果把每一个CPU都看成一个系统，所以称为tightly-coupled系统</p>
+</li>
+<li><p>多核的好处：</p>
+<ul>
+<li>提高了吞吐量</li>
+<li>经济资源</li>
+<li>提高了可靠性：多个核，其中一个核坏了</li>
+</ul>
+</li>
+<li><p>多个处理器可以有相同类型：</p>
+<ul>
+<li>如果类型不一致，非对称</li>
+<li>如果类型一样，也可能是非对称的</li>
+</ul>
+</li>
+<li><p>对称指的是，一旦启动，多个CPU是一样的，不加区分</p>
+</li>
+<li><p>bootstrap 只能在一个处理器上运行</p>
+<ul>
+<li>在上电时，只有一个处理器被启动</li>
+</ul>
+</li>
+</ol>
+<h2 id="冯诺依曼结构"><a href="#冯诺依曼结构" class="headerlink" title="冯诺依曼结构"></a>冯诺依曼结构</h2><ol>
+<li>CPU以cache作为中介，以透明的方式访问memory，获得指令和数据</li>
+</ol>
+<ol start="2">
+<li>在CPU和设备之间：<ul>
+<li>CPU可以直接对设备进行读写：IO request<ul>
+<li>设备本身不会做任何事情，必须由CPU产生IO request</li>
+</ul>
+</li>
+<li>设备做某些事情，围绕data</li>
+<li>设备可以产生中断</li>
+</ul>
+</li>
+</ol>
 <h2 id="对称多处理器"><a href="#对称多处理器" class="headerlink" title="对称多处理器"></a>对称多处理器</h2><ol>
 <li>每个CPU有独立的register和cache</li>
 </ol>
@@ -468,8 +501,10 @@
 <li>计算机和计算机通过高速的interconnect互联，高速的交互通道</li>
 </ol>
 <h2 id="操作系统本身的结构"><a href="#操作系统本身的结构" class="headerlink" title="操作系统本身的结构"></a>操作系统本身的结构</h2><ol>
-<li>一个用户的程序往往没办法高效利用计算机资源</li>
-<li>在同一个计算机上运行多个程序——multiprogramming<ul>
+<li><p>一个用户的程序往往没办法高效利用计算机资源</p>
+</li>
+<li><p>在同一个计算机上运行多个程序——multiprogramming</p>
+<ul>
 <li>任务的子集放在内存中</li>
 <li>job scheduling在内存中选一个任务运行<ul>
 <li>一旦任务需要等待或者空闲，CPU把任务拿出来，切换到另一个任务</li>
@@ -477,7 +512,8 @@
 </li>
 </ul>
 </li>
-<li>切换的方式<ul>
+<li><p>切换的方式</p>
+<ul>
 <li>时分，CPU定时拿出任务，切换任务<ul>
 <li>优点：响应性好<ul>
 <li>对系统做出指令动作到指令做出第一个可观察的动作所需的时间</li>
@@ -493,9 +529,19 @@
 </li>
 </ul>
 </li>
+<li><p>对进程做一些限定</p>
+<ul>
+<li>在投入运行之前，可运行的进程的数量是可知的、不变的<ul>
+<li>在运行前加载到内存中</li>
+<li>如果每次加载的初始地址是固定的，那么就是单进程的系统，DOS系统</li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
-<p>对进程做一些限定<br>    - 在投入运行之前，可运行的进程的数量是可知的、不变的<br>        - 在运行前加载到内存中<br>        - 如果每次加载的初始地址是固定的，那么就是单进程的系统，DOS系统</p>
-<p>软中断可以主动产生也可以被动产生</p>
+<ol start="5">
+<li>软中断可以主动产生也可以被动产生</li>
+</ol>
 <ol>
 <li><p>如果一个进程进入了死循环，OS如何处理</p>
 </li>
