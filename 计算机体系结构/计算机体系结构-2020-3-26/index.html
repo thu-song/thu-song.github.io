@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1. 处理器设计的过程 自顶向下： 分析指令的执行语义 找到执行语义需要的组件   自底向上： 基于现有技术制造组件 将指令需要的组件拼在一起，形成可工作的电路 从中发现有用的信息 – 最长路径、最短路径、形成关键的时序   反复改进，给出一个部分解，不停扩充和改进得到可工作的处理器 单周期处理器中是通过控制指令(microinstruction)来实现的，通过控制信号控制组件一起协同完成指令的执">
+<meta name="keywords" content="课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机体系结构--第四节(多周期处理器：datapath and control)">
+<meta property="og:url" content="http://yoursite.com/计算机体系结构/计算机体系结构-2020-3-26/index.html">
+<meta property="og:site_name" content="Song&#39;s Blog">
+<meta property="og:description" content="1. 处理器设计的过程 自顶向下： 分析指令的执行语义 找到执行语义需要的组件   自底向上： 基于现有技术制造组件 将指令需要的组件拼在一起，形成可工作的电路 从中发现有用的信息 – 最长路径、最短路径、形成关键的时序   反复改进，给出一个部分解，不停扩充和改进得到可工作的处理器 单周期处理器中是通过控制指令(microinstruction)来实现的，通过控制信号控制组件一起协同完成指令的执">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-27T02:59:31.201Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机体系结构--第四节(多周期处理器：datapath and control)">
+<meta name="twitter:description" content="1. 处理器设计的过程 自顶向下： 分析指令的执行语义 找到执行语义需要的组件   自底向上： 基于现有技术制造组件 将指令需要的组件拼在一起，形成可工作的电路 从中发现有用的信息 – 最长路径、最短路径、形成关键的时序   反复改进，给出一个部分解，不停扩充和改进得到可工作的处理器 单周期处理器中是通过控制指令(microinstruction)来实现的，通过控制信号控制组件一起协同完成指令的执">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/计算机体系结构/计算机体系结构-2020-3-26/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>计算机体系结构--第四节(多周期处理器：datapath and control) | Song's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Song's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/计算机体系结构/计算机体系结构-2020-3-26/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YJ Song">
+      <meta itemprop="description" content="Show me code!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Song's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机体系结构--第四节(多周期处理器：datapath and control)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-26 15:56:00" itemprop="dateCreated datePublished" datetime="2020-03-26T15:56:00+08:00">2020-03-26</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="1-处理器设计的过程"><a href="#1-处理器设计的过程" class="headerlink" title="1. 处理器设计的过程"></a>1. 处理器设计的过程</h2><ol>
+<li>自顶向下：<ul>
+<li>分析指令的执行语义</li>
+<li>找到执行语义需要的组件</li>
+</ul>
+</li>
+<li>自底向上：<ul>
+<li>基于现有技术制造组件</li>
+<li>将指令需要的组件拼在一起，形成可工作的电路</li>
+<li>从中发现有用的信息 – 最长路径、最短路径、形成关键的时序</li>
+</ul>
+</li>
+<li>反复改进，给出一个部分解，不停扩充和改进得到可工作的处理器</li>
+<li>单周期处理器中是通过控制指令(microinstruction)来实现的，通过控制信号控制组件一起协同完成指令的执行<ul>
+<li>控制器就是一种有限的自动机，PC作为状态，通过PC获得更详细的信息</li>
+<li>microinstruction也可以控制指令的序列</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-设置多周期处理器的设计通道"><a href="#2-设置多周期处理器的设计通道" class="headerlink" title="2. 设置多周期处理器的设计通道"></a>2. 设置多周期处理器的设计通道</h2><ol>
+<li>计算机的五种组件：<ul>
+<li>控制</li>
+<li>数据通路</li>
+<li>内存</li>
+<li>输入</li>
+<li>输出</li>
+</ul>
+</li>
+<li>单周期处理器设计过程的不足：<ul>
+<li>指令执行的时间不同<ul>
+<li>关键路径就是load指令</li>
+<li>所有指令都需要在一个时钟周期内完成，导致指令执行的时间很长</li>
+</ul>
+</li>
+<li>真实的内存并不是理想化的<ul>
+<li>真实的内存并不能在一个时钟周期内完成读和写</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-内存访问时间对处理器设计的影响"><a href="#1-内存访问时间对处理器设计的影响" class="headerlink" title="1.内存访问时间对处理器设计的影响"></a>1.内存访问时间对处理器设计的影响</h3><ol>
+<li>容量越大，访问时间越慢<ul>
+<li>解决：层级存储</li>
+<li>把不同容量和不同速度放在一起：L1和L2cache直接放在处理器中，内存昂在处理器外部，通过总线访问</li>
+<li>降低处理器访问数据的时间</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-如何降低处理器的时钟周期"><a href="#2-如何降低处理器的时钟周期" class="headerlink" title="2.如何降低处理器的时钟周期"></a>2.如何降低处理器的时钟周期</h3><ol>
+<li>给定一个复杂的组合电路，将组合电路一分为二，每一部分构成独立的组成电路</li>
+<li>两个组成电路中引入存储单元隔开，原来一个大的组成电路需要在一个时钟周期内执行所有功能</li>
+<li>现在把分在两个不同的组成电路，执行相同的功能，需要两个组成电路按照时间顺序完成</li>
+<li>这样，电路变小，执行更快：原来在一个慢的时钟周期内执行功能分解成两个快的组成电路的功能</li>
+<li>通过这种划分，把组合电路的电路变短，并且可能导致一些指令中的组件可以被移除掉，让组合电路更加简单</li>
+</ol>
+<h3 id="3-关键路径"><a href="#3-关键路径" class="headerlink" title="3. 关键路径"></a>3. 关键路径</h3><ol>
+<li>理想的寄存器和内存：<ul>
+<li>CLK输入仅仅在写操作时有影响</li>
+</ul>
+</li>
+</ol>
+<h4 id="关键路径的五个因素"><a href="#关键路径的五个因素" class="headerlink" title="关键路径的五个因素"></a>关键路径的五个因素</h4><ol>
+<li>取指</li>
+<li>译码</li>
+<li>ALU计算地址</li>
+<li>访问内存</li>
+<li>写回寄存器中</li>
+</ol>
+<h3 id="4-理想的内存和真实的内存"><a href="#4-理想的内存和真实的内存" class="headerlink" title="4.理想的内存和真实的内存"></a>4.理想的内存和真实的内存</h3><ol>
+<li>理想的内存<ul>
+<li>写入的时候需要有效的时钟信号</li>
+<li>访问内存的地址、写入的数据以及写使能必须在setup阶段变得稳定</li>
+</ul>
+</li>
+<li>真实的情况<ul>
+<li>寄存器和内存没有时钟<ul>
+<li>因为写比较慢</li>
+</ul>
+</li>
+<li>也就是说，写操作必须是一个带时延的组合电路<ul>
+<li>写使能变成1，写入的数据已经准备好</li>
+<li>写过程是时延的过程</li>
+<li>写操作之后，数据写入内存相应地址</li>
+</ul>
+</li>
+<li>写使能时，数据和地址必须是稳定的，才能保证写成功</li>
+</ul>
+</li>
+</ol>
+<h3 id="5-race-condition"><a href="#5-race-condition" class="headerlink" title="5.race condition"></a>5.race condition</h3><ol>
+<li>在单周期处理器中，如果没有时钟，那么寄存器和内存不能可靠的工作<ul>
+<li>对寄存器而言，在写使能变成1时，寄存器的地址并不一定能够稳定</li>
+<li>寄存器的地址和寄存器的写使能可能存在竞争<ul>
+<li>先后顺序不同会导致写入的情况不一样</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>内存也有同样的情况</li>
+</ol>
+<h4 id="如何避免race-condition"><a href="#如何避免race-condition" class="headerlink" title="如何避免race condition"></a>如何避免race condition</h4><ol>
+<li>多周期处理器的解决方案：<ul>
+<li>关键：地址要变得稳定</li>
+<li>假定在第n个周期时，地址稳定</li>
+<li>在n+1个周期，写使能信号变为1</li>
+<li>在写使能信号变成0之前，地址信号不可以改变，可以保证写成功</li>
+</ul>
+</li>
+<li>两个访问端口的内存：<ul>
+<li>读内存和写内存两个端口独立</li>
+<li>在同一个时钟周期中，读和写可以访问不同的位置</li>
+</ul>
+</li>
+<li>读端口是一个组合电路：<ul>
+<li>读地址有效</li>
+<li>经过时延</li>
+<li>数据输出有效</li>
+</ul>
+</li>
+<li>写端口也是一个组合电路：<ul>
+<li>写使能=1</li>
+<li>经过时延</li>
+<li>数据会写入对应位置</li>
+</ul>
+</li>
+</ol>
+<h3 id="6-时钟周期的基本的限制"><a href="#6-时钟周期的基本的限制" class="headerlink" title="6.时钟周期的基本的限制"></a>6.时钟周期的基本的限制</h3><ol>
+<li>计算下一个PC的逻辑电路</li>
+<li>决定把指令从内存中读出来的时间</li>
+<li>访问寄存器的时间</li>
+<li>ALU计算的时间</li>
+</ol>
+<h3 id="7-切分CPI-1的数据通路"><a href="#7-切分CPI-1的数据通路" class="headerlink" title="7.切分CPI=1的数据通路"></a>7.切分CPI=1的数据通路</h3><ol>
+<li>把长的数据通路切分成小的部分</li>
+<li>在每一部分之间加入寄存器</li>
+</ol>
+<h2 id="3-处理器设计的步骤"><a href="#3-处理器设计的步骤" class="headerlink" title="3. 处理器设计的步骤"></a>3. 处理器设计的步骤</h2><ol>
+<li>在多周期处理器设计中，对多周期处理器进行了划分，引入了电路之间的寄存器，因此为了区分指令集中的寄存器和电路中的寄存器：<ul>
+<li>指令集中的寄存器称为逻辑寄存器</li>
+<li>电路中的寄存器称为物理寄存器</li>
+</ul>
+</li>
+<li>处理器设计的五个步骤：<ul>
+<li>Step 1:ISA=&gt;Logical Register Transfers<ul>
+<li>指令 -&gt; 寄存器变化的过程</li>
+</ul>
+</li>
+<li>Step 2:Components of the Datapath<ul>
+<li>数据通路的组件，即组合电路</li>
+</ul>
+</li>
+<li>Step 3:RTL+Components =&gt;Datapath<ul>
+<li>寄存器状态变化逻辑+构造的组件 -&gt; 组成数据通道</li>
+</ul>
+</li>
+<li>Step 4:Datapath+Logical RTs=&gt;Physical RTs<ul>
+<li>数据通道+逻辑寄存器变化 -&gt; 物理寄存器</li>
+</ul>
+</li>
+<li>Step 5:Physical RTs=&gt;Control<ul>
+<li>生成控制信号</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-第四步：数据通道-逻辑寄存器变化-gt-物理寄存器"><a href="#1-第四步：数据通道-逻辑寄存器变化-gt-物理寄存器" class="headerlink" title="1. 第四步：数据通道+逻辑寄存器变化 -&gt; 物理寄存器"></a>1. 第四步：数据通道+逻辑寄存器变化 -&gt; 物理寄存器</h3><h3 id="2-多周期处理器的数据通路"><a href="#2-多周期处理器的数据通路" class="headerlink" title="2. 多周期处理器的数据通路"></a>2. 多周期处理器的数据通路</h3><ol>
+<li>相较单周期处理器<ul>
+<li>内存变成两个端口：写端口和读端口</li>
+<li>只需要一个加法单元：<ul>
+<li>减少了PC+4和PC+SEx两个加法器</li>
+<li>只剩下了ALU算数单元</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多周期的方式对电路划分之后，单周期中很多组件的访问冲突在多周期中不存在，把存在冲突的操作放在不同的周期，使组件的数量减少<ul>
+<li>这是多周期设计带来的其中一个好处</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-以branch指令为例"><a href="#3-以branch指令为例" class="headerlink" title="3. 以branch指令为例"></a>3. 以branch指令为例</h3><h3 id="1-取指"><a href="#1-取指" class="headerlink" title="1. 取指"></a>1. 取指</h3><ol>
+<li>取指阶段，所有的指令执行相同的操作</li>
+<li>在时钟刚开始时，PC寄存器中的值是当前指令存储的位置<ul>
+<li>需要从内存中读出来，写到指令寄存器中</li>
+</ul>
+</li>
+<li>在指令读取结束时，在时钟周期结束，需要更新物理寄存器</li>
+</ol>
+<h3 id="2-译码-取寄存器"><a href="#2-译码-取寄存器" class="headerlink" title="2. 译码/取寄存器"></a>2. 译码/取寄存器</h3><ol>
+<li>ALU没在使用</li>
+<li>分支指令的取寄存器时，并没有使用ALU运算单元<ul>
+<li>此时下一条指令的PC值已经计算出来了</li>
+<li>可以计算target的位置</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-branch指令执行完毕"><a href="#3-branch指令执行完毕" class="headerlink" title="3. branch指令执行完毕"></a>3. branch指令执行完毕</h3><h2 id="4-有限自动机"><a href="#4-有限自动机" class="headerlink" title="4. 有限自动机"></a>4. 有限自动机</h2><ol>
+<li>由两部分构成：<ul>
+<li>状态</li>
+<li>告诉我们如何更改状态</li>
+</ul>
+</li>
+<li>如何更改是由下一个状态函数决定</li>
+<li>除了我们必须明确的信号，有的信号状态可以为x<ul>
+<li>要求要么置为1，要么置为0</li>
+<li>x的也置为0</li>
+</ul>
+</li>
+</ol>
+<h2 id="5-控制模型"><a href="#5-控制模型" class="headerlink" title="5. 控制模型"></a>5. 控制模型</h2><ol>
+<li>定义了我们怎么控制寄存器之间的转移<ul>
+<li>控制信号构成了state</li>
+</ul>
+</li>
+<li>状态转移发生在当前状态退出时<ul>
+<li>当前状态生成的控制信号，控制当前指令退出时，也就是时钟周期下降沿，需要计算下一个状态</li>
+<li>根据当前状态和输入值，可以计算出下一个状态的值，从而计算出下一个时钟周期时的控制信号</li>
+</ul>
+</li>
+<li>当前的状态+正在执行的指令+一些条件 -&gt; 下一个状态+下一个状态生成的控制信号</li>
+</ol>
+<h2 id="6-总结"><a href="#6-总结" class="headerlink" title="6. 总结"></a>6. 总结</h2><ol>
+<li>对于单周期处理器<ul>
+<li>时钟周期较长</li>
+</ul>
+</li>
+<li>多周期处理器<ul>
+<li>一条指令分成更小的步骤</li>
+<li>每个时钟周期只执行其中的一步</li>
+</ul>
+</li>
+<li>把数据通路分成同等大小，使时钟周期变得更小</li>
+<li>控制通过有限控制图定义</li>
+<li>一些特殊的状态图可以用微序列器表示出来</li>
+<li>控制设计规约为微编程</li>
+<li>在复杂指令集和受限的数据通路中，控制会变得复杂</li>
+<li>简单的指令集 + 强大的数据通路 -&gt; 简单的控制</li>
+</ol>
+<h2 id="7-异常"><a href="#7-异常" class="headerlink" title="7. 异常"></a>7. 异常</h2><ol>
+<li>不受自己程序控制的转移<ul>
+<li>记录触发异常的地址</li>
+<li>记录其他用来返回的信息</li>
+<li>异常处理前保存用户的状态，异常处理后恢复用户状态</li>
+</ul>
+</li>
+</ol>
+<h3 id="1-两种异常：中断和陷阱"><a href="#1-两种异常：中断和陷阱" class="headerlink" title="1. 两种异常：中断和陷阱"></a>1. 两种异常：中断和陷阱</h3><ol>
+<li>中断：<ul>
+<li>由外部事件导致<ul>
+<li>网络、键盘、磁盘和时钟</li>
+</ul>
+</li>
+<li>异步的发生<ul>
+<li>大部分的中断都可以暂时被屏蔽</li>
+<li>电源的失效是不可屏蔽的</li>
+</ul>
+</li>
+<li>这样的事件可以在指令间被处理</li>
+<li>暂停当前程序的执行，处理完之后再恢复</li>
+</ul>
+</li>
+<li>陷阱：<ul>
+<li>由程序内部实现导致的<ul>
+<li>溢出</li>
+<li>error(内存访问)</li>
+<li>fault(访问的页面不在内存中)</li>
+</ul>
+</li>
+<li>同步的发生</li>
+<li>异常处理需要采取补救的措施</li>
+<li>可以尝试重新执行指令<ul>
+<li>程序继续执行或者被终止</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h2><ol>
+<li>多周期用microcode，单周期用PLA，优缺点<ul>
+<li>microcode：<ul>
+<li>修改更为方便，用计算机控制计算机</li>
+<li>对程序员更友好</li>
+<li>需要查表，如果是zero或者inc都会比较简单，但是load需要查表，就会比较复杂</li>
+</ul>
+</li>
+<li>PLA：<ul>
+<li>如果设计出现问题，控制信号不易修改</li>
+<li>指令数较少时，每条指令有一组控制信号，组件少，控制信号少<ul>
+<li>PLA表不会很大，实现更简单，电路更简单，更快</li>
+</ul>
+</li>
+<li>但是扩展性比较差，整张表会比较大，PLA实现会更复杂</li>
+<li>除了存储之外，其他的会比较简单</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>单周期需要exception处理吗？<ul>
+<li>x86会有一个program state，ZF/CF告诉发生overflow</li>
+<li>在MIPS中，也可以抛出异常来处理</li>
+<li>处理器模式的分页模式，可能会发生缺页</li>
+<li>单周期处理器早期功能比较简单，用在嵌入式领域<ul>
+<li>指令数少</li>
+<li>数据都在内存中</li>
+<li>单周期中指令一定会执行结束，处理器简单</li>
+<li>处理器执行中假定内存中读出来的都是ok的等</li>
+<li>异常情况下，处理器崩溃，也无所谓</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>没有实现的指令如何处理？<ul>
+<li>仿真，通过已有指令的组合来执行<ul>
+<li>但是因为发生了exception，发生了上下文切换，执行较慢</li>
+</ul>
+</li>
+<li>处理器厂商，在之前设计了一些处理器，设计较差<ul>
+<li>把之前处理器的指令扔掉</li>
+<li>少部分指令不能跑，可以用模拟</li>
+<li>找新的等同的指令</li>
+<li>用新的指令组合来模拟</li>
+<li>向后兼容</li>
+</ul>
+</li>
+<li>undefined，硬件翻译成当前处理器的指令<ul>
+<li>大部分时间都不实用</li>
+</ul>
+</li>
+<li>现在的CPU跑的比较快，现在x86<ul>
+<li>不用考虑硬件指令集，处理</li>
+</ul>
+</li>
+<li>早期x86处理器上没有浮点计算<ul>
+<li>生成的程序，如果编译器要生成浮点指令</li>
+<li>正常的情况下，程序并不能运行</li>
+<li>浮点和整数的只是不同的表示格式</li>
+<li>可以用软件去模拟，可以工作，但是程序执行很慢</li>
+</ul>
+</li>
+<li>硬件的bug要软件来填<ul>
+<li>硬件的bug会触发exception</li>
+<li>固件来改</li>
+<li>给操作系统厂商写补丁，以软件的方式对硬件的行为进行修正</li>
+<li>硬件的bug是不可修改的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/系统程序设计/系统程序设计-2020-3-30/" rel="prev" title="系统程序设计--第七节(process relationships)">          
+                <i class="fa fa-chevron-left"></i> 系统程序设计--第七节(process relationships)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/软件过程/软件过程-2020-3-26/" rel="next" title="软件过程--第四节(软件设计)">
+                软件过程--第四节(软件设计) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YJ Song</p>
+              <p class="site-description motion-element" itemprop="description">Show me code!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fdss-song" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yearito.cn/" title="yearito" target="_blank">yearito</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-处理器设计的过程"><span class="nav-text">1. 处理器设计的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-设置多周期处理器的设计通道"><span class="nav-text">2. 设置多周期处理器的设计通道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-内存访问时间对处理器设计的影响"><span class="nav-text">1.内存访问时间对处理器设计的影响</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-如何降低处理器的时钟周期"><span class="nav-text">2.如何降低处理器的时钟周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-关键路径"><span class="nav-text">3. 关键路径</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关键路径的五个因素"><span class="nav-text">关键路径的五个因素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-理想的内存和真实的内存"><span class="nav-text">4.理想的内存和真实的内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-race-condition"><span class="nav-text">5.race condition</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何避免race-condition"><span class="nav-text">如何避免race condition</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-时钟周期的基本的限制"><span class="nav-text">6.时钟周期的基本的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-切分CPI-1的数据通路"><span class="nav-text">7.切分CPI=1的数据通路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-处理器设计的步骤"><span class="nav-text">3. 处理器设计的步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-第四步：数据通道-逻辑寄存器变化-gt-物理寄存器"><span class="nav-text">1. 第四步：数据通道+逻辑寄存器变化 -&gt; 物理寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-多周期处理器的数据通路"><span class="nav-text">2. 多周期处理器的数据通路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-以branch指令为例"><span class="nav-text">3. 以branch指令为例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-取指"><span class="nav-text">1. 取指</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-译码-取寄存器"><span class="nav-text">2. 译码/取寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-branch指令执行完毕"><span class="nav-text">3. branch指令执行完毕</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-有限自动机"><span class="nav-text">4. 有限自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-控制模型"><span class="nav-text">5. 控制模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-总结"><span class="nav-text">6. 总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-异常"><span class="nav-text">7. 异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-两种异常：中断和陷阱"><span class="nav-text">1. 两种异常：中断和陷阱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#讨论"><span class="nav-text">讨论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YJ Song</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+          $('#sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('#footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            offsetX: ,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+</body>
+</html>

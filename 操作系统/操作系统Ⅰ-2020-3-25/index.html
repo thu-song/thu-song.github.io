@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Example：MS:DOS 服务于单任务，运行在单核的、单个CPU的计算机 除了内核之外，整个操作系提供可以可以空闲，也可以是进程空间 kernel 启动 command interpreter，执行相应的进程 进程启动时，command interpreter 部分会被释放   只有进程的加载概念，没有进程的创建部分 没有数据结构去描述进程本身，即操作系统就是进程   单一的内存空间 内存空间">
+<meta name="keywords" content="课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统Ⅰ--第三节(接上节)">
+<meta property="og:url" content="http://yoursite.com/操作系统/操作系统Ⅰ-2020-3-25/index.html">
+<meta property="og:site_name" content="Song&#39;s Blog">
+<meta property="og:description" content="Example：MS:DOS 服务于单任务，运行在单核的、单个CPU的计算机 除了内核之外，整个操作系提供可以可以空闲，也可以是进程空间 kernel 启动 command interpreter，执行相应的进程 进程启动时，command interpreter 部分会被释放   只有进程的加载概念，没有进程的创建部分 没有数据结构去描述进程本身，即操作系统就是进程   单一的内存空间 内存空间">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-25T02:58:42.665Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统Ⅰ--第三节(接上节)">
+<meta name="twitter:description" content="Example：MS:DOS 服务于单任务，运行在单核的、单个CPU的计算机 除了内核之外，整个操作系提供可以可以空闲，也可以是进程空间 kernel 启动 command interpreter，执行相应的进程 进程启动时，command interpreter 部分会被释放   只有进程的加载概念，没有进程的创建部分 没有数据结构去描述进程本身，即操作系统就是进程   单一的内存空间 内存空间">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/操作系统/操作系统Ⅰ-2020-3-25/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>操作系统Ⅰ--第三节(接上节) | Song's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Song's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/操作系统/操作系统Ⅰ-2020-3-25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YJ Song">
+      <meta itemprop="description" content="Show me code!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Song's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">操作系统Ⅰ--第三节(接上节)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-25 08:59:00" itemprop="dateCreated datePublished" datetime="2020-03-25T08:59:00+08:00">2020-03-25</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Example：MS-DOS"><a href="#Example：MS-DOS" class="headerlink" title="Example：MS:DOS"></a>Example：MS:DOS</h2><ol>
+<li>服务于单任务，运行在单核的、单个CPU的计算机<ul>
+<li>除了内核之外，整个操作系提供可以可以空闲，也可以是进程空间</li>
+<li>kernel 启动 command interpreter，执行相应的进程</li>
+<li>进程启动时，command interpreter 部分会被释放</li>
+</ul>
+</li>
+<li>只有进程的加载概念，没有进程的创建部分<ul>
+<li>没有数据结构去描述进程本身，即操作系统就是进程</li>
+</ul>
+</li>
+<li>单一的内存空间<ul>
+<li>内存空间：从地址到存储单元的映射关系</li>
+<li>DOS只需要一个物理地址空间</li>
+<li>所有资源都可以使用，甚至可以安全的覆盖或修改kernel 和 command interpreter，只要进程结束之后，可以返回至kernel</li>
+<li>command interpreter根据内存需要，可能会被丢掉一些<ul>
+<li>但是kernel不会被覆盖</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>程序exit不需要返回到进城本身，只需要将进程释放<ul>
+<li>检查command interpreter是否完整，如果不完整，从磁盘上重新加载</li>
+<li>跳转至命令提示符</li>
+</ul>
+</li>
+</ol>
+<h2 id="Example：FreeBSD"><a href="#Example：FreeBSD" class="headerlink" title="Example：FreeBSD"></a>Example：FreeBSD</h2><ol>
+<li>多任务<ul>
+<li>必须有进程数据结构管理多个任务</li>
+</ul>
+</li>
+<li>系统启动之后，启动kernel部分<ul>
+<li>kernel启动完成后，执行user login</li>
+<li>根据用户的配置文件创建一个代表用户的shell进程</li>
+</ul>
+</li>
+<li>shell 进程执行任何可以执行的命令行<ul>
+<li>需要时可以调用fork函数，创建新的进程</li>
+<li>在新的进程中，通过exec创建不同于shell的内存映像</li>
+<li>根据前台执行或后台运行，可以需要wait到进程结束</li>
+</ul>
+</li>
+<li>新创建的进程同样可以退出，调用kernel中的exit<ul>
+<li>由kernel释放进程资源</li>
+</ul>
+</li>
+<li>本质上和Linux相像，细节上略有不同</li>
+</ol>
+<h2 id="系统程序"><a href="#系统程序" class="headerlink" title="系统程序"></a>系统程序</h2><ol>
+<li>系统程序本身不是操作系统kernel的部分，也是用户程序形成的<ul>
+<li>帮助我们使用操作系统</li>
+</ul>
+</li>
+<li>绝大多数(普通)用户对操作系统的看法是由系统程序来定义的，而不是由系统调用来定义的<ul>
+<li>大多数用户不会通过写代码来使用操作系统的功能</li>
+<li>系统服务往往通过系统程序来提供</li>
+<li>比如文件管理，不会为文件管理专门写程序来应用</li>
+</ul>
+</li>
+<li>系统程序的帮助下，可以比较方便的进行程序开发和执行程序，比如<ul>
+<li>文件管理：操作系统静态的在磁盘上，动态的在内存中<ul>
+<li>目录的管理</li>
+</ul>
+</li>
+<li>状态信息：硬件配置、时间、日期、内存量、磁盘空间等</li>
+<li>文件内容修改<ul>
+<li>文本编辑器</li>
+<li>shell中修改命令</li>
+</ul>
+</li>
+<li>对程序语言的支持<ul>
+<li>编译器、汇编器、debugger、解释器</li>
+</ul>
+</li>
+<li>程序加载和执行<ul>
+<li>绝对定位、可变址的定位、链接相关、覆盖定位</li>
+</ul>
+</li>
+<li>通信</li>
+<li>后台服务：<ul>
+<li>后台意味着不会干扰控制台的运行，后台一般不和控制台打交道，一般通过管道、文件</li>
+<li>利用其他方式查看后台进程的状态，比如日志</li>
+<li>有的只运行一次，比如检查磁盘</li>
+<li>有的一旦启动，需要持续工作，特别是为硬件服务</li>
+<li>kernel部分为硬件服务的称为driver，关注终端处理</li>
+<li>有的driver在用户环境中运行，比如关注侦听数据，服务于硬件，一直在后台运行直到关机</li>
+</ul>
+</li>
+<li>应用程序<ul>
+<li>可以伴随OS安装的程序称为系统程序</li>
+<li>但是有的系统程序和应用程序没有区别</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="OS的设计与实现"><a href="#OS的设计与实现" class="headerlink" title="OS的设计与实现"></a>OS的设计与实现</h2><ol>
+<li>操作系统的设计与实现不是”solvable”，但是有些方法被证明是成功的</li>
+<li>OS本身是一个软件，所有有开发者</li>
+<li>OS的设计开始于目标和标准</li>
+<li>受硬件的改变、系统的类型的影响<ul>
+<li>可移植</li>
+<li>在相同的平台上，创建一个全新的操作系统</li>
+<li>新的需求带来新的操作系统设计：DOS-&gt;windows</li>
+<li>对shell的程序不满意<ul>
+<li>重构</li>
+<li>知识产权的冲突</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用户目标和系统目标<ul>
+<li>用户目标-操作系统应该使用方便、容易掌握、可靠、安全、快速</li>
+<li>系统目标-操作系统应该易于设计、实现和维护，以及灵活(适应不同操作系统的使用)、可靠、无错、高效</li>
+</ul>
+</li>
+<li>区分：<ul>
+<li>policy：做什么-&gt;接口</li>
+<li>mechanism：如何做-&gt;实现</li>
+<li>使得系统实现具有足够的灵活性<ul>
+<li>policy在未来可以修改</li>
+<li>mechanism相应调整</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>高可用性和高可移植性使得操作系统移植变得简单</li>
+</ol>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ol>
+<li>开发操作系统必须存在可以不用运行时支持的语言</li>
+<li>太多的变化<ul>
+<li>早期使用汇编语言，高于机器语言</li>
+<li>然后是系统编程语言像Algol, PL/1</li>
+<li>现在是C, C++，写OS时，C++的功能受限制<ul>
+<li>比如C++的多重继承，取决于内存状态，比如静态变量的初始化</li>
+<li>不可以在不明确操作系统的内存实现的情况下使用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实际上通常是多种语言的混合<ul>
+<li>最底层——汇编，甚至机器语言<ul>
+<li>跨平台跨硬件、设计</li>
+</ul>
+</li>
+<li>主体用C</li>
+<li>C、C++或脚本语言PERL、Python、shell 等脚本</li>
+</ul>
+</li>
+<li>更高级的语言更容易移植到其他硬件<ul>
+<li>但是更慢</li>
+</ul>
+</li>
+<li>仿真(Emulation)可以允许操作系统在非本机硬件上运行<ul>
+<li>在完全不同的硬件平台上运行特定平台上的特定操作系统</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="操作系统的结构"><a href="#操作系统的结构" class="headerlink" title="操作系统的结构"></a>操作系统的结构</h2><ol>
+<li>下载Linux kernel的源代码</li>
+<li>代码量大，需要正确的结构</li>
+<li>MS:DOS，分层调度，<ul>
+<li>ROM中的BIOS服务驱动</li>
+<li>MS-DOS服务驱动<ul>
+<li>提供中断服务，提供大多数服务内容</li>
+</ul>
+</li>
+<li>驻留系统程序<ul>
+<li>驻留程序是一种特殊应用程序，它在装入内存运行后，其部分代码仍然驻留在内存，当该段代码被激活时，它又进入运行状态。常用的驻留程序是作为某个中断处理程序的一部分，其激活条件就是系统产生了此中断的中断请求</li>
+<li>比如自己写的中断程序，不能退出，需要一直在内存中</li>
+<li>也可以用来做多任务切换，不从内存中退出，而是驻留在内存中，等待被切换</li>
+</ul>
+</li>
+<li>应用程序内容</li>
+</ul>
+</li>
+<li>Unix：<ul>
+<li>系统程序部分和kernel部分</li>
+<li>kernel包括了各个服务的入口和相应实现</li>
+<li>提供文件管理、缓存管理等，文件管理和缓存管理相互影响，甚至相互依赖</li>
+</ul>
+</li>
+<li>分层方法：<ul>
+<li>不同的运行层次</li>
+<li>不同的代码会运行在不同层上</li>
+<li>层之间的接口是明晰的</li>
+<li>0层是硬件，N层是UI，用户接口</li>
+<li>分层的前提是，函数只能调用低层次的功能</li>
+</ul>
+</li>
+<li>微内核系统结构<ul>
+<li>尽可能减少操作系统的kernel部分，更多的移动到用户态</li>
+<li>例子：Mach</li>
+<li>典型的应用，苹果系统的kernel(Darwin)集成了Mach的功能</li>
+<li>每个功能的主要部分都在用户态，需要通过通信机制，来实现相互数据和功能上的服务</li>
+<li>优点：<ul>
+<li>易扩展</li>
+<li>易移植</li>
+<li>可靠性，内核态的故障很难恢复到出错前的状态，用户态可以很简单的把用户进程杀掉重新尝试</li>
+<li>更加安全，在用户态执行的代码没有能力直接访问内核的数据结构，比如以内核态可控的方式来访问</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><ol>
+<li>基本功能一般是静态的，在不同的操作系统上不同</li>
+<li>对硬件的支持能力<ul>
+<li>在特定的计算机系统上，硬件配置的可能性很少</li>
+<li>一般的操作系统为了向前兼容，操作系统比如满足不同配置的要求</li>
+</ul>
+</li>
+<li>创建可加载的kernel模块<ul>
+<li>在启动时不会加载</li>
+<li>在系统启动后，可以动态的在kernel的内存空间中加载或移除某部分的代码</li>
+<li>启动以后，在用户的干预下，或者脚本的指导下，动态的加载</li>
+</ul>
+</li>
+</ol>
+<h3 id="Mac-OS-X-结构"><a href="#Mac-OS-X-结构" class="headerlink" title="Mac OS X 结构"></a>Mac OS X 结构</h3><ol>
+<li>不大允许用户直接调用系统服务，只允许调用应用接口</li>
+<li>可以开发一些应用，直接调用系统服务，但是通过企业发布</li>
+</ol>
+<h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><ol>
+<li>移动的操作系统</li>
+<li>与Mac OS X在上层很想，应用容易移植<ul>
+<li>不能直接运行Mac OS的应用程序</li>
+</ul>
+</li>
+<li>软件本身是架构中立的，无论底层是ARM还是Intel的CPU，都可以执行<ul>
+<li>Cocoa Touch：使用objective-C，C语言的扩展，面向对象</li>
+<li>视频音频的支持</li>
+<li>内核支持</li>
+</ul>
+</li>
+<li>内核基于Mac OS X内核</li>
+</ol>
+<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><ol>
+<li>底层是Linux，iOS的底层是BSD(Unix)</li>
+<li>基于Linux核</li>
+<li>运行环境，一般来说不允许用户直接在OS上开发</li>
+<li>Java的bytecode作为程序开发的底层的语言<ul>
+<li>Android应用程序和底层的处理器结构也分隔开</li>
+</ul>
+</li>
+<li>提供在手机上开发必须提供的功能<ul>
+<li>web浏览器(webkit)</li>
+<li>数据库(SQLite)</li>
+<li>多媒体</li>
+<li>小的libc，介绍耗电</li>
+</ul>
+</li>
+<li>Android也可以在Linux上开发<ul>
+<li>native的开发，JNI库(Java native interface)，在上层也可以用Java开发</li>
+</ul>
+</li>
+</ol>
+<h2 id="操作系统调试"><a href="#操作系统调试" class="headerlink" title="操作系统调试"></a>操作系统调试</h2><ol>
+<li>调试是去除bug</li>
+<li>操作系统本身可以有日志</li>
+<li>一旦出现不可恢复的故障(从程序的角度来说不可恢复)<ul>
+<li>生成core dump文件</li>
+</ul>
+</li>
+<li>操作系统调试性能<ul>
+<li>前台的程序和后台的程序争夺资源</li>
+<li>前台CPU不足，卡顿</li>
+<li>可以减少后台的资源分配</li>
+</ul>
+</li>
+<li>同样的操作系统在不同硬件上的能力怎么样，可以作为操作系统能力的体现：</li>
+<li>profiling：<ul>
+<li>除了崩溃之外，性能调优有时还可以使用活动的跟踪列表来优化系统性能，为分析分析而记录的是指令指针的定期抽样，以查找统计趋势</li>
+</ul>
+</li>
+<li>Kernighan定律:“调试的难度是编写代码的难度的两倍。因此，如果你把代码写得尽可能的聪明，你就没有足够的智能来调试它。”</li>
+</ol>
+<h3 id="性能协调"><a href="#性能协调" class="headerlink" title="性能协调"></a>性能协调</h3><ol>
+<li>linux中的top，Windows中的任务管理器</li>
+</ol>
+<h2 id="DTrace"><a href="#DTrace" class="headerlink" title="DTrace"></a>DTrace</h2><ol>
+<li>分析程序运行中产生的系统调用</li>
+<li>反向工程的工具，更好的理解程序是怎么运行的</li>
+</ol>
+<h2 id="操作系统的生成"><a href="#操作系统的生成" class="headerlink" title="操作系统的生成"></a>操作系统的生成</h2><ol>
+<li>硬件配置非常多的情况下</li>
+<li>桌面计算机可以直接下载镜像，底层架构种类很少</li>
+<li>安卓只会在固定的设备上，除非现在USB，没有必要在操作系统中携带当前操作系统不需要的代码<ul>
+<li>而通用计算机必须都有</li>
+<li>安卓必须根据实际配置，产生系统的实际内容</li>
+</ul>
+</li>
+<li>利用硬件系统的配置对操作系统修剪<ul>
+<li>定制化产生平台独有的操作系统</li>
+</ul>
+</li>
+<li>Linux自己编译自己的内核，把不需要的内核代码从系统中去掉<ul>
+<li>这些模块可以保存在磁盘上，但是不会被加载到内存上</li>
+<li>定制kernel的原因：<ul>
+<li>幻想去除不用的代码提高效率(代码并没有被执行，并没有提高效率)</li>
+<li>减少磁盘占用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="系统启动"><a href="#系统启动" class="headerlink" title="系统启动"></a>系统启动</h2><ol>
+<li>系统上电，硬件从没有能源状态进入能源激发状态</li>
+<li>CPU上电，决定下一条指令的硬件(PC)，初始化每次启动都是固定的值<ul>
+<li>在有些处理器中是全0，比如ARM</li>
+<li>有点处理器由于历史原因有特定的值，比如x86<ul>
+<li>任何x86兼容的处理器都在ffff上的地址</li>
+<li>启动之后进入实模式，跳转到fff0上</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>初始化的代码必须在每次启动的时候不变，位置和内容也不变<ul>
+<li>固件ROM，存储启动代码</li>
+<li>称为bootstrap loader</li>
+<li>代码常常保存在ROM或者EEPROM中</li>
+<li>代码必须找到kernel代码，跳转到kernel代码</li>
+</ul>
+</li>
+<li>先找到boot block，再进一步找到kernel位置<ul>
+<li>通过USB、网络、软驱都可以直接找到boot位置</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/LINUX操作系统/LINUX操作系统-2020-3-25/" rel="prev" title="LINUX操作系统--第五节(元字符转移、引用和变量)">          
+                <i class="fa fa-chevron-left"></i> LINUX操作系统--第五节(元字符转移、引用和变量)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/软件质量保障与测试/软件质量保障与测试-2020-3-24/" rel="next" title="软件质量保障与测试--第四章 软件测试质量保障-软件测试基本过程">
+                软件质量保障与测试--第四章 软件测试质量保障-软件测试基本过程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YJ Song</p>
+              <p class="site-description motion-element" itemprop="description">Show me code!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fdss-song" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yearito.cn/" title="yearito" target="_blank">yearito</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Example：MS-DOS"><span class="nav-text">Example：MS:DOS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example：FreeBSD"><span class="nav-text">Example：FreeBSD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统程序"><span class="nav-text">系统程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OS的设计与实现"><span class="nav-text">OS的设计与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的结构"><span class="nav-text">操作系统的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模块"><span class="nav-text">模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac-OS-X-结构"><span class="nav-text">Mac OS X 结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS"><span class="nav-text">iOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android"><span class="nav-text">Android</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统调试"><span class="nav-text">操作系统调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#性能协调"><span class="nav-text">性能协调</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DTrace"><span class="nav-text">DTrace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统的生成"><span class="nav-text">操作系统的生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统启动"><span class="nav-text">系统启动</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YJ Song</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+          $('#sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('#footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            offsetX: ,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+</body>
+</html>
