@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="评分标准： 课堂表现 5% 课堂实践 55% 期末考试 40%   针对软件需求、设计、实现、构建，测试等进行实践  软件发展史 软件发展的两个动力： 计算资源以及计算资源之间的协作、网络的不断发展 应用从专业领域像消费领域、个人领域的不断发展   软件最根本的问题：如何治理软件的复杂性以及复杂性伴随的危机   瀑布模型 黑盒：分析、设计、编程、测试、维护 CMM(能力成熟度模型：Capabil">
+<meta name="keywords" content="课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件过程--第一节(现代敏捷开发工程方法)">
+<meta property="og:url" content="http://yoursite.com/2020/03/01/软件过程/软件过程-2020-3-1/index.html">
+<meta property="og:site_name" content="Song&#39;s Blog">
+<meta property="og:description" content="评分标准： 课堂表现 5% 课堂实践 55% 期末考试 40%   针对软件需求、设计、实现、构建，测试等进行实践  软件发展史 软件发展的两个动力： 计算资源以及计算资源之间的协作、网络的不断发展 应用从专业领域像消费领域、个人领域的不断发展   软件最根本的问题：如何治理软件的复杂性以及复杂性伴随的危机   瀑布模型 黑盒：分析、设计、编程、测试、维护 CMM(能力成熟度模型：Capabil">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-11T07:09:57.623Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件过程--第一节(现代敏捷开发工程方法)">
+<meta name="twitter:description" content="评分标准： 课堂表现 5% 课堂实践 55% 期末考试 40%   针对软件需求、设计、实现、构建，测试等进行实践  软件发展史 软件发展的两个动力： 计算资源以及计算资源之间的协作、网络的不断发展 应用从专业领域像消费领域、个人领域的不断发展   软件最根本的问题：如何治理软件的复杂性以及复杂性伴随的危机   瀑布模型 黑盒：分析、设计、编程、测试、维护 CMM(能力成熟度模型：Capabil">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/01/软件过程/软件过程-2020-3-1/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>软件过程--第一节(现代敏捷开发工程方法) | Song's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Song's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/软件过程/软件过程-2020-3-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YJ Song">
+      <meta itemprop="description" content="Show me code!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Song's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件过程--第一节(现代敏捷开发工程方法)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-01 21:50:00" itemprop="dateCreated datePublished" datetime="2020-03-01T21:50:00+08:00">2020-03-01</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>评分标准：<ul>
+<li>课堂表现 5%</li>
+<li>课堂实践 55%</li>
+<li>期末考试 40%</li>
+</ul>
+</li>
+<li>针对软件需求、设计、实现、构建，测试等进行实践</li>
+</ul>
+<h2 id="软件发展史"><a href="#软件发展史" class="headerlink" title="软件发展史"></a>软件发展史</h2><ol>
+<li>软件发展的两个动力：<ul>
+<li>计算资源以及计算资源之间的协作、网络的不断发展</li>
+<li>应用从专业领域像消费领域、个人领域的不断发展</li>
+</ul>
+</li>
+<li>软件最根本的问题：如何治理软件的复杂性以及复杂性伴随的危机</li>
+<li></li>
+</ol>
+<h3 id="瀑布模型"><a href="#瀑布模型" class="headerlink" title="瀑布模型"></a>瀑布模型</h3><ol>
+<li>黑盒：分析、设计、编程、测试、维护</li>
+<li>CMM(能力成熟度模型：Capability Maturity Model)<ul>
+<li>CMM是一种软件评估标准，主要用于软件开发过程和软件开发能力的评估和改进</li>
+<li>核心是把软件开发视为一个过程，并根据这一原则对软件开发和维护过程进行监控和研究</li>
+<li>对瀑布模型的总结提炼</li>
+<li>分为五个等级：初始级、可重复级(有规范，基本的配置管理QA的角色，项目、自合同的管理，需求的管理)、已定义级(同行评审等)、已管理级、优化级</li>
+<li>没有规定如何达到这些等级</li>
+</ul>
+</li>
+<li>CMM等级——提供了组织纵向成长路径</li>
+</ol>
+<h3 id="敏捷方法"><a href="#敏捷方法" class="headerlink" title="敏捷方法"></a>敏捷方法</h3><ol>
+<li>过程并不能保证软件的质量，忽略了人的主观能动性</li>
+</ol>
+<h3 id="瀑布和敏捷方法的关键强调"><a href="#瀑布和敏捷方法的关键强调" class="headerlink" title="瀑布和敏捷方法的关键强调"></a>瀑布和敏捷方法的关键强调</h3><ol>
+<li>瀑布开发方式：<ul>
+<li>面向需求比较稳定，在事先能够比较好的描述，对系统能够很好的分解的场景</li>
+<li>采用组装方式，强调过程控制</li>
+</ul>
+</li>
+<li>敏捷开发方式：<ul>
+<li>需求充满不确定性，在开始很难对系统进行精准的描述</li>
+<li>采用渐增方式，强调反馈的人员的互动</li>
+</ul>
+</li>
+</ol>
+<h3 id="传统-互联网企业普遍在向敏捷模式转变"><a href="#传统-互联网企业普遍在向敏捷模式转变" class="headerlink" title="传统/互联网企业普遍在向敏捷模式转变"></a>传统/互联网企业普遍在向敏捷模式转变</h3><ol>
+<li>眼球经济：依靠吸引公众注意力获取经济收益的一种经济活动</li>
+<li>特征：短周期迭代规划，与客户及最终用户的互动，尽早获得反馈，高效的决策体系，更快节奏的发布</li>
+</ol>
+<hr>
+<h2 id="敏捷基础知识"><a href="#敏捷基础知识" class="headerlink" title="敏捷基础知识"></a>敏捷基础知识</h2><h3 id="敏捷宣言"><a href="#敏捷宣言" class="headerlink" title="敏捷宣言"></a>敏捷宣言</h3><ol>
+<li>个体和交互 &gt; 过程和工具</li>
+<li>可以工作的软件 &gt; 面面俱到的文档</li>
+<li>客户合作 &gt; 合同谈判</li>
+<li>相应变化 &gt; 遵循计划</li>
+</ol>
+<h3 id="SCRUM敏捷方法"><a href="#SCRUM敏捷方法" class="headerlink" title="SCRUM敏捷方法"></a>SCRUM敏捷方法</h3><ol>
+<li>SCRUM是一种强调迭代和增量开发的敏捷软件开发方法，是目前最刘姓的敏捷方法</li>
+<li>SCRUM开发框架中通常包含<ul>
+<li>三个角色<ul>
+<li>Product Owner (PO)</li>
+<li>Scrum Master (SM)</li>
+<li>Team</li>
+</ul>
+</li>
+<li>三个工件<ul>
+<li>产品Backlog</li>
+<li>迭代Backlog</li>
+<li>燃尽图</li>
+</ul>
+</li>
+<li>四个会议<ul>
+<li>迭代计划会议</li>
+<li>迭代验收会议</li>
+<li>每日站立会议</li>
+<li>迭代回顾会议</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在实践中，不同团队对工件有不同的解读和扩展</li>
+</ol>
+<h3 id="迭代开发"><a href="#迭代开发" class="headerlink" title="迭代开发"></a>迭代开发</h3><h4 id="什么是迭代式开发"><a href="#什么是迭代式开发" class="headerlink" title="什么是迭代式开发"></a>什么是迭代式开发</h4><ol>
+<li>可以说是所有软件开发共同的基础</li>
+<li>将整个软件生命周期分成多个小的迭代(一般2-4周)，每一次迭代都由需求分析、设计、实现和测试在内的多个活动组成，</li>
+<li>每一次迭代都可以生成一个稳定和被验证过的软件版本</li>
+</ol>
+<h4 id="迭代式开发的关键要点"><a href="#迭代式开发的关键要点" class="headerlink" title="迭代式开发的关键要点"></a>迭代式开发的关键要点</h4><ol>
+<li><p>每一次迭代都建立在稳定的质量基础上，并作为下一轮迭代的基线，整个系统的功能随着迭代稳定地增长和不断完善</p>
+</li>
+<li><p>每次迭代要邀请用户代表(内部或外部)验收，提供需求是否满意的反馈</p>
+</li>
+<li><p>迭代推荐采用固定的周期(2-4周)，迭代内工作不能完成，应当所见交付范围，而不是延长</p>
+<p> <code>迭代开发是有节奏地小步快跑，但建立在坚实的质量基础上</code></p>
+</li>
+</ol>
+<h3 id="XP敏捷方法"><a href="#XP敏捷方法" class="headerlink" title="XP敏捷方法"></a>XP敏捷方法</h3><ol>
+<li>极限编程是一种敏捷软件开发方法，用来改进软件质量和相应用户需求变化</li>
+<li>与SCRUM的明显区别：没有对开发团队线性的角色发挥，更强调对团队主管能动性的激发，在规则下高效的集成</li>
+<li>XP核心价值观：勇气、交流、反馈、简单、最终</li>
+<li>XP的12项实践：<ul>
+<li>现场客户</li>
+<li>计划游戏</li>
+<li>频繁地小规模发布软件</li>
+<li>简单设计</li>
+<li><strong>持续集成</strong></li>
+<li>代码集成所有制</li>
+<li><strong>编程规范</strong></li>
+<li><strong>重构</strong></li>
+<li>系统隐喻</li>
+<li>测试驱动开发</li>
+<li>结对编程</li>
+<li>平稳的工作效率</li>
+</ul>
+</li>
+</ol>
+<h3 id="DevOps：Development-Operation"><a href="#DevOps：Development-Operation" class="headerlink" title="DevOps：Development + Operation"></a>DevOps：Development + Operation</h3><ol>
+<li><p>是一种文化、方法和实践的统称，强调软件开发和运营支撑等部门间的合作与沟通</p>
+</li>
+<li><p>目的：建立一种文化和环境，使得软件可以频繁、快速和可靠的构建、测试和发布</p>
+<ul>
+<li>建立在多种敏捷和精益方法之上</li>
+<li>打破研发和运营团队之间的界限</li>
+<li>尽可能小的并可持续发布代码</li>
+<li>尽可能多的运用自动化测试、配置和部署</li>
+<li>培养一种开放的合作交流的企业文化</li>
+</ul>
+</li>
+<li><p>适合阿里、京东等直接面向消费者的实践</p>
+<p> <code>打通从客户需求到产品开发与交付的整个环节形成快速反馈的闭环</code></p>
+</li>
+</ol>
+<h4 id="Continuous-Delivery-持续交付"><a href="#Continuous-Delivery-持续交付" class="headerlink" title="Continuous Delivery 持续交付"></a>Continuous Delivery 持续交付</h4><ol>
+<li>Continuous Delivery (CD) 持续交付是一种软件工程方法，通过团队持续短周期交付，使得软件具备随时可发布能力，从而降低响应需求变化所带来的交付成本、时间和风险</li>
+<li>措施：<ul>
+<li><strong>小批量/小粒度频繁的持续部署或发布</strong></li>
+<li>为软件的开发到发布创建一个<strong>可重复且可靠的自动化过程</strong></li>
+<li>每次修改都能经过<strong>一次构建、测试、部署、发布</strong>完整高效的自动化验证过程，实现<strong>高速频繁验证，快速问题闭环</strong></li>
+</ul>
+</li>
+</ol>
+<h4 id="DevOps和CD的区别"><a href="#DevOps和CD的区别" class="headerlink" title="DevOps和CD的区别"></a>DevOps和CD的区别</h4><ol>
+<li>DevOps强调组织文化的转变，尤其是涉及软件交付的不同团队的合作(开发、运营、质量保证、管理层等)，同时关注将交付过程自动化<ul>
+<li>具有一定的适应性</li>
+</ul>
+</li>
+<li>CD是从交付视角出发的一种自动化工程方法，聚焦在拉通不同活动，并将这个过程变得更加频繁和更快速<ul>
+<li>更具有普适性</li>
+</ul>
+</li>
+<li>持续集成(内部视角)、持续交付(客户视角)、持续部署(企业组织文化的转变)</li>
+</ol>
+<h3 id="SAFe大规模敏捷框架：The-Scaled-Agile-Framework"><a href="#SAFe大规模敏捷框架：The-Scaled-Agile-Framework" class="headerlink" title="SAFe大规模敏捷框架：The Scaled Agile Framework"></a>SAFe大规模敏捷框架：The Scaled Agile Framework</h3><ol>
+<li>是大规模敏捷方法中的一个主要流派</li>
+<li>提供一种企业级规模的敏捷方法论和流程框架</li>
+</ol>
+<h4 id="SAFe和SCRUM-XP等方法区别"><a href="#SAFe和SCRUM-XP等方法区别" class="headerlink" title="SAFe和SCRUM/XP等方法区别"></a>SAFe和SCRUM/XP等方法区别</h4><ol>
+<li>SCRUM等方法主要解决<strong>单个、小规模</strong>(10人左右)<strong>软件</strong>开发团队的运作问题</li>
+<li>SAFe主要解决企业级，多个团队协同的<strong>大规模团队</strong>运作问题</li>
+<li>基本理念：分层治理。SAFe流程框架包括不同层级，包括：<ul>
+<li>Team/团队</li>
+<li>Program/产品</li>
+<li>Portfolio/投资组合</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="软件未来发展趋势"><a href="#软件未来发展趋势" class="headerlink" title="软件未来发展趋势"></a>软件未来发展趋势</h2><ol>
+<li>流行“Less”<ul>
+<li>codeless</li>
+<li>Serverless</li>
+<li>Applicationless</li>
+<li>Terminaless</li>
+<li>Languageless</li>
+</ul>
+</li>
+<li>中国软件从业人员逾600万人，为什么没有出现领军任务和开发模式？</li>
+</ol>
+<hr>
+<h2 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h2><ul>
+<li>张明安</li>
+</ul>
+<ol>
+<li>软件危机：安全和可信是危机的主要部分</li>
+<li>自动化、人工智能的发展，软件质量达到一定水平，但是安全和可信还是存在问题</li>
+<li>问题：爱立信部分断网、退服，这种问题是怎么产生的？</li>
+<li>AWS：亚马逊退服，大面积宕机</li>
+</ol>
+<h3 id="高可信软件："><a href="#高可信软件：" class="headerlink" title="高可信软件："></a>高可信软件：</h3><ol>
+<li>要求：<ul>
+<li>安全性</li>
+<li>韧性：受攻击时保持定义的运行状态</li>
+<li>隐私</li>
+<li>可靠性和可用性</li>
+<li>功能高质量，过程高质量</li>
+<li>最基础的编码质量</li>
+<li>重构腐化的架构及不符合软件工程规范和质量要求的历史代码</li>
+<li>深入钻研软件技术，尤其是安全技术</li>
+<li>改变行为习惯，追求精品</li>
+</ul>
+</li>
+<li>软件过程不光光考虑大家常常理解的软件功能的实现，还需要考虑了软件的安全，韧性，可靠可用等等，以及软件生产过程的一致性，可追溯等</li>
+</ol>
+<h3 id="可信挑战"><a href="#可信挑战" class="headerlink" title="可信挑战"></a>可信挑战</h3><ol>
+<li>第三方实验室的评估和检查<ul>
+<li>memcpy / strcpy 等字符串越界</li>
+<li>宏调用</li>
+</ul>
+</li>
+</ol>
+<h3 id="软件的脆弱性"><a href="#软件的脆弱性" class="headerlink" title="软件的脆弱性"></a>软件的脆弱性</h3><ol>
+<li><p>千里之堤，溃于蚁穴，木桶原理</p>
+</li>
+<li><p>大海捞针，无法穷举，没有问题不代表不会出问题</p>
+</li>
+<li><p>无法证实，极易证伪</p>
+<p> 好用高质量 –&gt; 安全 –&gt; 可信</p>
+</li>
+</ol>
+<h4 id="软件的脆弱性-——-冰山"><a href="#软件的脆弱性-——-冰山" class="headerlink" title="软件的脆弱性 —— 冰山"></a>软件的脆弱性 —— 冰山</h4><ol>
+<li>中间件</li>
+<li>开发的软件产品只是冰山一角<ul>
+<li>开源盛行，直接copy，存在问题，尤其对与基础设施的相关的软件</li>
+</ul>
+</li>
+<li><strong>二进制一致性，十年后？</strong></li>
+</ol>
+<h3 id="软件安全的治理"><a href="#软件安全的治理" class="headerlink" title="软件安全的治理"></a>软件安全的治理</h3><ol>
+<li>安全开发从来没有像现在这样重要<ul>
+<li>安全开发是每个人都应该关心的问题</li>
+<li>保持安全知识与时俱进</li>
+<li>生成干净易维护的代码</li>
+<li>保证开发环境安全</li>
+<li>保护代码库</li>
+<li>保护开发部署流水线的安全</li>
+<li>持续测试安全性</li>
+<li>管理安全漏洞</li>
+</ul>
+</li>
+</ol>
+<h3 id="软件过程"><a href="#软件过程" class="headerlink" title="软件过程"></a>软件过程</h3><ol>
+<li>过程的展开<ul>
+<li>是复杂性的展开</li>
+<li>是安全的展开</li>
+<li>是可信的展开</li>
+</ul>
+</li>
+</ol>
+<h2 id="同学提问"><a href="#同学提问" class="headerlink" title="同学提问"></a>同学提问</h2><ol>
+<li><p>如果要考虑保证软件的安全性，那么这个安全的标准怎么去衡量，会不会出现保障安全的工作量过大甚至超出业务代码的情况，对软件可靠性的需求有没有一个可量化易执行的标准？</p>
+<ul>
+<li>超过一半的工作量都是测试代码</li>
+</ul>
+</li>
+<li><p>像波音公司这次的这个软件故障已经导致在业界失信甚至被抵制了。那么如果一个大型的软件在已经产生这种信任危机的时候该怎么重新获得信任呢？既然测试由于不可穷举是无法完全证明软件的安全性的话</p>
+<ul>
+<li>所有的开发过程可视</li>
+<li>开发人员的资质、开发模式</li>
+<li>管理机制是可信的、完备的，有效管理漏洞问题，怎么证明问题不重犯</li>
+<li>经得起白盒围观</li>
+</ul>
+</li>
+<li><p>上课时张老师讲到华为现在的一些代码需要通过某个机构的评审。那么，这个机构的标准为什么就是合理的呢？有无不合理的地方？如果有的话华为又是如何应对的？</p>
+<ul>
+<li>没有标准，白盒围观，证伪的过程</li>
+<li>最先进的攻防测试</li>
+</ul>
+</li>
+<li><p>软件安全漏洞的排查有没有一些规划、原则与指导思想？比如华为在5年期间排查掉软件方面的漏洞，大体是如何实施的，是每一段代码都要仔细检查吗？</p>
+<ul>
+<li>总结提炼安全编码的规则</li>
+</ul>
+</li>
+<li><p>对于迭代式开发来说，其相对于瀑布式模型的从设计到测试的流程来说，是仅仅缩短了生命周期，还是说根本的开发模式有所改变？</p>
+<ul>
+<li>是根本性的改变</li>
+<li>所谓的开发过程，开发模式就是千军万马重新布局</li>
+<li>快速的反馈</li>
+<li>从意识到能力方方面面的转变</li>
+<li>环境、工具的挑战</li>
+</ul>
+</li>
+<li><p>极限编程是否更强调一种即兴的自由的方法而不是按部就班的开发？</p>
+<ul>
+<li>二者皆有</li>
+<li>类比和面的过程，面多加水，水多加面，不收敛</li>
+<li>需要整体的部署和操作的实时性</li>
+</ul>
+</li>
+<li><p>华为在“大规模敏捷开发”形成中有哪些贡献和发展？</p>
+<ul>
+<li>华为 —— 高速路上换轮胎</li>
+<li>整改的路径、能力</li>
+<li>愿意做试验田，open的，愿意贡献问题、困惑</li>
+</ul>
+</li>
+<li><p>在移动端，华为的鸿蒙系统与IOS、Android系统，究竟还有多大的差距？(技术层面、开发者生态、用户体验等)一个操作系统的成熟与否应该从哪些方面去考核？</p>
+<ul>
+<li>鸿蒙：微内核的架构，用在小型的封闭式系统，定制化强，不适合用在大型的商业系统中</li>
+<li>其他很多系统：宏内核</li>
+<li>难点是开发生态的问题</li>
+<li>鸿蒙，既要兼容安卓，又要给上层提供统一的接口</li>
+</ul>
+</li>
+</ol>
+<h5 id="微内核-VS-宏内核"><a href="#微内核-VS-宏内核" class="headerlink" title="微内核 VS 宏内核"></a>微内核 VS 宏内核</h5><ol>
+<li>对于微内核，用户服务和内核服务分别运行在不同的地址空间；</li>
+<li>对于宏内核，不管是用户服务还是内核服务事实上都是内核在统一管理，他们是运行在同一地址空间中</li>
+</ol>
+<h3 id="瀑布模式-VS-敏捷模式"><a href="#瀑布模式-VS-敏捷模式" class="headerlink" title="瀑布模式 VS 敏捷模式"></a>瀑布模式 VS 敏捷模式</h3><ol>
+<li>瀑布模式会消失吗？</li>
+<li>瀑布模式和敏捷矛盾吗？</li>
+<li>两者该如何相互借鉴，相互融合？<ul>
+<li>既要考虑软件的敏捷性，也要考虑灵活性</li>
+</ul>
+</li>
+<li>同时拥抱两种模式<ul>
+<li>敏捷性要建立在严格的规范性基础上，敏捷搞不好就是潦草</li>
+<li>系统大于局部简单相加，海陆空 VS 游击队，避免布朗运动</li>
+<li>要做出好的软件产品，所需要的远远大于软件产品，软件技术本身</li>
+</ul>
+</li>
+<li>瀑布：规范性、纪律的训练，在此基础上高敏捷，有坚硬的基础</li>
+<li>相互融合，每一个阶段都是瀑布，相互交织</li>
+<li>敏捷强调了交流，并没有否定文档。没有文档的话，快是快了，团队却没有留下什么。<ul>
+<li>IT行业人员流动很频繁，软件开发知识如果都在脑海里随着人带走了，那企业的很多业务和技术知识都流失了</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h3><ol>
+<li><p><a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/790270/HCSEC_OversightBoardReport-2019.pdf" target="_blank" rel="noopener">https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/790270/HCSEC_OversightBoardReport-2019.pdf</a></p>
+</li>
+<li><p><a href="https://www.ncsc.gov.uk/collection/developers-collection" target="_blank" rel="noopener">https://www.ncsc.gov.uk/collection/developers-collection</a></p>
+</li>
+<li><p><a href="http://xinsheng.huawei.com/cn/index.php?app=forum&amp;mod=Detail&amp;act=index&amp;id=4134815" target="_blank" rel="noopener">http://xinsheng.huawei.com/cn/index.php?app=forum&amp;mod=Detail&amp;act=index&amp;id=4134815</a></p>
+</li>
+<li><p><a href="https://cmmiinstitute.com/resource-files/public/how-to-truly-scale-agile-development-in-the-enterp" target="_blank" rel="noopener">https://cmmiinstitute.com/resource-files/public/how-to-truly-scale-agile-development-in-the-enterp</a></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/03/新冠病毒/新冠病毒-2020-3-3/" rel="prev" title="新冠病毒讲座--第二节">          
+                <i class="fa fa-chevron-left"></i> 新冠病毒讲座--第二节
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/01/LINUX操作系统/LINUX操作系统-2020-3-1/" rel="next" title="LINUX操作系统--第一节(LINUX 操作系统历史)">
+                LINUX操作系统--第一节(LINUX 操作系统历史) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YJ Song</p>
+              <p class="site-description motion-element" itemprop="description">Show me code!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fdss-song" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yearito.cn/" title="yearito" target="_blank">yearito</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#软件发展史"><span class="nav-text">软件发展史</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#瀑布模型"><span class="nav-text">瀑布模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷方法"><span class="nav-text">敏捷方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#瀑布和敏捷方法的关键强调"><span class="nav-text">瀑布和敏捷方法的关键强调</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传统-互联网企业普遍在向敏捷模式转变"><span class="nav-text">传统/互联网企业普遍在向敏捷模式转变</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#敏捷基础知识"><span class="nav-text">敏捷基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#敏捷宣言"><span class="nav-text">敏捷宣言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SCRUM敏捷方法"><span class="nav-text">SCRUM敏捷方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代开发"><span class="nav-text">迭代开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是迭代式开发"><span class="nav-text">什么是迭代式开发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迭代式开发的关键要点"><span class="nav-text">迭代式开发的关键要点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XP敏捷方法"><span class="nav-text">XP敏捷方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DevOps：Development-Operation"><span class="nav-text">DevOps：Development + Operation</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Continuous-Delivery-持续交付"><span class="nav-text">Continuous Delivery 持续交付</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DevOps和CD的区别"><span class="nav-text">DevOps和CD的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SAFe大规模敏捷框架：The-Scaled-Agile-Framework"><span class="nav-text">SAFe大规模敏捷框架：The Scaled Agile Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SAFe和SCRUM-XP等方法区别"><span class="nav-text">SAFe和SCRUM/XP等方法区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件未来发展趋势"><span class="nav-text">软件未来发展趋势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#讨论"><span class="nav-text">讨论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#高可信软件："><span class="nav-text">高可信软件：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可信挑战"><span class="nav-text">可信挑战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件的脆弱性"><span class="nav-text">软件的脆弱性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#软件的脆弱性-——-冰山"><span class="nav-text">软件的脆弱性 —— 冰山</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件安全的治理"><span class="nav-text">软件安全的治理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件过程"><span class="nav-text">软件过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同学提问"><span class="nav-text">同学提问</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#微内核-VS-宏内核"><span class="nav-text">微内核 VS 宏内核</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#瀑布模式-VS-敏捷模式"><span class="nav-text">瀑布模式 VS 敏捷模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展阅读"><span class="nav-text">扩展阅读</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YJ Song</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+          $('#sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('#footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            offsetX: ,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+</body>
+</html>

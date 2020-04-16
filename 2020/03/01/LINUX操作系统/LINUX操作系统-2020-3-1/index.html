@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="评分标准： 平时40%， 期末60% –help 或者 man 查看命令的使用文档  教学内容： LINUX 历史和安装 图形界面 文件系统初步 vi编辑器 Shell环境、命令以及Shell扩展 进程和作业管理 文件系统和权限管理 基本文本文件处理  硬件和软件 硬件：组成计算机的各个物理部件，，包括CPU、主存、辅存/外存、外设 主板：通过各种接口将硬件组合在一起   软件：程序，即一系列指">
+<meta name="keywords" content="课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LINUX操作系统--第一节(LINUX 操作系统历史)">
+<meta property="og:url" content="http://yoursite.com/2020/03/01/LINUX操作系统/LINUX操作系统-2020-3-1/index.html">
+<meta property="og:site_name" content="Song&#39;s Blog">
+<meta property="og:description" content="评分标准： 平时40%， 期末60% –help 或者 man 查看命令的使用文档  教学内容： LINUX 历史和安装 图形界面 文件系统初步 vi编辑器 Shell环境、命令以及Shell扩展 进程和作业管理 文件系统和权限管理 基本文本文件处理  硬件和软件 硬件：组成计算机的各个物理部件，，包括CPU、主存、辅存/外存、外设 主板：通过各种接口将硬件组合在一起   软件：程序，即一系列指">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-03-12T12:00:21.725Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LINUX操作系统--第一节(LINUX 操作系统历史)">
+<meta name="twitter:description" content="评分标准： 平时40%， 期末60% –help 或者 man 查看命令的使用文档  教学内容： LINUX 历史和安装 图形界面 文件系统初步 vi编辑器 Shell环境、命令以及Shell扩展 进程和作业管理 文件系统和权限管理 基本文本文件处理  硬件和软件 硬件：组成计算机的各个物理部件，，包括CPU、主存、辅存/外存、外设 主板：通过各种接口将硬件组合在一起   软件：程序，即一系列指">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/01/LINUX操作系统/LINUX操作系统-2020-3-1/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>LINUX操作系统--第一节(LINUX 操作系统历史) | Song's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Song's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/LINUX操作系统/LINUX操作系统-2020-3-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YJ Song">
+      <meta itemprop="description" content="Show me code!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Song's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LINUX操作系统--第一节(LINUX 操作系统历史)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-01 16:01:00" itemprop="dateCreated datePublished" datetime="2020-03-01T16:01:00+08:00">2020-03-01</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>评分标准： 平时40%， 期末60%</li>
+<li>–help 或者 man 查看命令的使用文档</li>
+</ul>
+<h1 id="教学内容："><a href="#教学内容：" class="headerlink" title="教学内容："></a>教学内容：</h1><ul>
+<li>LINUX 历史和安装</li>
+<li>图形界面</li>
+<li>文件系统初步</li>
+<li>vi编辑器</li>
+<li>Shell环境、命令以及Shell扩展</li>
+<li>进程和作业管理</li>
+<li>文件系统和权限管理</li>
+<li>基本文本文件处理</li>
+</ul>
+<h2 id="硬件和软件"><a href="#硬件和软件" class="headerlink" title="硬件和软件"></a>硬件和软件</h2><ol>
+<li>硬件：组成计算机的各个物理部件，，包括CPU、主存、辅存/外存、外设<ul>
+<li>主板：通过各种接口将硬件组合在一起</li>
+</ul>
+</li>
+<li>软件：程序，即一系列指令，计算机根据指令进行运算完成相应的任务</li>
+</ol>
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><ol>
+<li>操作系统：管理和控制计算机系统中的硬件和软件资源，在计算机与用户之间起到接口作用</li>
+<li></li>
+</ol>
+<ul>
+<li><p>计算机硬件指的是计算机的物理部件</p>
+</li>
+<li><p>计算机软件 = 程序 + 数据 + 文档</p>
+</li>
+<li><p>操作系统 = 内核 + 系统程序和库</p>
+<ul>
+<li>内核是操作系统的核心：<ul>
+<li>内核程序一直运行着</li>
+<li><strong>驱动程序</strong>提供与硬件的接口</li>
+<li><strong>系统调用</strong>提供用户访问内核资源</li>
+</ul>
+</li>
+<li>系统程序和库：<ul>
+<li>系统服务</li>
+<li>实用工具</li>
+<li>库</li>
+<li>提供用户界面的shell：命令行(CLI)，图形化用户界面(GUI)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>扩展：树莓派，微型电脑</p>
+</li>
+<li><p><strong>wsl</strong>：Windows Subsystem for Linux，不是虚拟机，只是将Linux系统调用转换为Widows系统调用</p>
+</li>
+</ul>
+<h2 id="Linux-发行版"><a href="#Linux-发行版" class="headerlink" title="Linux 发行版"></a>Linux 发行版</h2><ol>
+<li>包括：<ul>
+<li>Linux 内核</li>
+<li>GNU 库和实用工具、桌面环境</li>
+<li>各种应用软件</li>
+<li><strong>安装工具</strong></li>
+<li><strong>软件包管理工具</strong></li>
+<li>用户手册</li>
+</ul>
+</li>
+</ol>
+<h2 id="Linux-系统安装：虚拟机"><a href="#Linux-系统安装：虚拟机" class="headerlink" title="Linux 系统安装：虚拟机"></a>Linux 系统安装：虚拟机</h2><ol>
+<li>虚拟机指的是在一台物理计算机上模拟出来的虚拟的计算机系统<ul>
+<li><strong>系统级虚拟机</strong>：完全虚拟化，在一台计算机上通过对于底层硬件的虚拟化来模拟出一台或多态虚拟的计算机，课同时运行，相互隔离</li>
+<li>进程级的虚拟机：提供一个抽象的与平台无关的程序执行环境，比如Java虚拟机</li>
+<li>操作系统级的虚拟机：通过操作系统内核的支持来支持多个分隔开来的用户空间实例</li>
+</ul>
+</li>
+<li>虚拟机平台所在的操作系统称为主机操作系统，而在其上运行的虚拟机称为客户操作系统</li>
+</ol>
+<ul>
+<li><strong>LTS</strong>：Long-term support</li>
+</ul>
+<h2 id="apt-命令：advanced-packaging-tool"><a href="#apt-命令：advanced-packaging-tool" class="headerlink" title="apt 命令：advanced packaging tool"></a>apt 命令：advanced packaging tool</h2><ol>
+<li>apt update：下载最新的package列表</li>
+<li>apt upgrate：将已经安装的package更新到最新版本</li>
+<li>apt install xxx：安装package xxx</li>
+</ol>
+<h2 id="Linux系统访问"><a href="#Linux系统访问" class="headerlink" title="Linux系统访问"></a>Linux系统访问</h2><ol>
+<li>控制台是一种特殊的终端，单用户模式以及网络无法使用时仍可使用</li>
+</ol>
+<h2 id="疑问："><a href="#疑问：" class="headerlink" title="疑问："></a>疑问：</h2><ol>
+<li>Linux发行版本、内核发行版本和内核版本有什么区别？<ul>
+<li>Linux内核是开源的，发行版的开发者下载源代码进行编译，内核版本就是开发者在编译内核时的信息，一般是描述性质的，格式可以自由指定</li>
+<li>但是内核发行版本的格式一般前面为版本号，这样可以根据其版本号进行进一步的操作</li>
+<li>比如ubuntu的最新版本使用的内核为5.3，而使用另外一个发行版比如fedora使用的内核也是5.3，那么内核发行版本会一致，但是内核版本不一样</li>
+<li>即：内核发行版 + 开发 –&gt; 内核版本， 内核版本 + 其他工具等 –&gt; Linux发行版本</li>
+</ul>
+</li>
+<li>sudo shutdown -60 会发生什么？</li>
+</ol>
+<hr>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ol>
+<li><p>谁发明了Linux？</p>
+<p> a. Ken Thompson和Dennis Ritchie     b. Bill Joy</p>
+<p> c. Steve Jobs                                                     d. Linus Torwalds</p>
+<p> e. Andrew Tanenbaum                               f. Richard Stallman</p>
+</li>
+<li><p>下列描述正确的是？</p>
+<p> a. Linux操作系统=GNU + Linux</p>
+<p> b. Linux操作系统的内核为开源的Darwin</p>
+<p> c. BSD/Unix也是Linux操作系统的一种</p>
+<p> d. 以上都是错误的</p>
+</li>
+<li><p>假设要执行sudo mycmd，请问：</p>
+<p> a. 要输入谁的密码？</p>
+<p> b. 以谁的身份执行mycmd？</p>
+<p> c. 接下来执行 sudo mycmd1，还要求输入密码吗？</p>
+</li>
+<li><p>假设用户在访问虚拟控制台3，现在要切换到虚拟控制台5，怎么样进行切换？</p>
+</li>
+<li><p>假设你要以tony的身份登录到IP地址为192.168.0.1的SSH服务器，该SSH服务器在端口4321上提供服务，请给出相应的ssh命令</p>
+</li>
+<li><p>退出shell可以使用什么快捷键？</p>
+</li>
+<li><p>执行sudo shutdown +60之后会发生什么？</p>
+</li>
+<li><p>如果想要看看Linux主机使用的是哪个发行版，应该使用什么命令？</p>
+</li>
+<li><p>如果你想要知道Linux主机使用的是哪个内核版本，应该使用什么命令？</p>
+</li>
+</ol>
+<h2 id="我的答案"><a href="#我的答案" class="headerlink" title="我的答案"></a>我的答案</h2><ol>
+<li><p>d</p>
+</li>
+<li><p>a</p>
+</li>
+<li><p>(a) 当前用户；</p>
+<p> (b) 管理员的身份；</p>
+<p> (c) 接下来的一定时间内(默认为15分钟)内不需要重新输入密码</p>
+</li>
+<li><p>可以使用 Ctrl+Alt+F5(有的系统为 Alt+F5)</p>
+</li>
+<li><p>ssh -p 4321 <a href="mailto:tony@192.168.0.1" target="_blank" rel="noopener">tony@192.168.0.1</a></p>
+</li>
+<li><p>Ctrl + D</p>
+</li>
+<li><p>系统在60分钟之后关机</p>
+</li>
+<li><p>lsb_release -a</p>
+</li>
+<li><p>uname -v</p>
+</li>
+</ol>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ol>
+<li>sudo cmd ， 输入的是当前用户的密码，以root身份执行cmd</li>
+<li>切换虚拟控制台，如果已经登录到console，则可chvt 5，但注意GUI方式是无法切换的。但是快捷键Ctrl+Alt+F5总是可以的</li>
+<li>sudo shutdown +60，注意单位是分钟而不是秒</li>
+<li>发行版指的是ubuntu 18.04….还是centos，所以应该lsb_release -a，或者lsb_release -d 查看description。注意还可以 cat /etc/lsb-release</li>
+<li>uname -r 查看内核版本， uname -a 可以查看更多的信息。   <a href="http://www.kernel.org给出linux" target="_blank" rel="noopener">www.kernel.org给出linux</a> kernel的源代码，然后开发者可以获得源代码，然后针对某个硬件架构进行编译，uname -v给出了开发者编译内核时的相关信息。所以一般通过uname -r查看内核版本</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/01/软件过程/软件过程-2020-3-1/" rel="prev" title="软件过程--第一节(现代敏捷开发工程方法)">          
+                <i class="fa fa-chevron-left"></i> 软件过程--第一节(现代敏捷开发工程方法)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/01/软件质量保障与测试/软件质量保障与测试-2020-3-1/" rel="next" title="软件质量保障与测试--第一章 软件测试质量保障与软件测试基础">
+                软件质量保障与测试--第一章 软件测试质量保障与软件测试基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YJ Song</p>
+              <p class="site-description motion-element" itemprop="description">Show me code!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fdss-song" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yearito.cn/" title="yearito" target="_blank">yearito</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#教学内容："><span class="nav-text">教学内容：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件和软件"><span class="nav-text">硬件和软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统"><span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-发行版"><span class="nav-text">Linux 发行版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-系统安装：虚拟机"><span class="nav-text">Linux 系统安装：虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apt-命令：advanced-packaging-tool"><span class="nav-text">apt 命令：advanced packaging tool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux系统访问"><span class="nav-text">Linux系统访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问："><span class="nav-text">疑问：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业"><span class="nav-text">作业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的答案"><span class="nav-text">我的答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-text">注意</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YJ Song</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+          $('#sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('#footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            offsetX: ,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+</body>
+</html>

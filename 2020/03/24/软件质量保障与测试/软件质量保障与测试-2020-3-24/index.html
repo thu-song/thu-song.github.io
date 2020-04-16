@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="软件测试在软件生命期的位置 软件开发的过程/瀑布模型：分析 -&amp;gt; 设计 -&amp;gt; 实现&amp;amp;调试 -&amp;gt; 测试 -&amp;gt;运行 在瀑布模型中，软件测试被认为是在软件开发过程的最后阶段进行的”一次性(one-time)”活动   软件开发的过程/V-模型 用户需求 -&amp;gt; 系统设计 -&amp;gt; 概要设计 -&amp;gt; 详细设计 -&amp;gt; 编码 &amp;nbsp;&amp;nbsp;&amp;nbsp;">
+<meta name="keywords" content="课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件质量保障与测试--第四章 软件测试质量保障-软件测试基本过程">
+<meta property="og:url" content="http://yoursite.com/2020/03/24/软件质量保障与测试/软件质量保障与测试-2020-3-24/index.html">
+<meta property="og:site_name" content="Song&#39;s Blog">
+<meta property="og:description" content="软件测试在软件生命期的位置 软件开发的过程/瀑布模型：分析 -&amp;gt; 设计 -&amp;gt; 实现&amp;amp;调试 -&amp;gt; 测试 -&amp;gt;运行 在瀑布模型中，软件测试被认为是在软件开发过程的最后阶段进行的”一次性(one-time)”活动   软件开发的过程/V-模型 用户需求 -&amp;gt; 系统设计 -&amp;gt; 概要设计 -&amp;gt; 详细设计 -&amp;gt; 编码 &amp;nbsp;&amp;nbsp;&amp;nbsp;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E5%9F%BA%E6%9C%AC%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B.png?raw=true">
+<meta property="og:updated_time" content="2020-03-24T03:03:49.706Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件质量保障与测试--第四章 软件测试质量保障-软件测试基本过程">
+<meta name="twitter:description" content="软件测试在软件生命期的位置 软件开发的过程/瀑布模型：分析 -&amp;gt; 设计 -&amp;gt; 实现&amp;amp;调试 -&amp;gt; 测试 -&amp;gt;运行 在瀑布模型中，软件测试被认为是在软件开发过程的最后阶段进行的”一次性(one-time)”活动   软件开发的过程/V-模型 用户需求 -&amp;gt; 系统设计 -&amp;gt; 概要设计 -&amp;gt; 详细设计 -&amp;gt; 编码 &amp;nbsp;&amp;nbsp;&amp;nbsp;">
+<meta name="twitter:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E5%9F%BA%E6%9C%AC%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B.png?raw=true">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/24/软件质量保障与测试/软件质量保障与测试-2020-3-24/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>软件质量保障与测试--第四章 软件测试质量保障-软件测试基本过程 | Song's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Song's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/软件质量保障与测试/软件质量保障与测试-2020-3-24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YJ Song">
+      <meta itemprop="description" content="Show me code!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Song's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件质量保障与测试--第四章 软件测试质量保障-软件测试基本过程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-24 06:55:00" itemprop="dateCreated datePublished" datetime="2020-03-24T06:55:00+08:00">2020-03-24</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="软件测试在软件生命期的位置"><a href="#软件测试在软件生命期的位置" class="headerlink" title="软件测试在软件生命期的位置"></a>软件测试在软件生命期的位置</h2><ol>
+<li>软件开发的过程/瀑布模型：分析 -&gt; 设计 -&gt; 实现&amp;调试 -&gt; 测试 -&gt;运行<ul>
+<li>在瀑布模型中，<strong>软件测试</strong>被认为是在软件开发过程的最后阶段进行的”一次性(one-time)”活动</li>
+</ul>
+</li>
+<li>软件开发的过程/V-模型<ul>
+<li>用户需求 -&gt; 系统设计 -&gt; 概要设计 -&gt; 详细设计 -&gt; 编码</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</li>
+<li>验收测试 &lt;- 系统测试 &lt;- 集成测试 &lt;- 组件测试  &lt;–</li>
+<li>测试级别相应的开发级别</li>
+<li>局限：测试活动从编码之后开始，违反尽早进行测试的原则</li>
+<li>组件测试 &lt;=&gt; 单元测试</li>
+<li>是针对软件代码的测试，称为狭义的软件测试</li>
+<li>V模型指明了开发过程活动与测试活动之间的关系，也向测试人员指明了应该以何种顺序执行这组测试活动</li>
+</ul>
+</li>
+<li>软件开发的过程/W-模型<ul>
+<li>测试对象不仅仅包括程序，还包括需求设计等</li>
+<li>相比V模型有利于更早地发现软件开发过程中的缺陷，降低维护的成本</li>
+<li>与V模型类似，W模型中测试仍然保持着严格的顺序关系，无法实现测试活动的迭代，无法很好地对之前的制品进行相应的修改性工作</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="基本测试过程"><a href="#基本测试过程" class="headerlink" title="基本测试过程"></a>基本测试过程</h2><ol>
+<li><p>基本测试过程</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E5%9F%BA%E6%9C%AC%E6%B5%8B%E8%AF%95%E8%BF%87%E7%A8%8B.png?raw=true" alt="基本测试过程"></p>
+</li>
+</ol>
+<h3 id="测试计划（test-planning）"><a href="#测试计划（test-planning）" class="headerlink" title="测试计划（test planning）"></a>测试计划（test planning）</h3><ol>
+<li>识别测试任务，定义测试目标以及为了实观测试目标和任务确定必要的测试活动</li>
+<li>是做好软件测试的前提，良好的、切实可行的测试计划，在测试过程中严格执行，以测试目标为导向进行测试工作</li>
+<li><strong>测试计划</strong>（test planning）（IEEE 829）<ul>
+<li>标识测试项（对测试项的了解）</li>
+<li>需要测试的特征（对产品的了解）</li>
+<li>不需要测试的特征（对产品的了解）</li>
+<li>采用的测试方法（测试策略/测试重点和等级）</li>
+<li>测试项通过的标准（出口准则，度量）</li>
+<li>测试暂停准则和回复要求（非正常退出）</li>
+<li>测试完成所需提交的交付项（文档等）</li>
+<li>测试任务</li>
+<li>测试环境的要求（工具、资源）</li>
+<li>职责（资源）</li>
+<li>人员配备和所需要的训练（资源）</li>
+<li>测试的进度（日程安排和粗略的时间表）</li>
+<li>风险和应急措施</li>
+</ul>
+</li>
+<li>测试计划可以是同步进行的，在软件开发过程中就可以进行软件测试的规划</li>
+</ol>
+<h3 id="测试控制（test-contro）"><a href="#测试控制（test-contro）" class="headerlink" title="测试控制（test contro）"></a>测试控制（test contro）</h3><ol>
+<li>根据收集和报告的测试信息和度量而来取的指导纠正措施</li>
+<li>包括：<ul>
+<li>利用事先定义的度量来评估和分析测试结果</li>
+<li>监督和记录的度量可以衡量：<ul>
+<li>测试进度</li>
+<li>测试的覆盖状况（覆盖度）</li>
+<li>测试的出口准则（exit criteria）</li>
+<li>测试过程是否偏离计划</li>
+</ul>
+</li>
+<li>确定是否需要采取纠正措施</li>
+<li>确定是否需要更改原计划（计划偏离实际）</li>
+<li>对测试计划的执行要进行反债</li>
+<li>风险的持续监控</li>
+</ul>
+</li>
+</ol>
+<h3 id="测试分析-amp-设计（test-analysis-and-design）"><a href="#测试分析-amp-设计（test-analysis-and-design）" class="headerlink" title="测试分析&amp;设计（test analysis and design）"></a>测试分析&amp;设计（test analysis and design）</h3><ol>
+<li><strong>测试分析和设计是基于确认的测试目标将概活的测试目标转化为具体的<u>测试条件</u>（test condition）和<u>测试用例</u>（test case）的一系列活动</strong><ul>
+<li>测试条件 &lt;=&gt; 测试需求，指的是能够被一个或多个测试用例测试的条目或者需求</li>
+</ul>
+</li>
+<li>包括：<ul>
+<li>评审<u>测试依据</u>（test basis）（需求、系统架构、设计和接口说明）</li>
+<li>评估测试依据和测试对象的<strong>可测试性</strong>（testability）</li>
+<li>通过对测试项、规格说明、测试对象行为和结构的分析，识别<strong>测试条件</strong>并确定其<strong>优先级</strong></li>
+<li>设计<strong>测试用例</strong>（从逻辑测试用例/概要测试用例到实际测试用例/具体测试用例）并确定<strong>优先级</strong></li>
+<li>确定测试条件和测试用例所需的必要的<strong>测试数据</strong></li>
+<li>设计<strong>测试环境</strong>（test environment），包括必要的基本设施和工具等</li>
+<li>细化时间表</li>
+</ul>
+</li>
+</ol>
+<h3 id="测试实现（implementation）"><a href="#测试实现（implementation）" class="headerlink" title="测试实现（implementation）"></a>测试实现（implementation）</h3><ol>
+<li><strong>通过特定的顺序组织测试用例来完成测试规程和即本的设计，并且包括测试执行必需的在何其他的信息，以及测试环境的搭建</strong></li>
+<li>包括：<ul>
+<li>从<strong>测试条件</strong>具体到可执行的测试用例（即从逻辑测试用例到实际的测试用例（test case））以及必需的测试件（testware（文档和工具等）</li>
+<li>借助于所谓的<strong>测试准则</strong>（test oracle），确定期望值/期望的反应<ul>
+<li>可以是文档、程序，甚至人工验证</li>
+</ul>
+</li>
+<li>根据风险确定测试用例的优先级</li>
+<li>生成并准备好<strong>测试数据</strong>（test data）*.<ul>
+<li>一个测试对象的输入值和状态值以及期望值或在运行有关的测试用例后的期望结果（exoected result）或实际结果（actual result）</li>
+<li>真实际结果是在测试后才能获得的</li>
+</ul>
+</li>
+<li>组合成<strong>测试套件</strong>（case suite）/<strong>测试序列</strong>（多个单个测试用例形成的逻辑集）并为一个尽可能有效的测试的运行实现<strong>测试规程</strong>（test procedure）<ul>
+<li>用于被测组件/系统的一组测试用例。在这些测试用例中，一个测试的后置条件（postconditio）通常用作下个测试的前置条件（orecondition。</li>
+</ul>
+</li>
+<li>准备测试<strong>用具</strong>和设计<strong>自动化测试脚本</strong></li>
+<li>确定已经正确搭建了测试环境，以确保配置的正确性</li>
+</ul>
+</li>
+</ol>
+<h3 id="测试执行（test-execution）"><a href="#测试执行（test-execution）" class="headerlink" title="测试执行（test execution）"></a>测试执行（test execution）</h3><ol>
+<li>测试某个软件组合或柔统并产生实际的结果的过程称为测试执行</li>
+<li>包括：<ul>
+<li>检查执行测试所需的前置条件是否准备好：<ul>
+<li>测试环境包括测试对象是否按照规定构建并准备完毕</li>
+<li>测试程序，测试脚本等是否准备完毕</li>
+<li>另外，是否定义了测试系统管理员并做好了准备</li>
+<li>事件管理系统等是否准备就绪</li>
+</ul>
+</li>
+<li>严格按照测试计划和测试规约说明执行手动测试的测试用例或自动化测试的测试用例</li>
+<li>比较实际的和期望的结果</li>
+<li>分析期望和实际结果偏差的原因（测试对象的错误，测试件（testware）的错误等）</li>
+<li>提交所有<strong>事件</strong>（incidents），即所有在一个测试过程中出现的，并且在此后还需要检查或关注的事件[IEEE 1008]</li>
+<li>&amp;&amp;测试日志**（test log）是一个关于测试执行的按时间顺序的详细记录[IEEE829]，记录（对每一个测试用例）：<ul>
+<li>测试的日期、时间&amp;测试人员</li>
+<li>输入测试数据和期望结果</li>
+<li>测试对象的ID标识/版本号、测试工具和测试方法</li>
+<li>测试结果和后续动作（例如，错误报告，测试用例的修改等）</li>
+<li>有可能的话，给出错误的原因</li>
+<li>记录特殊情况</li>
+</ul>
+</li>
+<li>报告发现的错误（偏差/错误记录）并尽可能帮助开发人员分析错误原因</li>
+<li>如有必要，补充新的测试</li>
+<li>执行<strong>确认测试</strong>（confirmation testing）<strong>再测试</strong>（re-<br>testing）&amp;<strong>回归测试</strong>（regression testine，用于确认错误更改是有效的；或者执行已经更改的测试用例。</li>
+</ul>
+</li>
+</ol>
+<h3 id="测试评估（test-eva-uation）-amp-测试报告（test-reporting）"><a href="#测试评估（test-eva-uation）-amp-测试报告（test-reporting）" class="headerlink" title="测试评估（test eva/uation）&amp; 测试报告（test reporting）"></a>测试评估（test eva/uation）&amp; 测试报告（test reporting）</h3><ol>
+<li><strong>评估出口准则是将测试的执行结果和已经定义的测试目标进行比较的活动。这个活动在各个测试级别上都需要进行</strong></li>
+<li>包括：<ul>
+<li>对测试记录/日志进行评估，以判断测试是否已经达到了根据测试计划规定的<strong>测试出口准则</strong>（test exit criteria）</li>
+<li>评价是否需要继续执行进一步的更多的测试或者应该更改已经定义好的&amp;&amp;测试出口准则**（例如，准则根本没法实现或者在有限的资源（费用，时间等）条件下没法实现）</li>
+<li>为利益相关者/相关决策人员提交<strong>测试报告</strong>（包括测试活动和测试结果的文档，和在规定的测试<strong>出口准则</strong>下的测试运行的评估[IEEE829]）</li>
+</ul>
+</li>
+</ol>
+<h3 id="测试结束工作（test-closure-activities）"><a href="#测试结束工作（test-closure-activities）" class="headerlink" title="测试结束工作（test closure activities）"></a>测试结束工作（test closure activities）</h3><ol>
+<li><strong>测试结束阶最的活动就是从已完成的测试活动中收美和整合有用的数据，这些数据可以是测试经验，测试件，影响测试的因素和其他数据</strong></li>
+<li>包括：<ul>
+<li>检查，是否所有计划的交付物（deliverables）都产生并交付了？或产生并交付了多少？</li>
+<li>&amp;&amp;事件报告**（incident report）是否关闭</li>
+<li>对未关闭的事件报告提交变更需求</li>
+<li>系统的验收文档状态</li>
+<li>记录和归档&amp;&amp;测试件**（testware）（测试规约说明.数据.测试日志（test log）等等）。</li>
+<li>保存<strong>测试环境</strong>和测试基础设备，以备以后可用同样的数据和在同样的环境下重复一个测试或为将来得项目使用（→配置管理（configuration management）。</li>
+<li><strong>测试件</strong>（testware）交付给专门的管理/维护部门</li>
+<li>分析和整理从所有测试阶段中获得的测试经验和教训，为以后新版本和新项目的<strong>测试过程的改进</strong>提供帮助：<ul>
+<li>分析每个测试活动的计划和实施之间的偏差，并判断原因</li>
+<li>考虑测试结果与测试开销的关系</li>
+<li>有关风险的经验</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在如下情况下需要<strong>测试结束</strong>工作：<ul>
+<li>当一个软件产品正式应用</li>
+<li>当开发（或测试）达到一个里程碑（milestone）</li>
+<li>一个维护版本结束时</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="测试过程改进TMMi"><a href="#测试过程改进TMMi" class="headerlink" title="测试过程改进TMMi"></a>测试过程改进TMMi</h2><ol>
+<li>TMMi成熟度模型：<ul>
+<li>1级 初始：混沌的、不明确的过程</li>
+<li>2级 已管理：明确的，和调试分开</li>
+<li>3级 已定义：组织级的测试过程集</li>
+<li>4级 已测量：可测量的过程</li>
+<li>5级 优化：具备持续过程改进的能力</li>
+</ul>
+</li>
+</ol>
+<h3 id="TMMi2级过程域（PA-Process-Area）："><a href="#TMMi2级过程域（PA-Process-Area）：" class="headerlink" title="TMMi2级过程域（PA:Process Area）："></a>TMMi2级过程域（PA:Process Area）：</h3><ol>
+<li>测试方针与策略</li>
+<li>测试计划</li>
+<li>测试监督与控制</li>
+<li>测试设计与执行</li>
+<li>测试环境</li>
+<li>目标是验证产品满足需求，大部分利益相关者还是认为测试是在编码之后的过程</li>
+</ol>
+<h3 id="TMMi3级过程域（PA-Process-Area）："><a href="#TMMi3级过程域（PA-Process-Area）：" class="headerlink" title="TMMi3级过程域（PA:Process Area）："></a>TMMi3级过程域（PA:Process Area）：</h3><ol>
+<li>测试组织</li>
+<li>测试培训方案</li>
+<li>测试生命周期与集成</li>
+<li>非功能测试</li>
+<li>同行评审</li>
+<li>不再局限于编码之后，而是完全集成到软件开发过程中和里程碑中</li>
+<li>基础是组织级的测试过程集，明确定义，在测试过程中不断改进</li>
+</ol>
+<h3 id="TMMi4级过程域（PA-Process-Area）："><a href="#TMMi4级过程域（PA-Process-Area）：" class="headerlink" title="TMMi4级过程域（PA:Process Area）："></a>TMMi4级过程域（PA:Process Area）：</h3><ol>
+<li>测试测量</li>
+<li>产品质量评估</li>
+<li>高级评审</li>
+<li>完全定义的、且具备良好基础的可测量过程</li>
+</ol>
+<h3 id="TMMi5级过程域（PA-Process-Area）："><a href="#TMMi5级过程域（PA-Process-Area）：" class="headerlink" title="TMMi5级过程域（PA:Process Area）："></a>TMMi5级过程域（PA:Process Area）：</h3><ol>
+<li>预防缺陷</li>
+<li>质量控制<ul>
+<li>基于抽样的质量检测与控制</li>
+</ul>
+</li>
+<li>测试过程优化<ul>
+<li>微调，不断改进</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><ol>
+<li>课堂问题1：你理想或设想中的测试过程应该是如何的？</li>
+<li>课堂问题2：测试的入口准则与出口准则分别指什么？请用一个示例来解释<ul>
+<li>入口准则：满足什么条件，可以开始执行测试<ul>
+<li>开发人员已经开发完成，并且可以执行</li>
+</ul>
+</li>
+<li>出口准则：满足什么条件，可以结束测试<ul>
+<li>测试覆盖率</li>
+<li>测试用例通过率</li>
+<li>对每个功能的测试用例的数量</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>课堂问题3：如何指定测试对象或测试用例的优先级？<ul>
+<li>可以利用需求的优先级来测试：卡诺模型中的三种需求</li>
+<li>被调用次数最多的方法或模块</li>
+<li>缺陷的严重程度</li>
+<li>不同测试阶段的优先级：功能、性能、安全<ul>
+<li>看团队计划</li>
+<li>常规来说：功能优于非功能</li>
+</ul>
+</li>
+<li>针对不同类型的测试项<ul>
+<li>基于风险做优先级的评估</li>
+<li>风险 = 影响 × 发生概率</li>
+<li>根据客户需求</li>
+<li>根据成本做测试，成本高的优先测试</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>课堂问题4：有哪些测试执行的方式？<ul>
+<li>人工测试</li>
+<li>自动化测试<ul>
+<li>构造测试实例、执行程序、分析结果</li>
+<li>工具：selenium、codecov、Jenkins等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/25/操作系统/操作系统Ⅰ-2020-3-25/" rel="prev" title="操作系统Ⅰ--第三节(接上节)">          
+                <i class="fa fa-chevron-left"></i> 操作系统Ⅰ--第三节(接上节)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/23/系统程序设计/系统程序设计-2020-3-23/" rel="next" title="系统程序设计--第六节(process control)">
+                系统程序设计--第六节(process control) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YJ Song</p>
+              <p class="site-description motion-element" itemprop="description">Show me code!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fdss-song" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yearito.cn/" title="yearito" target="_blank">yearito</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#软件测试在软件生命期的位置"><span class="nav-text">软件测试在软件生命期的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本测试过程"><span class="nav-text">基本测试过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试计划（test-planning）"><span class="nav-text">测试计划（test planning）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试控制（test-contro）"><span class="nav-text">测试控制（test contro）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试分析-amp-设计（test-analysis-and-design）"><span class="nav-text">测试分析&amp;设计（test analysis and design）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试实现（implementation）"><span class="nav-text">测试实现（implementation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试执行（test-execution）"><span class="nav-text">测试执行（test execution）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试评估（test-eva-uation）-amp-测试报告（test-reporting）"><span class="nav-text">测试评估（test eva/uation）&amp; 测试报告（test reporting）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试结束工作（test-closure-activities）"><span class="nav-text">测试结束工作（test closure activities）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试过程改进TMMi"><span class="nav-text">测试过程改进TMMi</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TMMi2级过程域（PA-Process-Area）："><span class="nav-text">TMMi2级过程域（PA:Process Area）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TMMi3级过程域（PA-Process-Area）："><span class="nav-text">TMMi3级过程域（PA:Process Area）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TMMi4级过程域（PA-Process-Area）："><span class="nav-text">TMMi4级过程域（PA:Process Area）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TMMi5级过程域（PA-Process-Area）："><span class="nav-text">TMMi5级过程域（PA:Process Area）：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课堂讨论"><span class="nav-text">课堂讨论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YJ Song</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+          $('#sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('#footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            offsetX: ,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+</body>
+</html>

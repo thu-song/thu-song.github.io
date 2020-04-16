@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="课堂作业 diff file1 file2可以比较两个文件中的内容有什么不同，现在有两个目录dir1和dir2，现在想要比较这两个目录有什么不同，比如目录中的文件大小以及修改时间等，请将diff与进程替换结合在一起完成以上功能。  我们希望能够统计用户主目录的空间使用情况，并将其保存在文件中，文件名采取du-yyyy-mm-dd的形式，即以du-开头后面为当天的日期，比如du-2020-04-09">
+<meta name="keywords" content="课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LINUX操作系统--第七节(终端命令和系统信息 &amp; 编辑器 vim)">
+<meta property="og:url" content="http://yoursite.com/2020/04/10/LINUX操作系统/LINUX操作系统-2020-4-10/index.html">
+<meta property="og:site_name" content="Song&#39;s Blog">
+<meta property="og:description" content="课堂作业 diff file1 file2可以比较两个文件中的内容有什么不同，现在有两个目录dir1和dir2，现在想要比较这两个目录有什么不同，比如目录中的文件大小以及修改时间等，请将diff与进程替换结合在一起完成以上功能。  我们希望能够统计用户主目录的空间使用情况，并将其保存在文件中，文件名采取du-yyyy-mm-dd的形式，即以du-开头后面为当天的日期，比如du-2020-04-09">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-04-16T23:38:52.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LINUX操作系统--第七节(终端命令和系统信息 &amp; 编辑器 vim)">
+<meta name="twitter:description" content="课堂作业 diff file1 file2可以比较两个文件中的内容有什么不同，现在有两个目录dir1和dir2，现在想要比较这两个目录有什么不同，比如目录中的文件大小以及修改时间等，请将diff与进程替换结合在一起完成以上功能。  我们希望能够统计用户主目录的空间使用情况，并将其保存在文件中，文件名采取du-yyyy-mm-dd的形式，即以du-开头后面为当天的日期，比如du-2020-04-09">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/10/LINUX操作系统/LINUX操作系统-2020-4-10/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>LINUX操作系统--第七节(终端命令和系统信息 & 编辑器 vim) | Song's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Song's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/10/LINUX操作系统/LINUX操作系统-2020-4-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YJ Song">
+      <meta itemprop="description" content="Show me code!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Song's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LINUX操作系统--第七节(终端命令和系统信息 & 编辑器 vim)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-04-10 20:15:00" itemprop="dateCreated datePublished" datetime="2020-04-10T20:15:00+08:00">2020-04-10</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="课堂作业"><a href="#课堂作业" class="headerlink" title="课堂作业"></a>课堂作业</h2><ol>
+<li><p>diff file1 file2可以比较两个文件中的内容有什么不同，现在有两个目录dir1和dir2，现在想要比较这两个目录有什么不同，比如目录中的文件大小以及修改时间等，请将diff与进程替换结合在一起完成以上功能。</p>
+</li>
+<li><p>我们希望能够统计用户主目录的空间使用情况，并将其保存在文件中，文件名采取du-yyyy-mm-dd的形式，即以du-开头后面为当天的日期，比如du-2020-04-09，请给出相应的命令</p>
+</li>
+</ol>
+<p>下面的题目考察vim，里面提到的命令都是进入vi之后使用的命令</p>
+<ol start="3">
+<li><p>请问进入编辑器vi之后所处的模式是什么？如果在其他模式，怎么样才能回到正常模式呢？</p>
+</li>
+<li><p>number选项的作用是什么？在执行了:set number之后，现在要关闭number选项，应该执行什么命令？</p>
+</li>
+<li><p>要查看vim选项list的帮助，应该使用什么命令？</p>
+</li>
+<li><p>假设你正在用vi修改某个文件，想要保存并退出，应该使用什么命令？ 如果要放弃修改并退出，应该使用什么命令</p>
+</li>
+<li><p>在用vim编辑时，要输入对勾符号✓,应该怎么输入？</p>
+</li>
+<li><p>我们希望在用vim编辑文件时，按Tab键都转换为空格，应该设置什么选项？在设置好之后，在不改变选项的情况下，如果还是要输入Tab怎么办？</p>
+</li>
+</ol>
+<h2 id="我的答案"><a href="#我的答案" class="headerlink" title="我的答案"></a>我的答案</h2><ol>
+<li>diff &lt;(ls -l dir1) &lt;(ls -l dir2)</li>
+<li>du -d 0 ~ &gt; du-$(date +%Y-%m-%d)</li>
+<li>正常模式<br>按<esc></esc></li>
+<li>number选项：显示行号<br>set nonu</li>
+<li>help ‘list’</li>
+<li>正常模式下 :wq<br>正常模式下  :q!</li>
+<li>插入模式下 <ctrl-k>RT</ctrl-k></li>
+<li>set expandtab<br><ctrl-v><tab></tab></ctrl-v></li>
+</ol>
+<h2 id="参考答案"><a href="#参考答案" class="headerlink" title="参考答案"></a>参考答案</h2><ol>
+<li>diff file1 file2可以比较两个文件中的内容有什么不同，现在有两个目录dir1和dir2，现在想要比较这两个目录有什么不同，比如目录中的文件大小以及修改时间等，请将diff与进程替换结合在一起完成以上功能。</li>
+</ol>
+<p>diff &lt;(ls -ld dir1/<em>) &lt;(ls -ld dir2/</em>)<br>diff &lt;(ls -l dir1) &lt;(ls -l dir2)<br>应该是输入进程替换 &lt;，而不是 &gt;</p>
+<p>ls -ld dir1 仅仅查看dir1本身<br>第一个版本后面的文件名会有路径前缀，这个版本比第二个版本要好一些。</p>
+<ol start="2">
+<li>我们希望能够统计用户主目录的空间使用情况，并将其保存在文件中，文件名采取du-yyyy-mm-dd的形式，即以du-开头后面为当天的日期，比如du-2020-04-09，请给出相应的命令</li>
+</ol>
+<p>du -sh ~ 2&gt;/dev/null &gt;”du-$(date +%Y-%m-%d)”<br>du -sh ~ 2&gt;/dev/null &gt;du-$(date +%Y-%m-%d)<br>du -dh 0 ~ 也可以</p>
+<p>cat &lt;(du) 就有些冗余了</p>
+<p>下面的题目考察vim，里面提到的命令都是进入vi之后使用的命令</p>
+<ol start="3">
+<li>请问进入编辑器vi之后所处的模式是什么？如果在其他模式，怎么样才能回到正常模式呢？</li>
+</ol>
+<p>正常模式，<esc>或&lt;Ctrl-[&gt;(两者等价)回到正常模式，虽然也可使用<ctrl-c>，表示中止正在执行的命令，可回到正常模式，但不建议使用</ctrl-c></esc></p>
+<ol start="4">
+<li>number选项的作用是什么？在执行了:set number之后，现在要关闭number选项，应该执行什么命令？</li>
+</ol>
+<p>是否显示行号， set nonumber, set nonu 或set number!</p>
+<ol start="5">
+<li>要查看vim选项list的帮助，应该使用什么命令？</li>
+</ol>
+<p>:help ‘list’<br>:h ‘list’</p>
+<p>:h(elp)  这种写法表示简写为:h，全称为 :help，实际上只要能够和别的命令区分，甚至可以:he  :hel</p>
+<ol start="6">
+<li>假设你正在用vi修改某个文件，想要保存并退出，应该使用什么命令？ 如果要放弃修改并退出，应该使用什么命令</li>
+</ol>
+<p>:wq<br>:x :exit</p>
+<p>:q!<br>ZQ</p>
+<ol start="7">
+<li>在用vim编辑时，要输入对勾符号✓,应该怎么输入？</li>
+</ol>
+<p>插入模式下 <c-k>OK 或者<c-k>RT<br><c-v>u2713<br><c-v>的这种形式不是很方便，你需要在别的地方找到对勾符号的unicode，而在vi里面可以使用:dig查看所有digraph词，而且也很容易记忆OK, RIGHT<br>要输入希腊字母也很方便，比如<c-k>b* <c-k>a*等等</c-k></c-k></c-v></c-v></c-k></c-k></p>
+<ol start="8">
+<li>我们希望在用vim编辑文件时，按Tab键都转换为空格，应该设置什么选项？在设置好之后，在不改变选项的情况下，如果还是要输入Tab怎么办？</li>
+</ol>
+<p>set expandtab<br>插入模式下 <c-v>Tab</c-v></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/15/英语笔译/英语笔译-2020-4-15/" rel="prev" title="英语笔译--第六节">          
+                <i class="fa fa-chevron-left"></i> 英语笔译--第六节
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/02/LINUX操作系统/LINUX操作系统-2020-4-2/" rel="next" title="LINUX操作系统--第六节(shell 扩展)">
+                LINUX操作系统--第六节(shell 扩展) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YJ Song</p>
+              <p class="site-description motion-element" itemprop="description">Show me code!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fdss-song" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yearito.cn/" title="yearito" target="_blank">yearito</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#课堂作业"><span class="nav-text">课堂作业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的答案"><span class="nav-text">我的答案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考答案"><span class="nav-text">参考答案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YJ Song</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+          $('#sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('#footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            offsetX: ,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+</body>
+</html>

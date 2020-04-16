@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="process termination c program starts execution from main() 进程退出有两种方式： normal termination return from main call exit call _exit   在main的最后都会调用exit   abnormal： call abort  receive a signal Response of t">
+<meta name="keywords" content="课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统程序设计--第五节(process evironment)">
+<meta property="og:url" content="http://yoursite.com/2020/03/16/系统程序设计/系统程序设计-2020-3-16/index.html">
+<meta property="og:site_name" content="Song&#39;s Blog">
+<meta property="og:description" content="process termination c program starts execution from main() 进程退出有两种方式： normal termination return from main call exit call _exit   在main的最后都会调用exit   abnormal： call abort  receive a signal Response of t">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/exit.jpg?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/environ.jpg?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/Memory%20Layout%20of%20a%20C%20Program.jpg?raw=true">
+<meta property="og:updated_time" content="2020-03-16T11:46:14.487Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系统程序设计--第五节(process evironment)">
+<meta name="twitter:description" content="process termination c program starts execution from main() 进程退出有两种方式： normal termination return from main call exit call _exit   在main的最后都会调用exit   abnormal： call abort  receive a signal Response of t">
+<meta name="twitter:image" content="https://github.com/thu-song/blog-pictures/blob/master/exit.jpg?raw=true">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/16/系统程序设计/系统程序设计-2020-3-16/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>系统程序设计--第五节(process evironment) | Song's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Song's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/16/系统程序设计/系统程序设计-2020-3-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YJ Song">
+      <meta itemprop="description" content="Show me code!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Song's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">系统程序设计--第五节(process evironment)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-16 16:32:00" itemprop="dateCreated datePublished" datetime="2020-03-16T16:32:00+08:00">2020-03-16</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="process-termination"><a href="#process-termination" class="headerlink" title="process termination"></a>process termination</h2><ol>
+<li>c program starts execution from main()</li>
+<li>进程退出有两种方式：<ul>
+<li>normal termination<ul>
+<li>return from main</li>
+<li>call exit<ul>
+<li>call _exit</li>
+</ul>
+</li>
+<li>在main的最后都会调用exit</li>
+</ul>
+</li>
+<li>abnormal：<ul>
+<li>call abort <ul>
+<li>receive a signal</li>
+<li>Response of the last thread to a cancellation request</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="exit"><a href="#exit" class="headerlink" title="exit()"></a>exit()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exit</span><span class="params">(status)</span></span>;  <span class="comment">/* Status is returned */</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>作用：<ul>
+<li>终止进程，将进程中的资源回收</li>
+<li>把标准IO库的缓冲关闭掉</li>
+<li>对所有打开的stream，调用<code>fclose</code>函数将标准IO缓冲区的内容刷新到操作系统，所以标准IO缓冲区里的内容并不会丢失</li>
+</ul>
+</li>
+<li>退出的进程变成zombie<ul>
+<li>进程失去内存空间</li>
+<li>没有机会再被调度</li>
+<li>唯一剩下的就是在内核空间中，相当于记录卡，记录进程的运行情况<ul>
+<li>由哪个程序启动得到的</li>
+<li>生命中的CPU时间</li>
+<li>IO的byte数</li>
+<li>退出的原因</li>
+</ul>
+</li>
+<li>这个记录卡会一直存在，直到父进程调用<code>wait</code>，父进程得到子进程相关的status，之后这个进程的生命周期就结束了</li>
+</ul>
+</li>
+</ol>
+<h3 id="atexit"><a href="#atexit" class="headerlink" title="atexit()"></a>atexit()</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">atexit</span><span class="params">(<span class="keyword">void</span>(* func)(<span class="keyword">void</span>))</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>注册一些函数，退出时调用的注册</p>
+<ul>
+<li>类似C++的析构函数</li>
+</ul>
+</li>
+<li><p><code>exit</code>关闭所有资源，清除缓冲区后会调用<code>_exit</code></p>
+<ul>
+<li>如果直接调用<code>_exit</code>，那么资源不会被回收</li>
+<li>【疑问】父进程调用wait时，这些资源会被回收吗？</li>
+</ul>
+</li>
+<li><p> <img src="https://github.com/thu-song/blog-pictures/blob/master/exit.jpg?raw=true" alt="exit"></p>
+</li>
+<li><p>注册函数时类似于栈，先入后出</p>
+<ul>
+<li>最先被注册的最后被调用</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="main函数的参数排列"><a href="#main函数的参数排列" class="headerlink" title="main函数的参数排列"></a>main函数的参数排列</h2><ol>
+<li>与shell中的参数顺序相同，argv[0]是main函数</li>
+</ol>
+<hr>
+<h2 id="环境变量列表"><a href="#环境变量列表" class="headerlink" title="环境变量列表"></a>环境变量列表</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="keyword">char</span> **environ;</span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">getenv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name)</span></span>; <span class="comment">/* name = value */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">putenv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str)</span></span>;    <span class="comment">/* "name = value" */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setenv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name, <span class="keyword">const</span> <span class="keyword">char</span> *value, <span class="keyword">int</span> rewrite)</span></span>;</span><br><span class="line"><span class="comment">/* If rewrite is 0, an existing definition for name is not removed, name is not set to the new value, and no error occurs. */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">unsetenv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> * name)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>这个数组指针存在进程中(stack上面)，指向了一个字符数组<ul>
+<li>字符数组中存了环境变量和对应值的配对</li>
+<li><img src="https://github.com/thu-song/blog-pictures/blob/master/environ.jpg?raw=true" alt="environ"></li>
+</ul>
+</li>
+<li>每一个进程都有自己的环境变量</li>
+<li>在shell中调用<code>set</code>或者<code>setenv</code>打印当前的环境变量</li>
+<li>子进程会继承父进程的环境变量</li>
+<li>如果要改变有个已经存在的环境变量的值：<ul>
+<li>10个字符 -&gt; 9个字符，可以写到原来的位置</li>
+<li>10个字符 -&gt; 11个字符，安排新的空间来写</li>
+</ul>
+</li>
+<li>【疑问】add的时候是只要有空就插吗？还是按照顺序只能在最底部插入</li>
+</ol>
+<hr>
+<h2 id="一个C程序的的内存布局"><a href="#一个C程序的的内存布局" class="headerlink" title="一个C程序的的内存布局"></a>一个C程序的的内存布局</h2><ol>
+<li><p> <img src="https://github.com/thu-song/blog-pictures/blob/master/Memory%20Layout%20of%20a%20C%20Program.jpg?raw=true" alt="Memory Layout of a C Program"></p>
+</li>
+<li><p>Text segment</p>
+</li>
+<li><p>Initialized data segment</p>
+<ul>
+<li>int maxcount = 99;</li>
+</ul>
+</li>
+<li><p>Uninitialized data segment</p>
+<ul>
+<li>long sum[1000];</li>
+</ul>
+</li>
+<li><p>Stack</p>
+</li>
+<li><p>Heap</p>
+</li>
+</ol>
+<hr>
+<h2 id="共享库"><a href="#共享库" class="headerlink" title="共享库"></a>共享库</h2><ol>
+<li>Windows中的<code>dll</code>，Linux中的<code>.so</code><ul>
+<li>Linux中静态库是<code>.lib</code></li>
+</ul>
+</li>
+<li>共享库在链接时，只会给一个链接的桩，需要的时候才会被加载<ul>
+<li>并不会直接copy到可执行文件中</li>
+<li>调用时只是做了解析</li>
+</ul>
+</li>
+<li>好处<ul>
+<li>减小了可执行文件的大小</li>
+<li>多个可执行文件共享同一个库时，只会保留一份拷贝<ul>
+<li>之后的可执行文件加载得会更快</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">malloc</span><span class="params">(<span class="keyword">size_t</span> size)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">calloc</span><span class="params">(<span class="keyword">size_t</span> nobj, <span class="keyword">size_t</span> size)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">realloc</span><span class="params">(<span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> newsize)</span></span>;</span><br><span class="line">      </span><br><span class="line"><span class="comment">// Return: nonnull pointer on succees，NULL on error</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">free</span><span class="params">(<span class="keyword">void</span> *ptr)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p><code>realloc</code>可能会移动内存位置</p>
+<ul>
+<li>注意：原地址可能不会再被使用</li>
+<li>比如：  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ptr=<span class="built_in">malloc</span>(<span class="number">10</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line"><span class="keyword">int</span> *ptr1=ptr+<span class="number">6</span>;</span><br><span class="line">ptr = <span class="built_in">realloc</span>(ptr, <span class="number">20</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">*(ptr1++) = <span class="number">200</span>;    <span class="comment">//wrong </span></span><br><span class="line">*(ptr + <span class="number">7</span>) =<span class="number">200</span>;    <span class="comment">//right</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><code>alloca</code>函数</p>
+<ul>
+<li>在当前函数的栈帧上分配存储空间，当函数返回时，自动释放它所使用的空间</li>
+<li>安全性更高，但是只能在当前函数内部中使用</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="setjmp-longjmp"><a href="#setjmp-longjmp" class="headerlink" title="setjmp / longjmp"></a>setjmp / longjmp</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> j_sp;  <span class="comment">// 堆栈指针寄存器</span></span><br><span class="line">    <span class="keyword">unsigned</span> j_ss;  <span class="comment">// 堆栈段</span></span><br><span class="line">    <span class="keyword">unsigned</span> j_flag;  <span class="comment">// 标志寄存器</span></span><br><span class="line">    <span class="keyword">unsigned</span> j_cs;  <span class="comment">// 代码段</span></span><br><span class="line">    <span class="keyword">unsigned</span> j_ip;  <span class="comment">// 指令指针寄存器</span></span><br><span class="line">    <span class="keyword">unsigned</span> j_bp; <span class="comment">// 基址指针</span></span><br><span class="line">    <span class="keyword">unsigned</span> j_di;  <span class="comment">// 目的指针</span></span><br><span class="line">    <span class="keyword">unsigned</span> j_es; <span class="comment">// 附加段</span></span><br><span class="line">    <span class="keyword">unsigned</span> j_si;  <span class="comment">// 源变址</span></span><br><span class="line">    <span class="keyword">unsigned</span> j_ds; <span class="comment">// 数据段</span></span><br><span class="line">&#125; jmp_buf;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">setjmp</span><span class="params">(jmp_buf env)</span></span>;</span><br><span class="line"><span class="comment">// return：0 by setjmp，返回0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">longjmp</span><span class="params">(jmp_buf env, <span class="keyword">int</span> val)</span></span>;</span><br><span class="line"><span class="comment">// jmp_buf 类型的变量env保存用来恢复栈状态的所有信息。</span></span><br><span class="line"><span class="comment">// val：用于指示从setjmp的返回值，这个值要求是非0</span></span><br><span class="line"><span class="comment">// 返回到setjmp时的栈的状态</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>jmp_buf</code> 结构确保使用 <code>longjmp()</code> 后可以跳回到该执行点上继续执行<ul>
+<li>维护了<code>setjmp</code>时刻的CPU的一些状态</li>
+</ul>
+</li>
+<li>类似于可以跨越函数的<code>goto</code></li>
+<li>一般不要使用，违反结构化的程序设计原则<ul>
+<li>应用在底层软件中，或信号处理中</li>
+</ul>
+</li>
+<li>有优化编译(-O)：<ul>
+<li>auto变量和寄存器变量是会被保存的</li>
+<li>当寄存器足够时，auto变量也会用寄存器保存</li>
+<li>全局变量、volatile的变量和静态变量不会被保存</li>
+<li>因为<code>setjmp</code>保存了寄存器的值</li>
+<li>在不同平台上实现不同</li>
+</ul>
+</li>
+<li>没有优化编译时：<ul>
+<li>全局变量、volatile的变量、静态变量、auto变量和寄存器变量都不会被保存</li>
+</ul>
+</li>
+</ol>
+<h3 id="setjmp结论"><a href="#setjmp结论" class="headerlink" title="setjmp结论"></a>setjmp结论</h3><ol>
+<li>优化编译时，所有自动变量都会成为寄存器变量。</li>
+<li>对于<strong>寄存器变量</strong>，恢复为setjmp的值</li>
+<li>对于memory（volatile）中的变量，为<code>longjmp</code>时的值</li>
+<li>如果要编写一个使用非局部跳转的可移植程序，则必须使用volatile属性。</li>
+</ol>
+<h3 id="自动变量的问题"><a href="#自动变量的问题" class="headerlink" title="自动变量的问题"></a>自动变量的问题</h3><ol>
+<li>不能将栈上的变量返回</li>
+</ol>
+<hr>
+<h2 id="getrlimit-setrlimit"><a href="#getrlimit-setrlimit" class="headerlink" title="getrlimit()  setrlimit"></a>getrlimit()  setrlimit</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">getrlimit</span><span class="params">(<span class="keyword">int</span> resource, struct rlimit *rlptr)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">setrlimit</span><span class="params">(<span class="keyword">int</span> resource, <span class="keyword">const</span> struct rlimit *rlptr)</span></span>;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">rlimit</span> &#123;</span></span><br><span class="line"><span class="keyword">rlim_t</span> rlim_cur;    <span class="comment">/* soft limit: current limit */</span></span><br><span class="line"><span class="keyword">rlim_t</span> rlim_max;    <span class="comment">/* hard limit: maximum value for r lim_cur */</span></span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>资源的限制数</li>
+<li>任何一个进程都可将一个软限制更改为小于或等于其硬限制</li>
+<li>任何一个进程都可降低其硬限制值，但它必须大于或等于其软限制值</li>
+<li>只有超级用户可以提高硬限制</li>
+<li>父进程的资源限制特性会传递给子进程</li>
+</ol>
+<hr>
+<h2 id><a href="#" class="headerlink" title></a></h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/16/软件质量保障与测试/软件质量保障与测试-2020-3-16/" rel="prev" title="软件质量保障与测试--第三章 软件测试质量保障-需求文档与建模技术">          
+                <i class="fa fa-chevron-left"></i> 软件质量保障与测试--第三章 软件测试质量保障-需求文档与建模技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/12/LINUX操作系统/LINUX操作系统-2020-3-12/" rel="next" title="LINUX操作系统--第三节(文件系统初步)">
+                LINUX操作系统--第三节(文件系统初步) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YJ Song</p>
+              <p class="site-description motion-element" itemprop="description">Show me code!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fdss-song" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yearito.cn/" title="yearito" target="_blank">yearito</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#process-termination"><span class="nav-text">process termination</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#exit"><span class="nav-text">exit()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#atexit"><span class="nav-text">atexit()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main函数的参数排列"><span class="nav-text">main函数的参数排列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境变量列表"><span class="nav-text">环境变量列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个C程序的的内存布局"><span class="nav-text">一个C程序的的内存布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#共享库"><span class="nav-text">共享库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存分配"><span class="nav-text">内存分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setjmp-longjmp"><span class="nav-text">setjmp / longjmp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#setjmp结论"><span class="nav-text">setjmp结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动变量的问题"><span class="nav-text">自动变量的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getrlimit-setrlimit"><span class="nav-text">getrlimit()  setrlimit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-text"></span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YJ Song</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+          $('#sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('#footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            offsetX: ,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+</body>
+</html>
