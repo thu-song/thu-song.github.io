@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="第一章 软件需求分析基础实例安卓之父创业的故事 安卓之父手机创业失败，是败给任性，更是败给市场  Windows VISTA的故事 2006年11月8日，时任微软开发部联席总裁的吉姆·阿尔软终于宣布，Windows Vista的RTM版完成，至此，Windows Vista长达5年半的马拉松式开发终于结束了，11月16日，Windows Vista面向MSDN和TechNet订户提供下载，次年1月">
+<meta name="keywords" content="课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件过程--第三节(软件需求分析)">
+<meta property="og:url" content="http://yoursite.com/软件过程/软件过程-2020-3-18">
+<meta property="og:site_name" content="Song&#39;s Blog">
+<meta property="og:description" content="第一章 软件需求分析基础实例安卓之父创业的故事 安卓之父手机创业失败，是败给任性，更是败给市场  Windows VISTA的故事 2006年11月8日，时任微软开发部联席总裁的吉姆·阿尔软终于宣布，Windows Vista的RTM版完成，至此，Windows Vista长达5年半的马拉松式开发终于结束了，11月16日，Windows Vista面向MSDN和TechNet订户提供下载，次年1月">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%B5%81%E7%A8%8B.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/Use%20Case%E7%A4%BA%E4%BE%8B.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E5%9C%A8%E7%BA%BF%E8%AE%A2%E9%A4%90%E7%B3%BB%E7%BB%9FUse%20Case.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.png?raw=true">
+<meta property="og:updated_time" content="2020-03-19T07:06:16.284Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件过程--第三节(软件需求分析)">
+<meta name="twitter:description" content="第一章 软件需求分析基础实例安卓之父创业的故事 安卓之父手机创业失败，是败给任性，更是败给市场  Windows VISTA的故事 2006年11月8日，时任微软开发部联席总裁的吉姆·阿尔软终于宣布，Windows Vista的RTM版完成，至此，Windows Vista长达5年半的马拉松式开发终于结束了，11月16日，Windows Vista面向MSDN和TechNet订户提供下载，次年1月">
+<meta name="twitter:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%B5%81%E7%A8%8B.png?raw=true">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/软件过程/软件过程-2020-3-18">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>软件过程--第三节(软件需求分析) | Song's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Song's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/软件过程/软件过程-2020-3-18">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YJ Song">
+      <meta itemprop="description" content="Show me code!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Song's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件过程--第三节(软件需求分析)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-18 15:55:00" itemprop="dateCreated datePublished" datetime="2020-03-18T15:55:00+08:00">2020-03-18</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第一章-软件需求分析基础"><a href="#第一章-软件需求分析基础" class="headerlink" title="第一章 软件需求分析基础"></a>第一章 软件需求分析基础</h2><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="安卓之父创业的故事"><a href="#安卓之父创业的故事" class="headerlink" title="安卓之父创业的故事"></a>安卓之父创业的故事</h4><ol>
+<li>安卓之父手机创业失败，是败给任性，更是败给市场</li>
+</ol>
+<h4 id="Windows-VISTA的故事"><a href="#Windows-VISTA的故事" class="headerlink" title="Windows VISTA的故事"></a>Windows VISTA的故事</h4><ol>
+<li>2006年11月8日，时任微软开发部联席总裁的吉姆·阿尔软终于宣布，Windows Vista的RTM版完成，至此，Windows Vista长达5年半的马拉松式开发终于结束了，11月16日，Windows Vista面向MSDN和TechNet订户提供下载，次年1月30日，Windows Vista正式面向消费者发售。</li>
+<li>糟糕的口碑和市场表现<ul>
+<li>憋了5年多的大招，Windows Vista终于和消费者见面了。然而随着这款操作系统走向市场，微软并没有迎来期待中的鲜花和掌声，而是抱怨，铺天盖地的抱怨。</li>
+</ul>
+</li>
+<li>Windows Vista较上一个版本WindowsXP增加了上百种新功能，其中包括被称为“Aero”的全新图形用户界面、关机特效、加强后的搜索功能（Windows Indexing Service）、新的媒体创作工具（例如Windows DVD Maker）以及重新设计的网络、音频、输出（打印）和显示子系统。Vista也使用点对点技术（Peer-to-peer）提升了计算机系统在家庭网络中的显示通信能力，将让在不同计算机或装置之间分享文件与多媒体内容变得更简单。</li>
+</ol>
+<h4 id="Google"><a href="#Google" class="headerlink" title="Google+"></a>Google+</h4><ol>
+<li>Google+是一个SNs社交网站，你可以通过你的Google帐户登录，在这个社交网站上你可以和不同兴趣的好友分享好玩的东西。于2011年6月28日亮相。</li>
+<li>2019年4月2日，谷歌正式关闭个人版Google+。</li>
+</ol>
+<h4 id="案例总结"><a href="#案例总结" class="headerlink" title="案例总结"></a>案例总结</h4><ol>
+<li>对需求的把握是产品成功的首要因素</li>
+</ol>
+<h3 id="软件需求分析内容"><a href="#软件需求分析内容" class="headerlink" title="软件需求分析内容"></a>软件需求分析内容</h3><ol>
+<li>需求分析的具体内容，主要归纳为四个方面：</li>
+</ol>
+<h4 id="软件的功能需求"><a href="#软件的功能需求" class="headerlink" title="软件的功能需求"></a>软件的功能需求</h4><ol>
+<li>描述软件的各种可能条件下，对所有可能输入的数据信息，应完成哪些具体功能，产生什么样的输出</li>
+<li>举例：微信支持朋友圈分享、微信支持语音转文字</li>
+</ol>
+<h4 id="软件的非功能性需求"><a href="#软件的非功能性需求" class="headerlink" title="软件的非功能性需求"></a>软件的非功能性需求</h4><ol>
+<li>软件性能指标，可靠性、安全性、容限等功能以外的需求</li>
+<li>举例：微信群支持最大500成员、升级数据不丢失</li>
+</ol>
+<h5 id="软件需求分析的非功能性需求：性能需求"><a href="#软件需求分析的非功能性需求：性能需求" class="headerlink" title="软件需求分析的非功能性需求：性能需求"></a>软件需求分析的非功能性需求：性能需求</h5><ol>
+<li>2009年，淘宝第一届双十一购物狂欢节，这年成交额为5000万。这是那个时代很少的购物平台能达到的高度。</li>
+<li>2017年，淘宝双十一页面系统出现错误，很多买家无法购物或者购物失败。</li>
+<li>2018年，2135亿元的购物没崩溃，但是退款崩溃了。最后天猫紧急出退款公告。</li>
+<li>2019年，“双十一”物流订单达到12.92亿，1分钟，超65亿！1分36秒，超100亿！5分25秒，超300亿！</li>
+<li>2019年，“我的退款还没提交，快递已经收到啦~”。用户的需求催生快递物流行业向数字化、智能化应用的转变</li>
+</ol>
+<h5 id="软件需求分析的非功能性需求：数据安全"><a href="#软件需求分析的非功能性需求：数据安全" class="headerlink" title="软件需求分析的非功能性需求：数据安全"></a>软件需求分析的非功能性需求：数据安全</h5><ol>
+<li>2018年，Facebook信息泄露事件，Facebook市值蒸发360亿美元。</li>
+<li>剑桥分析公司通过分析用户们的行为模式、性格特征、价值观取向、成长经历后，有针对性地推送信息和竞选广告，以影响美国选民在竞选中的投票。</li>
+<li>Facebook客户信息泄露事件已经演变成重大的政治事件、经济事件、金融事件、科技事件、大数据事件、客户信息保护事件等多重重大的、深层次问题。</li>
+</ol>
+<h5 id="界面需求——拟物化与扁平化之争"><a href="#界面需求——拟物化与扁平化之争" class="headerlink" title="界面需求——拟物化与扁平化之争"></a>界面需求——拟物化与扁平化之争</h5><ol>
+<li>IOS 7 设计扁平化：苹果要革自己的命</li>
+</ol>
+<h4 id="软件与硬件或其他外部系统接口"><a href="#软件与硬件或其他外部系统接口" class="headerlink" title="软件与硬件或其他外部系统接口"></a>软件与硬件或其他外部系统接口</h4><ol>
+<li>包括：人机接口：说明输入、输出的内容、屏幕安排、格式等要求</li>
+</ol>
+<h4 id="软件设计和实现上的限制"><a href="#软件设计和实现上的限制" class="headerlink" title="软件设计和实现上的限制"></a>软件设计和实现上的限制</h4><ol>
+<li>如软件运行环境的限制（选择计算机类型，使用配置，操作系统的限制等）、设计工具的限制（使用语言、执行的标准）和保密要求等</li>
+<li>举例：支持Android4.x及以上的内核版本、接口后向兼容</li>
+</ol>
+<h5 id="设计约束"><a href="#设计约束" class="headerlink" title="设计约束"></a>设计约束</h5><ol>
+<li>首先是Windows Vista对硬件的需求远远大于当时消费者手中PC配置的平均水平</li>
+<li>Windows Vista的最低硬件需求是800MHz以上主频的处理器、512MB的运行内存、支持Direct×9.0的显卡、32MB的显存和容量至少20GB的硬盘，建议配置则是1GHz以上主频的处理器、1GB以上的运行内存、支持DirectX9.0b和WDDM1.0的显卡、128MB的显存和容量超过128GB的硬盘</li>
+<li>在2006年的当时，很多用户桌面上的电脑都还是512MB的运行内存，这仅仅满足了Windows Vista的最低硬件需求，在这种硬件条件下，Windows Vista不仅很难流畅地全特效运行，其系统运行速度、文件操作性能和游戏性能在同等的硬件配置下甚至还赶不上WindowsXP。除此之外，Windows Vista还面临软件臃肿和续航表现（对于笔记本电脑而言）不佳的问题</li>
+</ol>
+<h3 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h3><ol>
+<li>微信还有哪些需求？</li>
+<li>这些需求是从什么角度提出的</li>
+</ol>
+<hr>
+<h2 id="第二章-软件需求分析过程"><a href="#第二章-软件需求分析过程" class="headerlink" title="第二章 软件需求分析过程"></a>第二章 软件需求分析过程</h2><h3 id="大型企业要重视需求"><a href="#大型企业要重视需求" class="headerlink" title="大型企业要重视需求"></a>大型企业要重视需求</h3><ol>
+<li>某公司的客户导向<ul>
+<li>“以客户的需求为目标，以新的技术手段去实现客户的需求，技术只是一个工具”</li>
+</ul>
+</li>
+</ol>
+<h3 id="如何识别真正的客户需求"><a href="#如何识别真正的客户需求" class="headerlink" title="如何识别真正的客户需求"></a>如何识别真正的客户需求</h3><ol>
+<li>客户需求 ≠ 客户要求</li>
+<li>“需要更快的马” –&gt; 汽车(真正的需求是速度更快)</li>
+<li>“手机需要大电池”(续航更长)</li>
+<li>客户需求不是一个或者几个客户说的话</li>
+</ol>
+<h3 id="大型企业要重视需求-1"><a href="#大型企业要重视需求-1" class="headerlink" title="大型企业要重视需求"></a>大型企业要重视需求</h3><ol>
+<li> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E6%B5%81%E7%A8%8B.png?raw=true" alt="大型软件重视需求"></li>
+<li><strong>真的客户需求，需要去粗取精，弃伪存真，由表及里，由此及彼</strong>，然后归纳出来的客户的真正需求是什么</li>
+<li>需求收集的完备性和分析的深入、细致是是否能把握好需求的关键所在</li>
+</ol>
+<h3 id="需求分析目的和任务"><a href="#需求分析目的和任务" class="headerlink" title="需求分析目的和任务"></a>需求分析目的和任务</h3><ol>
+<li>目的：对用户的需求进行鉴别、综合和建模，清楚用户需求的模糊性、歧义性和不一致性，分析系统的数据要求，为原始问题及目标软件建立逻辑模型。</li>
+<li>大型系统的需求，一般分为几个子系统。软件需求分析任务：<ul>
+<li>确定用户目标和任务</li>
+<li>确定这些任务所支持的业务需求，并作为使用实例</li>
+<li>把任务描述成功能需求，是用户完成其任务；也可以描述成非功能需求，明确了系统的限制和用户对质星的期望<ul>
+<li>非功能需求，很重要，往往不经意的一个细节，会对系统造成巨大的打击。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="软件需求分析过程"><a href="#软件需求分析过程" class="headerlink" title="软件需求分析过程"></a>软件需求分析过程</h3><ol>
+<li>软件需求分析是一个项目的开端，也是项目实施最重要的关键点。</li>
+<li>软件需求分析开展步骤：<ul>
+<li>定义项目的视图和范围</li>
+<li>确定用户类别，每个用户类中确定代表，使用实例进行开发，并设置优先级</li>
+<li>从用户那里收集质量属性的信息和其他非功能需求，详细拟定使用实例</li>
+<li>评审使用实例的描述和功能需求</li>
+<li>形成需求分析文档</li>
+</ul>
+</li>
+<li>软件需求分析内容应<strong>正确、完整、一致和可验证</strong></li>
+<li>软件需求表达<strong>无岔意性，具有可追踪性和可修改性</strong></li>
+<li>软件设计人员和软件测试人员不再需要需求方的接触</li>
+</ol>
+<h3 id="软件需求的用户实例：use-case举例"><a href="#软件需求的用户实例：use-case举例" class="headerlink" title="软件需求的用户实例：use case举例"></a>软件需求的用户实例：use case举例</h3><ol>
+<li>Use Case的定义是：在不展现一个系统或子系统内部结构的情况下，对系统或子系统的<strong>某个连贯的功能单元</strong>的定义和描述</li>
+<li>例子：<br> <img src="https://github.com/thu-song/blog-pictures/blob/master/Use%20Case%E7%A4%BA%E4%BE%8B.png?raw=true" alt="use case举例"></li>
+</ol>
+<h3 id="软件需求文档"><a href="#软件需求文档" class="headerlink" title="软件需求文档"></a>软件需求文档</h3><ol>
+<li>需求文档在开发过程中起指导作用，是所有子系统项目规划、设计和编码的基础</li>
+<li>软件开发团队启动前，需要针对软件需求分析文档，开展需求澄清</li>
+<li>软件从测试团队，要从使用实例中开发出测试用例</li>
+<li>软件需求分析文档，关键包括如下内容：<table>
+<thead>
+<tr>
+<th>章</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户需求定义</td>
+<td>描述为用户提供的服务<br>包括非功能需求<br>可以使用客户可以理解的自然语言、图形或者其他表示法</td>
+</tr>
+<tr>
+<td>系统体系结构</td>
+<td>描述所预计的系统体系结构的高层概览，显示各个系统模块上功能分布</td>
+</tr>
+<tr>
+<td>系统需求规格说明</td>
+<td>更详细描述功能性需求和非功能性需求。还可以定义与其他系统的接口</td>
+</tr>
+<tr>
+<td>系统界面说明</td>
+<td>包括图形化的系统模型，显示系统构件之间以及系统及其环境之间的关系</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h3 id="软件需求跟踪管理"><a href="#软件需求跟踪管理" class="headerlink" title="软件需求跟踪管理"></a>软件需求跟踪管理</h3><ol>
+<li>平均水平的项目，平均有25%的需求变更——Jones 2000</li>
+<li>需求变更导致的返工，占所有返工工作量的75%~85%—Wiegers 2003</li>
+<li>需求管理，关注管理一组不断演化的需求：<ul>
+<li>要接受“需求会变动”的事实，分析需求是要确定哪些是稳定的需求，哪些是易变的需求</li>
+<li>需求变更要经过评审，以一种可控制的方式将需求变更融入到项目中</li>
+<li>每项需求都能与其对应的设计、源代码、测试用例联系起来，并跟踪</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="第三章-软件需求分析实战：在线点餐系统"><a href="#第三章-软件需求分析实战：在线点餐系统" class="headerlink" title="第三章 软件需求分析实战：在线点餐系统"></a>第三章 软件需求分析实战：在线点餐系统</h2><ol>
+<li>为解决现场就餐的各个难题，某大学准备开发一套在线订餐系统，覆盖大学内的所有的餐饮供应商，系统只面向大学生和教师，用户使用订餐系统时需实名注册<ul>
+<li>订餐用户通过系统可以完成订餐和评价</li>
+<li>商家可以管理系统本商家的餐饮信息</li>
+<li>管理员可以管理用户和商家信息</li>
+</ul>
+</li>
+</ol>
+<h3 id="软件项目设计约束"><a href="#软件项目设计约束" class="headerlink" title="软件项目设计约束"></a>软件项目设计约束</h3><ol>
+<li>产品范围和用户群体<ul>
+<li>产品范围：校网的在线网站</li>
+<li>用户群体：大学生和老师、校园商家</li>
+</ul>
+</li>
+<li>运行环境<ul>
+<li>本系统主要采用以下技术，属于业界主流的成熟技术，且所开发系统业界已有成熟案例</li>
+<li>开发语言：Java</li>
+<li>web 框架：Spring boot、vuejs</li>
+<li>数据库：MysQL</li>
+</ul>
+</li>
+<li>项目开发平台<ul>
+<li>操作系统：Windows10</li>
+<li>应用服务器：Ubuntu Server 14.04LTS64位</li>
+<li>服务器配置：CPU：4核 内存：8GB 公网带宽：10Mbps 硬盘：100G</li>
+</ul>
+</li>
+</ol>
+<h3 id="软件需求分析开展步骤"><a href="#软件需求分析开展步骤" class="headerlink" title="软件需求分析开展步骤"></a>软件需求分析开展步骤</h3><ol>
+<li>用户需求分析</li>
+<li>使用Use Case方法分析功能性需求</li>
+<li>非功能性需求范围分析</li>
+<li>非功能性需求详细分析</li>
+<li>输出软件需求规格说明书</li>
+</ol>
+<h4 id="第一步：-用户需求分析"><a href="#第一步：-用户需求分析" class="headerlink" title="第一步： 用户需求分析"></a>第一步： 用户需求分析</h4><ol>
+<li>店铺管理员<ul>
+<li>能够在所管理的店铺中添加新的菜品或饮品</li>
+<li>能够在所管理的店铺中下架（删除）新的菜品或饮品</li>
+<li>能够在所管理的店铺中接受用户提交的订单</li>
+</ul>
+</li>
+<li>顾客（订餐用户）<ul>
+<li>能够查看所有的店铺列表</li>
+<li>能够进入某个店铺内部查看具体的菜品/饮品</li>
+<li>能够在某个店铺内把指定的菜品/饮品加入到购物车</li>
+</ul>
+</li>
+<li>系统管理员<ul>
+<li>审核店铺注册信息的真实性</li>
+<li>清除无效用户/店铺信息</li>
+<li>发布/修改/删除系统公告</li>
+</ul>
+</li>
+</ol>
+<h4 id="第二步：使用Use-Case方法分析功能性需求"><a href="#第二步：使用Use-Case方法分析功能性需求" class="headerlink" title="第二步：使用Use Case方法分析功能性需求"></a>第二步：使用Use Case方法分析功能性需求</h4><ol>
+<li><p>功能性需求是指<strong>描述系统对用户提供的功能或服务</strong>的一类需求。</p>
+</li>
+<li><p>用例图</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E5%9C%A8%E7%BA%BF%E8%AE%A2%E9%A4%90%E7%B3%BB%E7%BB%9FUse%20Case.png?raw=true" alt="Use Case"></p>
+</li>
+<li><p>描述示例：</p>
+<table>
+<thead>
+<tr>
+<th>用例名称</th>
+<th>订餐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Actor</td>
+<td>订餐者</td>
+</tr>
+<tr>
+<td>描述</td>
+<td>订餐者使用系统完成订餐</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>订餐者已登录</td>
+</tr>
+<tr>
+<td>主成功场景</td>
+<td>1.订餐者选择店铺；<br>2.系统展示该店铺的有关餐饮信息；<br>3.订餐者选择所需餐饮；<br>4.订餐者提交订单；<br>5.订餐者完成付款</td>
+</tr>
+<tr>
+<td>后置条件</td>
+<td>系统保存订单数据，并发送通知给商家</td>
+</tr>
+<tr>
+<td>扩展场景</td>
+<td>5a.订餐者关联卡账户余额不足，提示付款失败</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h4 id="第三步：非功能性需求范围分析"><a href="#第三步：非功能性需求范围分析" class="headerlink" title="第三步：非功能性需求范围分析"></a>第三步：非功能性需求范围分析</h4><ol>
+<li>非功能性需求是指那些<strong>不直接关系到软件向用户提供的具体功能/服务的一类</strong>需求，它们通常与软件的总体特 性相关，如界面、安全性、响应时间、可靠性等</li>
+<li>系统UI<ul>
+<li>好的Ul设计不仅是让软件变得有个性有品味，还让软件的操作变得舒适、简单、自由，充分体现软件的定位和特点</li>
+</ul>
+</li>
+<li>安全性<ul>
+<li>包括访问安全、数据安全等。访问安全要能应对黑客常用的SQl注入、OS命令注入、XML注入等攻击方式；数据库建立主从备份机制，主数据库遇到故障系统能自动切换到备份数据库</li>
+</ul>
+</li>
+<li>性能要求<ul>
+<li>主要指用户高峰期登录系统后操作界面时的响应时间，系统需能支撑500个用户同时在线点餐时，在网络正常的情况下，界面响应时间要小于1S</li>
+</ul>
+</li>
+<li>可靠性<ul>
+<li>在各种复杂的网络情况下，系统能够保持7*24服务不中断，用户随时可以订餐、进行店铺管理或系统管理</li>
+</ul>
+</li>
+</ol>
+<h4 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h4><h5 id="系统UI"><a href="#系统UI" class="headerlink" title="系统UI"></a>系统UI</h5><ol>
+<li>UI是系统中用户能直接看到并与之交互作用的部分，直接关系到用户体验的好坏，因此设计 一个美观、简洁、操作方便的用户界面非常重要</li>
+<li>UI框架<ul>
+<li>由于前段框架使用vue，因此我们选择Element作为Ul框架，Element是套基于Vue2，0的桌面端组件库</li>
+</ul>
+</li>
+<li>浏览器支持<ul>
+<li>Web 浏览器：Chrome、IE11、Firefox、Opera、afari、及任何支持HTML5标准的浏览器</li>
+</ul>
+</li>
+<li>分辨率支持<ul>
+<li>标准分辨率：1920<em>1080、1680</em>1050、1600<em>900、1440</em>1050、1440*900、2K</li>
+</ul>
+</li>
+</ol>
+<h5 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h5><ol>
+<li>由于在线点餐系统因为涉及到在线支付等敏感功能，因此对安全性要求较高</li>
+<li><strong>软件安全性（Security）</strong>是指为了保持信息的机密性、完整性和可用性，系统对恶意威胁的防护能力。可能的威胁包括但不 限于未授权访问、使用、泄露、破坏、修改、毁灭等</li>
+<li>本系统应能抵御如下几种常见攻击：SQL注入、XSS (Cross-Site Scripting，跨站脚本攻击)、OS命令注入攻击等</li>
+</ol>
+<h5 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性"></a>可靠性</h5><ol>
+<li>软件可靠性是软件产品在规定的条件下和规定的时间区间完成规定功能的能力。软件可靠性不但与软件存在的缺陷有关，而且与系统的输入和系统的使用有关</li>
+<li>为了让在线点餐系统给用户提供高可靠性的服务，对标业界经验，并结合系统每年允许出现的故障次数和故障等级，对系统可靠性标准做了如下定义：<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th>故障描述</th>
+<th align="center">允许理次数(/年)</th>
+<th align="center">故障等级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td>用户使用在线点餐系统无响应或发生系统错误，导致用户无法正常点餐、支付，店铺无法接单等，且在24小时内没有解决问题</td>
+<td align="center">0</td>
+<td align="center">严重</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>用户在线点餐、提交订单、在线支付、在线接单等响应极慢，且该异常状态持续30分钟以上，且12小时内没有解决问题</td>
+<td align="center">低于2次</td>
+<td align="center">重大</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td>独立页面出现故障，未对其它业务流程造成影响，且在12小时内解决问题</td>
+<td align="center">低于10次</td>
+<td align="center">可控</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h5 id="系统性能"><a href="#系统性能" class="headerlink" title="系统性能"></a>系统性能</h5><ol>
+<li>在线点餐系统的用户主要是校园师生，使用特点是早中晚的用餐时间为系统的使用高峰期，结合这些特点，我们重点关注：系统的平均响应时间和并发数<ul>
+<li>平均响应时间：是指从发送请求到收到请求返回结果的平均时间，直观上反映系统的快慢，因此需要对重点业务要求有较短的响应时间</li>
+<li>并发数：是系统同时能处理的请求数，例如，在晚饭高峰期，系统要能支撑50个用户同时提交订单</li>
+</ul>
+</li>
+<li>在线点餐系统平均响应时间要求：<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th>业务</th>
+<th align="center">平均响应时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td>用户：浏览餐品、点餐、提交订单页面<br>商家：接单、查看订单页面</td>
+<td align="center">1-2s</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td>用户：查看订单状态、对订单/餐品评价<br>商家：查看餐品剩余数量、用户评价等2-3s</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td>商家：查看月度营业额等统计数据<br>系统管理员：查看平台各个店铺营业额</td>
+<td align="center">3-5s</td>
+</tr>
+</tbody></table>
+</li>
+<li>在线点餐系统并发数要求：<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">并发数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>□</td>
+<td align="center">100&lt;并发数</td>
+<td>能支撑小于100人同时点餐</td>
+</tr>
+<tr>
+<td>√</td>
+<td align="center">100并发数&lt;1000</td>
+<td>能支撑大于100人但小于1000人同时点餐</td>
+</tr>
+<tr>
+<td>□</td>
+<td align="center">1000≤并发数</td>
+<td>能支撑超过1000人同时点餐</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h4 id="第五步：输出软件需求规格说明书"><a href="#第五步：输出软件需求规格说明书" class="headerlink" title="第五步：输出软件需求规格说明书"></a>第五步：输出软件需求规格说明书</h4><ol>
+<li><p>软件需求规格说明书中应包含的章节：</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E8%BD%AF%E4%BB%B6%E9%9C%80%E6%B1%82%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6.png?raw=true" alt="软件需求规格说明书"></p>
+</li>
+</ol>
+<hr>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><ol>
+<li><p>企业微信的文件大小限制过低，仅有10M；将移动端的需求与PC端混为一谈，100M文件大小限制足以应对移动端无线传输能力，但对PC端而言100M文件的本地传输是远远不足的；</p>
+<ul>
+<li>腾讯本身的考虑：个人生活和工作分开</li>
+</ul>
+</li>
+<li><p>还有聊天框删除会导致聊天记录丢失。不知道是否是安全性的需求才导致了这样的设计</p>
+<ul>
+<li>处于隐私的考虑，如果支持聊天框删除，说明在服务器存了用户的聊天记录</li>
+</ul>
+</li>
+<li><p>给人的感觉就是微信在努力做一个轻量的社交软件，但是事实上他的用途又是工作和学习</p>
+<ul>
+<li>腾讯方面一直不想让他作为工作学习工具</li>
+</ul>
+</li>
+<li><p>拓展性不够，用户的需求增加，微信不能很好满足</p>
+</li>
+<li><p>运行LOG记录在开发时这个需求一般是接纳的。</p>
+<ul>
+<li>状态监控：可以监控系统的运行状态。</li>
+<li>安全审计：通过对日志进行分析，可以发现是否存在非授权的操作</li>
+<li>问题追踪：发现程序BUG，安装配置的使得问题</li>
+<li>但软件发布给用户时，日志需要加密保护</li>
+</ul>
+</li>
+<li><p>我觉得“运行log记录”这个需求是需要接纳的，因为log记录的作用一方面可以显示程序当前的运行状态，另一方面可以在程序出现问题后定位问题。通过对日志记录的统计分析，发现和排除出错原因，也可以加强系统的维护和管理</p>
+<ul>
+<li>设计与外部交互的，比如输入和参数，都需要log，追踪</li>
+<li>跑飞时刻的内存的镜像等，但是也会设计用户隐私</li>
+<li>登录类的，登入登出之类的</li>
+<li>…</li>
+</ul>
+</li>
+<li><p>手机克隆因为手机版本差异会无法实现克隆</p>
+<ul>
+<li>克隆桌面的整理</li>
+<li>…</li>
+</ul>
+</li>
+<li><p>怎么才能做好需求的理解？</p>
+</li>
+<li><p>请再举一些“真正”的需求？</p>
+</li>
+<li><p>怎么才能做好需求管理？</p>
+</li>
+</ol>
+<p>大学生、教师、其他工人</p>
+<p>在线点餐、评价、菜品管理、管理商店信息、用户信息</p>
+<p>几万单、十几万单</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/英语笔译/英语笔译-2020-3-19" rel="prev" title="英语笔译--第三节">          
+                <i class="fa fa-chevron-left"></i> 英语笔译--第三节
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/操作系统/操作系统Ⅰ-2020-3-18" rel="next" title="操作系统Ⅰ--第二节(Chapter2：Operating-System Structures)">
+                操作系统Ⅰ--第二节(Chapter2：Operating-System Structures) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YJ Song</p>
+              <p class="site-description motion-element" itemprop="description">Show me code!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fdss-song" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yearito.cn/" title="yearito" target="_blank">yearito</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-软件需求分析基础"><span class="nav-text">第一章 软件需求分析基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安卓之父创业的故事"><span class="nav-text">安卓之父创业的故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows-VISTA的故事"><span class="nav-text">Windows VISTA的故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Google"><span class="nav-text">Google+</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例总结"><span class="nav-text">案例总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件需求分析内容"><span class="nav-text">软件需求分析内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#软件的功能需求"><span class="nav-text">软件的功能需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件的非功能性需求"><span class="nav-text">软件的非功能性需求</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#软件需求分析的非功能性需求：性能需求"><span class="nav-text">软件需求分析的非功能性需求：性能需求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件需求分析的非功能性需求：数据安全"><span class="nav-text">软件需求分析的非功能性需求：数据安全</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#界面需求——拟物化与扁平化之争"><span class="nav-text">界面需求——拟物化与扁平化之争</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件与硬件或其他外部系统接口"><span class="nav-text">软件与硬件或其他外部系统接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件设计和实现上的限制"><span class="nav-text">软件设计和实现上的限制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设计约束"><span class="nav-text">设计约束</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#讨论"><span class="nav-text">讨论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-软件需求分析过程"><span class="nav-text">第二章 软件需求分析过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大型企业要重视需求"><span class="nav-text">大型企业要重视需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何识别真正的客户需求"><span class="nav-text">如何识别真正的客户需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大型企业要重视需求-1"><span class="nav-text">大型企业要重视需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需求分析目的和任务"><span class="nav-text">需求分析目的和任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件需求分析过程"><span class="nav-text">软件需求分析过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件需求的用户实例：use-case举例"><span class="nav-text">软件需求的用户实例：use case举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件需求文档"><span class="nav-text">软件需求文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件需求跟踪管理"><span class="nav-text">软件需求跟踪管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三章-软件需求分析实战：在线点餐系统"><span class="nav-text">第三章 软件需求分析实战：在线点餐系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#软件项目设计约束"><span class="nav-text">软件项目设计约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软件需求分析开展步骤"><span class="nav-text">软件需求分析开展步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步：-用户需求分析"><span class="nav-text">第一步： 用户需求分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：使用Use-Case方法分析功能性需求"><span class="nav-text">第二步：使用Use Case方法分析功能性需求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步：非功能性需求范围分析"><span class="nav-text">第三步：非功能性需求范围分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四步"><span class="nav-text">第四步</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#系统UI"><span class="nav-text">系统UI</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安全性"><span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#可靠性"><span class="nav-text">可靠性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#系统性能"><span class="nav-text">系统性能</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第五步：输出软件需求规格说明书"><span class="nav-text">第五步：输出软件需求规格说明书</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课堂讨论"><span class="nav-text">课堂讨论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YJ Song</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+          $('#sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('#footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            offsetX: ,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+</body>
+</html>

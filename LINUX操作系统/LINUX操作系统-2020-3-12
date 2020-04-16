@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="终端组合键12$ stty -a   # 查看系统支持的所有终端组合键$ stty sane # 恢复缺省设置，也可使用reset命令   CTRL-\ 退出进程，将对应内存状态保存到core文件中 CTRL-C 和 CTRL-\ 都有可能被忽略，但是 CTRL-Z 无法忽略，fg 命令将最近的后台命令转为前台 CTRL-S 表示暂停屏幕输出，CTRL-Q 表示恢复屏幕输出 建议关闭 CTRL-S">
+<meta name="keywords" content="课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LINUX操作系统--第三节(文件系统初步)">
+<meta property="og:url" content="http://yoursite.com/LINUX操作系统/LINUX操作系统-2020-3-12">
+<meta property="og:site_name" content="Song&#39;s Blog">
+<meta property="og:description" content="终端组合键12$ stty -a   # 查看系统支持的所有终端组合键$ stty sane # 恢复缺省设置，也可使用reset命令   CTRL-\ 退出进程，将对应内存状态保存到core文件中 CTRL-C 和 CTRL-\ 都有可能被忽略，但是 CTRL-Z 无法忽略，fg 命令将最近的后台命令转为前台 CTRL-S 表示暂停屏幕输出，CTRL-Q 表示恢复屏幕输出 建议关闭 CTRL-S">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/bash%E7%BB%84%E5%90%88%E9%94%AE.jpg?raw=true">
+<meta property="og:updated_time" content="2020-03-12T12:41:37.482Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LINUX操作系统--第三节(文件系统初步)">
+<meta name="twitter:description" content="终端组合键12$ stty -a   # 查看系统支持的所有终端组合键$ stty sane # 恢复缺省设置，也可使用reset命令   CTRL-\ 退出进程，将对应内存状态保存到core文件中 CTRL-C 和 CTRL-\ 都有可能被忽略，但是 CTRL-Z 无法忽略，fg 命令将最近的后台命令转为前台 CTRL-S 表示暂停屏幕输出，CTRL-Q 表示恢复屏幕输出 建议关闭 CTRL-S">
+<meta name="twitter:image" content="https://github.com/thu-song/blog-pictures/blob/master/bash%E7%BB%84%E5%90%88%E9%94%AE.jpg?raw=true">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/LINUX操作系统/LINUX操作系统-2020-3-12">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>LINUX操作系统--第三节(文件系统初步) | Song's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Song's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/LINUX操作系统/LINUX操作系统-2020-3-12">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YJ Song">
+      <meta itemprop="description" content="Show me code!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Song's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LINUX操作系统--第三节(文件系统初步)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-12 16:48:00" itemprop="dateCreated datePublished" datetime="2020-03-12T16:48:00+08:00">2020-03-12</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="终端组合键"><a href="#终端组合键" class="headerlink" title="终端组合键"></a>终端组合键</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ stty -a   <span class="comment"># 查看系统支持的所有终端组合键</span></span><br><span class="line">$ stty sane <span class="comment"># 恢复缺省设置，也可使用reset命令</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>CTRL-\</code> 退出进程，将对应内存状态保存到core文件中</li>
+<li><code>CTRL-C</code> 和 <code>CTRL-\</code> 都有可能被忽略，但是 <code>CTRL-Z</code> 无法忽略，<code>fg</code> 命令将最近的后台命令转为前台</li>
+<li><code>CTRL-S</code> 表示暂停屏幕输出，<code>CTRL-Q</code> 表示恢复屏幕输出<ul>
+<li>建议关闭 <code>CTRL-S/Q</code>：<code>stty -ixon -ixoff</code></li>
+<li>建议将其添加到bash配置文件：用户HOME目录下的<code>.bashrc</code>中</li>
+</ul>
+</li>
+<li>输入特殊字符：<strong>首先按&lt;CTRL-V&gt;然后按特殊按键，比如&lt;CTRL-C&gt;</strong></li>
+</ol>
+<hr>
+<h2 id="bash组合键：man-readline"><a href="#bash组合键：man-readline" class="headerlink" title="bash组合键：man readline"></a>bash组合键：man readline</h2><ol>
+<li><p>bash使用readline库支持命令行输入和编辑，可以使用readline快捷键</p>
+</li>
+<li><p>内置命令<code>bind</code>可查看和设置readline键映射及readline变量 </p>
+<ul>
+<li><code>bind -p</code>列出快捷键和相应的功能</li>
+<li><code>\C</code>表示ctrl，<code>\e</code>表示ESC</li>
+</ul>
+</li>
+<li><p><code>/etc/inputrc</code>和<code>~/.inputrc</code>: readline的设置和键映射的配置文件</p>
+<ul>
+<li>可以用来设置readline映射</li>
+<li><code>~/.inputrc</code>是readline对应的配置文件，可以用来设计readline库和对应键的映射<ul>
+<li>新建<code>~/.inputrc</code>，之后参照<code>/etc/inputrc</code>添加映射</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>bash组合键<br> <img src="https://github.com/thu-song/blog-pictures/blob/master/bash%E7%BB%84%E5%90%88%E9%94%AE.jpg?raw=true" alt="bash组合键"></p>
+<ul>
+<li>带<code>*</code>为终端组合键，在其他地方也可以使用</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="文件系统基础"><a href="#文件系统基础" class="headerlink" title="文件系统基础"></a>文件系统基础</h2><ol>
+<li>文件是用于存储信息的容器</li>
+<li>Linux系统中，文件是一个广泛的定义<ul>
+<li>可以是保存在硬盘、U盘或者光盘上的数据</li>
+<li>可以是键盘、鼠标、显示器、打印机等物理设备</li>
+<li>可以是系统虚拟的文件等，如内核维护的相关信息</li>
+</ul>
+</li>
+<li>每个文件有一个名字，可通过标准的(读、写和ioctl)接口访问文件</li>
+<li>文件系统：将文件按照一定的方式组织和管理<ul>
+<li>引入“目录”的概念，将整个Linux文件系统组织成一颗大的层次结构的目录树</li>
+<li>目录(directory)也是特殊类型的文件，用来“包含”文件：<ul>
+<li>有时也称为文件夹(File Folder)</li>
+<li>目录还可以包含其他目录</li>
+<li>目录维护了如何组织和访问其他文件以及子目录的信息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><ol>
+<li>Windows操作系统中可以有多个目录树，不同的磁盘分区对应不同的目录树</li>
+<li>Linux操作系统以唯一目录树的形式来组织</li>
+<li>根节点称为根(root)目录，用<code>/</code>来表示</li>
+<li>目录树中的名字只需在其所在目录中唯一</li>
+<li>路径名(pathname): 路径分隔符为<code>/</code><ul>
+<li>绝对路径名：以<code>/</code>开始，从根目录开始逐级子目录寻找直到到达最终的目录项。如 <code>/home/apple/linux/quizs/quiz1.pdf</code></li>
+<li>相对路径名：不以<code>/</code>开始，从当前工作目录开始<ul>
+<li>为用户维护一个工作目录，登录时被自动设置为该用户的主目录(在用户被设置时创建，<code>/etc/passwd</code> 文件)</li>
+<li>假设当前工作目录为 <code>/home/apple</code> ，相对路径名可以为 <code>linux/quizs/quiz1.pdf</code></li>
+</ul>
+</li>
+<li>允许出现多个连续的 <code>/</code> ，相当于一个<code>/</code>，比如 <code>//home////apple</code> 等价于 <code>/home/apple</code></li>
+</ul>
+</li>
+<li>每个目录文件包括两个特殊的目录项<ul>
+<li><code>.</code>(单个点)表示当前目录</li>
+<li><code>..</code>(双点)表示当前目录的父目录，如果当前目录已经是根目录，则其父目录也是根目录本身</li>
+<li>不管是绝对路径还是相对路径，当前目录(<code>.</code>)和父目录(<code>..</code>)都可在路径名中出现 <code>/home/apple/linux/../../apple/linux/./quizs/quiz1.pdf</code> 相当于 <code>/home/apple/linux/quizs/quiz1.pdf</code></li>
+<li>假设当前工作目录为 <code>/home/peach</code> ，<code>../apple/linux/quizs/quiz1.pdf</code> 相当于 <code>/home/apple/linux/quizs/quiz1.pdf</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="路径名解析相关指令：dirname-basename-realpath"><a href="#路径名解析相关指令：dirname-basename-realpath" class="headerlink" title="路径名解析相关指令：dirname/basename/realpath"></a>路径名解析相关指令：dirname/basename/realpath</h2><ol>
+<li><code>dirname pathname...</code>：<ul>
+<li>返回路径名(pathname)中除了最后一个名字外前面的部分，即<strong>所在目录</strong></li>
+</ul>
+</li>
+<li><code>basename pathname...</code>：<ul>
+<li>返回路径名(pathname)中最后一个名字，即<strong>文件名</strong></li>
+</ul>
+</li>
+<li><code>realpath [OPTIONS] pathname...</code>：<ul>
+<li>返回路径名解析后的<strong>绝对路径名</strong>，缺省除了最后一个部分外前面的名字都必须存在 </li>
+<li><code>-e</code>, <code>--canonicalize-existing</code> 路径名中的名字必须实际存在</li>
+<li><code>-m</code>, <code>--canonicalize-missing</code> 不检查路径名中的名字是否存在</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="改变目录和波浪号扩展"><a href="#改变目录和波浪号扩展" class="headerlink" title="改变目录和波浪号扩展"></a>改变目录和波浪号扩展</h2><ol>
+<li><code>pwd</code>命令: 查看当前工作目录，print working directory</li>
+<li><code>cd [dir]</code>: 改变工作目录到dir <ul>
+<li><code>cd</code>后面没有参数时表示工作目录设置为用户主目录</li>
+<li>参数为<code>-</code>，表示工作目录设置为先前的工作目录</li>
+</ul>
+</li>
+<li>如果希望在多个目录间切换<ul>
+<li>内置命令<code>pushd/popd</code>维护一个目录栈</li>
+<li><code>dirs</code>命令查看目录栈</li>
+<li><code>help [topic]</code> 查看bash内置命令的帮助信息</li>
+</ul>
+</li>
+<li>也可以对目录设置别名</li>
+<li>shell支持<strong>波浪号扩展(Tilde expansion)</strong><ul>
+<li>单独的波浪号<code>~</code>表示当前用户的主目录，而<code>~user</code>表示用户user的主目录<ul>
+<li>如果用户名不存在时，波浪号扩展无法展开，仍然是<code>~user</code></li>
+</ul>
+</li>
+<li>波浪号扩展应该出现在一个单词(word)开始，且接下来是单词结束或者<code>/</code></li>
+</ul>
+</li>
+<li><code>set -x</code>  打开bash的xtrace功能, 在执行命令前将命令输出<ul>
+<li><code>set +x</code> 关闭bash的xtrace功能</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="改变文件时间命令touch"><a href="#改变文件时间命令touch" class="headerlink" title="改变文件时间命令touch"></a>改变文件时间命令touch</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">touch [-acm] [-t timestamp] [-d, --date=STRING] FILE…</span><br><span class="line"><span class="comment"># -a 仅改变访问时间atime </span></span><br><span class="line"><span class="comment"># -m 仅改变修改时间mtime </span></span><br><span class="line"><span class="comment"># -t time  指定时间，格式为[[CC]YY]MMDDhhmm[.ss] </span></span><br><span class="line"><span class="comment"># -r, --reference=BASE  使用文件BASE的相同时间</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>创建新的空文件：如果文件FILE不存在, 缺省情况下touch会创建一个长度为0的普通文件</li>
+<li>改变文件的时间：如果FILE存在, 内容不变, 仅改变时间。缺省修改和访问时间都设置为当前时刻</li>
+<li>每个文件(目录等)保存的时间信息包括： <ul>
+<li>修改时间<code>mtime</code>: 修改文件内容时更新</li>
+<li>访问时间<code>atime</code>:  访问(读)文件时更新</li>
+<li>状态改变时间<code>ctime</code>: 文件内容或元信息(如权限/名字/时间等)改变时更新, 用户无法改变ctime，而是内核自动更新</li>
+<li>【疑问】ctime不可以由用户改变吗</li>
+</ul>
+</li>
+<li>Mac OS还保存了出生时间<code>birth time</code>，即创建该文件的时间</li>
+<li>修改文件时一般<code>mtime/atime/ctime</code>都更新，读文件一般仅atime更新</li>
+<li>用途：<ul>
+<li>修改时间，强制make重新编译文件</li>
+<li>备份某一个时间之后修改过的文件，先设置一个BASE时间</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="文件名格式"><a href="#文件名格式" class="headerlink" title="文件名格式"></a>文件名格式</h2><ol>
+<li>Linux文件名(包括目录等)<strong>区分大小写</strong>，最长255个字符，<strong>路径名最长4096个字符</strong></li>
+<li>文件名不能命名为<strong>单点和双点</strong>，也不能包含<strong>斜杠/和NULL字符</strong>（ASCII码为0）字符，除此之外可以包含任何字符</li>
+<li>虽然可以使用后缀，但与windows系统中严重依赖文件后缀不同，Linux对此并没有任何的假设</li>
+<li>不建议包含特殊字符，而是建议仅使用字母数字以及点(<code>.</code>)、连字符(<code>-</code>)和下划线(<code>_</code>)，且避免第一个字符为连字符，也不建议包含空格<ul>
+<li>如果第一个字符为连字符，在作为参数时可能会被命令解释为短选项</li>
+<li>【疑问】：<code>touch -apple</code> 为啥不会被解析为 <code>touch -a pple</code></li>
+<li>如果文件名中包含了空格(如1 quiz1.txt)，在作为参数时可能会被解释为两个以上的参数(1和quiz1.txt)</li>
+</ul>
+</li>
+<li>如果要包含<strong>shell扩展中用到的字符(如空格*&amp;|&gt;&lt;等)</strong>，文件名参数可以用<strong>单(双)引号</strong>括起来，表示不进行扩展</li>
+</ol>
+<hr>
+<h2 id="列目录命令ls"><a href="#列目录命令ls" class="headerlink" title="列目录命令ls"></a>列目录命令ls</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls [OPTION]... [FILE]...</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>Linux系统中使用最多的命令</p>
+</li>
+<li><p>显示FILE对应的文件或目录的信息</p>
+<ul>
+<li>后面不带参数，表示列出当前目录(.)的内容</li>
+<li>如果FILE是目录时会缺省会列出该目录包含的内容</li>
+</ul>
+</li>
+<li><p>缺省情况下: </p>
+<ul>
+<li>以短格式输出，仅仅显示<strong>文件或者目录名</strong>，而不会显示详细信息</li>
+<li>不会显示那些以<code>.</code>开始的文件名（隐藏文件）</li>
+<li>显示的内容按照locale环境设置根据文件名进行排序，一般为字典顺序<ul>
+<li>字典顺序：按照0-9…aAbBcC…zZ等顺序，这样<strong>不管大小写</strong>，那些相同前缀的名字排列在一起</li>
+</ul>
+</li>
+<li>如果标准输出为终端，则缺省多列显示(<code>-C</code>)</li>
+<li>如果标准输出不是终端，则缺省每行一个文件(<code>-1</code>)</li>
+</ul>
+</li>
+<li><p><strong>隐藏文件</strong>：那些名字以点(.)开始的的文件或目录, ls缺省不会显示，缓存目录或者临时目录</p>
+<ul>
+<li><code>-a</code> 选项：显示隐藏文件，包括当前目录(.)和父目录(..)</li>
+<li><code>-A</code> 选项：与<code>-a</code>类似，但是当前目录和父目录不会显示</li>
+</ul>
+</li>
+<li><p><code>-F</code>, <code>--classify</code>: 文件名后面添加类型指示 (*/=&gt;@|)</p>
+<ul>
+<li>区分文件类型</li>
+<li><table>
+<thead>
+<tr>
+<th>-l</th>
+<th align="left">含义</th>
+<th align="left">-F附加</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-</td>
+<td align="left">普通文件</td>
+<td align="left"><strong>*可执行</strong></td>
+</tr>
+<tr>
+<td>d</td>
+<td align="left">目录</td>
+<td align="left">/</td>
+</tr>
+<tr>
+<td>b</td>
+<td align="left">块设备文件</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>c</td>
+<td align="left">字符设备文件</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td>l</td>
+<td align="left">符号连接</td>
+<td align="left"><strong>@</strong></td>
+</tr>
+<tr>
+<td>p</td>
+<td align="left">FIFO</td>
+<td align="left">|</td>
+</tr>
+<tr>
+<td>s</td>
+<td align="left">socket</td>
+<td align="left">=</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li><p><code>-l</code> 长列表方式显示</p>
+<ul>
+<li>参数为目录时缺省列出该目录的内容</li>
+<li>  drwxr-xr-x | 2 | root | root | 4096 | Feb 23 14:19 | bin<br>  |–|–|–|–|–|–|–|<br>  文件类型+访问模式 | 引用计数 | 拥有者 | 用户组 | 文件大小，字节 (<code>-h</code>友好方式显示) | 修改时间 | 文件名</li>
+</ul>
+</li>
+<li><p><code>-d</code>, <code>--directory</code>  显示目录本身的信息</p>
+<ul>
+<li><code>-d</code>选项经常与<code>-l</code>选项一起使用</li>
+</ul>
+</li>
+<li><p><code>-R</code>, <code>--recursive</code>  (深度优先)递归列出目录及子目录内容</p>
+</li>
+<li><p>长列表时缺省显示修改时间：</p>
+<ul>
+<li>如果时间为最近6个月，则不包括年份但是包括小时分钟</li>
+<li>如果超过6个月则显示包括年份在内的日期</li>
+<li><code>ls –l</code> 缺省显示的是修改时间</li>
+<li><code>ls -lu</code> 显示访问时间(use time)</li>
+<li><code>ls –lc</code> 显示状态改变时间(change time)</li>
+</ul>
+</li>
+<li><p><code>-i</code>, <code>--inode</code> 显示inode编号</p>
+</li>
+<li><p><strong>排序控制: 缺省文件名先后顺序排序</strong></p>
+<ul>
+<li><code>-r</code>, <code>--reverse</code> 反向排序</li>
+<li><code>-X</code>, <code>--sort=extension</code>  按照后缀排序，没有后缀的优先</li>
+<li><code>-S</code>, <code>--sort=size</code>  按照文件大小排序，缺省<strong>从大到小</strong></li>
+<li><code>-t</code>, <code>--sort=time</code>  按照时间排序，缺省为修改时间，最新优先(<strong>从新到旧</strong>）</li>
+<li><code>-ltc</code>  状态改变时间排序，显示的为状态改变时间</li>
+<li><code>-ltu</code>, 访问时间排序，显示的为访问时间</li>
+<li><code>-U</code>, <code>--sort=none</code>  不排序 （目录顺序）</li>
+</ul>
+</li>
+<li><ul>
+<li><code>ls –l</code>  按照文件名排序</li>
+<li><code>ls –lX</code>  按照文件后缀顺序排列</li>
+<li><strong><code>ls –lSr</code>  按照文件大小从小到大的顺序排列</strong></li>
+<li><strong><code>ls –ltr</code>   按照修改时间从旧到新的顺序排序</strong></li>
+<li><strong><code>ls –ltu</code>  按照访问时间从新到旧的顺序排序</strong></li>
+<li><code>ls –ltcr</code>  按照状态改变时间从旧到新的顺序排序  </li>
+</ul>
+</li>
+<li><p>按照大小顺序从大到小排列， head取前面6行， sed 1d去掉最前面的一行，显示前面5个最大的文件：<code>ls -lS / | head -6 | sed 1d</code></p>
+</li>
+</ol>
+<hr>
+<h2 id="tree-查看目录树"><a href="#tree-查看目录树" class="headerlink" title="tree 查看目录树"></a>tree 查看目录树</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tree [OPTIONS] [directories…]</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>Ubuntu缺省没有包含tree命令，可通过<code>sudo apt install tree</code>安装</li>
+<li>以树的方式列出目录树中某个分支的内容，缺省通过缩进方式显示，彩色输出(使用环境变量LS_COLORS的设置)，也可输出为HTML/XML或JSON格式</li>
+<li><table>
+<thead>
+<tr>
+<th>选项</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-d</code></td>
+<td align="left"><strong>仅仅列出目录，缺省包含目录和文件</strong></td>
+</tr>
+<tr>
+<td><code>-L</code></td>
+<td align="left"><strong>level 显示几层目录</strong></td>
+</tr>
+<tr>
+<td><code>-x</code></td>
+<td align="left">表示不允许跨越到其他文件系统</td>
+</tr>
+<tr>
+<td><code>-a</code></td>
+<td align="left"><strong>允许隐藏目录和文件，缺省不包含在内</strong></td>
+</tr>
+<tr>
+<td><code>-H</code></td>
+<td align="left">base 输出为HTML格式，目录和文件的超链接最前面为base</td>
+</tr>
+<tr>
+<td><code>-X</code></td>
+<td align="left">输出XML格式</td>
+</tr>
+<tr>
+<td><code>-J</code></td>
+<td align="left">输出JSON格式</td>
+</tr>
+<tr>
+<td><code>-l</code></td>
+<td align="left">如果符号连接指向目录，则展开符号连接</td>
+</tr>
+<tr>
+<td><code>-I</code></td>
+<td align="left">pattern 不列出与模式pattern(可使用标准通配符加上表示任一模式的</td>
+</tr>
+<tr>
+<td><code>-F</code></td>
+<td align="left"><strong>文件名后添加类型指示</strong></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<hr>
+<h2 id="创建目录mkdir"><a href="#创建目录mkdir" class="headerlink" title="创建目录mkdir"></a>创建目录mkdir</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir [-p] directory…   <span class="comment"># 创建目录</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>同一个目录中不允许有两个相同名字的目录项，</li>
+<li>缺省情况下如果父目录不存在时，不能创建子目录<ul>
+<li>从目录树的角度而言，不允许创建一个没有长在树上的新树枝。</li>
+<li><code>-p</code>选项（make parent）如路径上的目录如果不存在，会自动创建途中所有需要的父目录</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="删除目录-rmdir"><a href="#删除目录-rmdir" class="headerlink" title="删除目录 rmdir"></a>删除目录 rmdir</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmdir [-p] directory…   <span class="comment"># 删除目录</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>仅允许删除空目录</li>
+<li>如果想一次性移除一串空目录，可采用<code>-p</code>选项（delete parent），会自动移除途中所有可以移除（为空）的父目录，<code>rmdir -p dir1/dir2/dir3</code> 相当于调用 ( <code>rmdir dir1/dir2/dir3</code>;<code>rmdir dir1/dir2</code>; <code>rmdir dir1</code> )</li>
+<li>如果要递归删除目录下所有内容怎么办？<ul>
+<li><code>rm –R courses</code>  会删除courses开始的子树</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="复制文件和目录命令cp"><a href="#复制文件和目录命令cp" class="headerlink" title="复制文件和目录命令cp"></a>复制文件和目录命令cp</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp [OPTION]  SOURCE DEST                    </span><br><span class="line">cp [OPTION]  SOURCE…  DIRECTORY      </span><br><span class="line">cp [OPTION]... -t DIRECTORY SOURCE...  <span class="comment"># 上一格式的另一种形式，明确为复制到目录，目录必须存在</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>复制文件：复制某个文件并命名为新的名字</li>
+<li>复制文件：如果目的目录存在，复制一个或多个文件到另一个目录，名字不变</li>
+<li>复制目录：要使用-r/-R选项, 将目录递归复制到另一个目录中(可以改名)</li>
+<li>是1还是2？ 如果<strong>最后一个参数存在且为目录Directory</strong>时，表示格式2，即将前面的一个或多个文件复制到该目录中</li>
+<li>如果要复制的位置存在相同的文件名，<strong>权限允许的情况下缺省会直接覆盖</strong>(写得权限)</li>
+<li>复制目录时，要求采用-r(-R)选项，表示递归复制目录下的文件以及子目录，即将目录下的全部内容复制</li>
+</ol>
+<h3 id="复制文件和目录命令cp-覆盖和备份"><a href="#复制文件和目录命令cp-覆盖和备份" class="headerlink" title="复制文件和目录命令cp:  覆盖和备份"></a>复制文件和目录命令cp:  覆盖和备份</h3><ol>
+<li>如果要复制的位置存在相同的文件名，权限允许(即可以写方式打开）时缺省会直接覆盖。权限不允许时会报Permission denied<ul>
+<li><code>-f</code>, <code>--force</code> 表示在文件存在时不询问用户而强制覆盖(先remove然后复制)</li>
+<li><code>-i</code>, <code>--interactive</code> 在覆盖已有文件时询问用户</li>
+<li><code>-n</code>, <code>--no-clobber</code> 表示不覆盖已有文件</li>
+<li><code>-b</code>  已有文件存在而覆盖时保留副本，缺省后缀为<code>~</code>，可通过<code>-S</code>, <code>--suffix=SUFFIX</code> 指定其他后缀<ul>
+<li>缺省只会保留一个副本，第二次会覆盖</li>
+</ul>
+</li>
+<li><code>--u</code>, <code>--update</code> 常用在进行备份时，只有在目的文件不存在（不需要覆盖）或要被覆盖的文件存在但是修改时间更老时才会复制文件</li>
+<li><code>--backup[=CONTROL]</code>: 文件存在时首先备份，给出了如何备份，具体细节参考文档</li>
+</ul>
+</li>
+<li>复制文件相当于<strong>创建一个新的文件</strong>，缺省情况下该文件的拥有者、权限、时间等为创建文件的缺省值，即为当前用户及当前时刻<ul>
+<li><code>-p</code>选项（preserve）:如果有可能，保留原文件的使用者的身份及权限以及时间属性等</li>
+</ul>
+</li>
+</ol>
+<h3 id="cp-复制目录结构和内容"><a href="#cp-复制目录结构和内容" class="headerlink" title="cp:复制目录结构和内容"></a>cp:复制目录结构和内容</h3><ol>
+<li>复制目录时，要求采用 <code>-R</code> 选项或 <code>-a</code> 选项<ul>
+<li><code>-R</code>, <code>-r</code>, <code>--recursive</code>  递归复制目录下的文件及子目录到指定目录</li>
+<li><code>-a</code>, <code>--archive</code> 归档,递归复制，保存原文件的各个属性</li>
+</ul>
+</li>
+<li>目的目录是否存在时，复制目录的行为不一样！<ul>
+<li>如果目的地存在且为目录，则表示将前面的文件和目录递归复制到该目录中</li>
+<li>如果目的地不存在，则表示复制目录并改名<ul>
+<li>相当于首先 <code>mkdir</code> 一个目录，然后使用 <code>-R</code> 选项将源目录中的所有内容再递归复制到这个新建的目录中</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在复制目录时，如果其中的某些目录已经有内容：<ul>
+<li>Linux下的目录复制为<strong>合并(merge)操作</strong>，只有相同的文件会被丢掉</li>
+<li>Mac OS为<strong>replace操作</strong>，需要特别注意</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="移动或重命名命令mv"><a href="#移动或重命名命令mv" class="headerlink" title="移动或重命名命令mv"></a>移动或重命名命令mv</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv [OPTION] SOURCE DEST         <span class="comment"># 移动目录或文件并重命名 </span></span><br><span class="line">mv [OPTION] SOURCE… Directory   <span class="comment"># 移动目录或文件到指定目录(该目录已存在) </span></span><br><span class="line">mv [OPTION] -t Directory SOURCE…   <span class="comment"># 与上面第二种格式功能一致</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>如果新的位置已经有相同的名字(文件或目录)存在，则<strong>覆盖原有的文件或目录</strong></li>
+<li>只能将文件覆盖成文件，或将目录覆盖成目录，且在<strong>覆盖目录时要求被覆盖的目录为空目录</strong></li>
+<li>缺省情况下<strong>覆盖时不询问用户</strong>，所以要谨慎使用 </li>
+<li><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-t</code>, <code>--target-directory=DIRECTORY</code></td>
+<td><strong>移动到指定目录</strong></td>
+</tr>
+<tr>
+<td><code>-i</code>, <code>--interactive</code></td>
+<td>在文件存在时询问是否覆盖</td>
+</tr>
+<tr>
+<td><code>-f</code>, <code>--force</code></td>
+<td>在文件存在不询问用户直接覆盖</td>
+</tr>
+<tr>
+<td><code>-n</code>, <code>--no-clobber</code></td>
+<td>不覆盖已有文件</td>
+</tr>
+<tr>
+<td><code>-b</code></td>
+<td>若需覆盖文件，则覆盖前先行备份，备份文件后缀缺省为~</td>
+</tr>
+<tr>
+<td><code>-S</code>, <code>--suffix=SUFFIX</code></td>
+<td><code>-S</code>, <code>--suffix=SUFFIX</code></td>
+</tr>
+<tr>
+<td><code>-u</code>, <code>--update</code></td>
+<td>目标文件不存在，或目标文件存在但是比源文件旧时才会移动</td>
+</tr>
+<tr>
+<td><code>-v</code>, <code>--verbose</code></td>
+<td>解释要执行的操作</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<hr>
+<h2 id="删除命令rm"><a href="#删除命令rm" class="headerlink" title="删除命令rm"></a>删除命令rm</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm [OPTION]... [FILE]...</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>缺省删除文件, 通过<code>-R</code>选项也可以删除目录</li>
+<li>缺省会不询问就删除文件，但在文件不可写时且为交互式shell时会询问用户是否删除<ul>
+<li>和<code>mv</code>类似</li>
+</ul>
+</li>
+<li>一旦删除成功，则需要用到文件系统修复工具才有可能找回删除的文件<ul>
+<li>ext2/ext3/ext4类型的文件系统可以采用第三方 extundelete</li>
+<li>ext2(ext3/ext4?)类型文件系统也可用系统自带的交互式文件系统调试工具debugfs</li>
+</ul>
+</li>
+<li><code>shred</code>命令可以删除文件（用一些随机数据来覆盖原文件的内容），且很难恢复</li>
+<li><table>
+<thead>
+<tr>
+<th>选项</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-i</code></td>
+<td>删除前每次询问用户</td>
+</tr>
+<tr>
+<td><code>-f</code>, <code>--force</code></td>
+<td>不询问用户就删除</td>
+</tr>
+<tr>
+<td><code>-R</code>, <code>-r</code>, <code>--recursive</code></td>
+<td>删除目录及子目录下的所有内容</td>
+</tr>
+<tr>
+<td><code>-d</code>, <code>--dir</code></td>
+<td>删除空目录</td>
+</tr>
+<tr>
+<td><code>-v</code>, <code>--verbose</code></td>
+<td>解释要执行的操作</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<hr>
+<h2 id="作业"><a href="#作业" class="headerlink" title="作业"></a>作业</h2><ol>
+<li><p>按哪个键删除刚刚输入的最后一个字符？删除最后一个单词呢？删除整行呢？</p>
+</li>
+<li><p>在终端快捷键中，不能被忽略的是哪个？该快捷键的作用是什么？</p>
+</li>
+<li><p>Linux系统的文件名的限制很少，请问文件名不能使用哪些字符？</p>
+</li>
+<li><p>请给出命令来完成如下和工作目录相关的操作</p>
+<p> a. 工作目录设置为你的主目录</p>
+<p> b. 显示当前工作目录</p>
+</li>
+<li><p>使用cd命令改变工作目录，要求采用相对路径名</p>
+<p> a. 从<code>/var/spool/lp/admins</code>到<code>/var/spool/mail</code></p>
+<p> b. 从<code>/usr/include/sys</code>到<code>/usr</code></p>
+</li>
+<li><p>请给出这两个命令的区别 ls .. ; ls -d ..</p>
+</li>
+<li><p>在使用ls查看目录的内容时，请给出下面各个小题中应该使用什么选项？</p>
+<p> a. 所有文件，包括隐藏文件</p>
+<p> b. 按照文件名的相反顺序显示内容</p>
+<p> c. 不仅仅包含目录中的内容，还要包含各级子目录</p>
+<p> d. 在每个文件后显示文件指示(比如/表示目录)</p>
+<p> e. 以适合人类阅读的方式显示每个文件的大小</p>
+</li>
+<li><p>解释<code>ls -lu</code> 和 <code>ls -lut</code>的区别</p>
+</li>
+<li><p>假设工作目录为<code>/home/max</code>，用最少的命令完成如下功能：</p>
+<p> a. 创建目录<code>books/literature/english/shakespears</code></p>
+<p> b. 在这个目录中创建一个空文件 <code>hamlet.txt</code></p>
+<p> c. 删除<code>literature</code>目录以及各级子目录下的内容</p>
+</li>
+<li><p>要将目录bar1拷贝到bar2，应该使用什么命令，目录bar2存在和不存在有什么区别？</p>
+</li>
+<li><p>要将目录bar1移动到bar2，应该使用什么命令，目录bar2存在和不存在有什么区别？</p>
+</li>
+</ol>
+<h2 id="我的答案"><a href="#我的答案" class="headerlink" title="我的答案"></a>我的答案</h2><ol>
+<li>删除字符：Ctrl-H 或 <backspace><br>删除单词：Ctrl-W<br>删除一行：Ctrl-U</backspace></li>
+<li>不能被忽略的快捷键：Ctrl-Z<br>作用：将进程转到后台运行</li>
+<li>文件名不能命名为单点和双点，也不能包含斜杠/和NULL字符</li>
+<li>a. cd ~<br>b. pwd</li>
+<li>a. cd ../../mail<br>b. cd ../..</li>
+<li>ls -d 显示的父目录本身的信息，而 ls 显示的是父目录的内容</li>
+<li>a. -a<br>b. -r<br>c. -R<br>d. -F<br>d. -lh</li>
+<li>ls -lu按照文件名的字典序排序，ls -lut按照访问时间从新到旧的顺序排序</li>
+<li>a. mkdir -p books/literature/english/shakespears<br>b. touch books/literature/english/shakespears/hamlet.txt<br>c. rm -rf books/literature</li>
+<li>cp -r bar1 bar2<br>bar2不存在：先创建目录bar2，之后递归复制bar1中的所有文件和目录到新建的bar2目录下<br>bar2存在：会将bar1中的所有文件和目录，连同bar1目录文件一起复制到bar2下</li>
+<li>mv bar1 bar2<br>bar2不存在：相当于对bar1重命名为bar2<br>bar2存在：移动bar1到bar2，如果bar2下本身存在bar1，会覆盖</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/系统程序设计/系统程序设计-2020-3-16" rel="prev" title="系统程序设计--第五节(process evironment)">          
+                <i class="fa fa-chevron-left"></i> 系统程序设计--第五节(process evironment)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/计算机体系结构/计算机体系结构-2020-3-11" rel="next" title="计算机体系结构--第二节(指令集体系结构)">
+                计算机体系结构--第二节(指令集体系结构) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YJ Song</p>
+              <p class="site-description motion-element" itemprop="description">Show me code!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fdss-song" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yearito.cn/" title="yearito" target="_blank">yearito</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#终端组合键"><span class="nav-text">终端组合键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bash组合键：man-readline"><span class="nav-text">bash组合键：man readline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统基础"><span class="nav-text">文件系统基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件系统"><span class="nav-text">文件系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路径名解析相关指令：dirname-basename-realpath"><span class="nav-text">路径名解析相关指令：dirname/basename/realpath</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变目录和波浪号扩展"><span class="nav-text">改变目录和波浪号扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变文件时间命令touch"><span class="nav-text">改变文件时间命令touch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件名格式"><span class="nav-text">文件名格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列目录命令ls"><span class="nav-text">列目录命令ls</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tree-查看目录树"><span class="nav-text">tree 查看目录树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建目录mkdir"><span class="nav-text">创建目录mkdir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除目录-rmdir"><span class="nav-text">删除目录 rmdir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制文件和目录命令cp"><span class="nav-text">复制文件和目录命令cp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#复制文件和目录命令cp-覆盖和备份"><span class="nav-text">复制文件和目录命令cp:  覆盖和备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cp-复制目录结构和内容"><span class="nav-text">cp:复制目录结构和内容</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动或重命名命令mv"><span class="nav-text">移动或重命名命令mv</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除命令rm"><span class="nav-text">删除命令rm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业"><span class="nav-text">作业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我的答案"><span class="nav-text">我的答案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YJ Song</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+          $('#sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('#footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            offsetX: ,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+</body>
+</html>

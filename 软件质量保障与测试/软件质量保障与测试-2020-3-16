@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.2" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.2" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.2',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="模型的概念 模型是已存在的现实或将要被创建的现实的抽象表现 模型特性： 表示特性：模型映射现实 归纳特性：模型化简和归纳所代表的的现实 使用特性：模型为特定的目的而构建    模型语言 句法：使用符号或符号组合 符号：模型基础元素 使用模型语言的先进之处： 减少歧义；清晰 相比自然语言描述   集中在需求的某一个角度 数据、功能、行为角度     模型语言与自然语言相结合 总体的模型描绘总体的架构">
+<meta name="keywords" content="课堂笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件质量保障与测试--第三章 软件测试质量保障-需求文档与建模技术">
+<meta property="og:url" content="http://yoursite.com/软件质量保障与测试/软件质量保障与测试-2020-3-16">
+<meta property="og:site_name" content="Song&#39;s Blog">
+<meta property="og:description" content="模型的概念 模型是已存在的现实或将要被创建的现实的抽象表现 模型特性： 表示特性：模型映射现实 归纳特性：模型化简和归纳所代表的的现实 使用特性：模型为特定的目的而构建    模型语言 句法：使用符号或符号组合 符号：模型基础元素 使用模型语言的先进之处： 减少歧义；清晰 相比自然语言描述   集中在需求的某一个角度 数据、功能、行为角度     模型语言与自然语言相结合 总体的模型描绘总体的架构">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/AND%20OR%20Tree.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%94%A8%E4%BE%8B%E5%9B%BE%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E7%94%A8%E4%BE%8B%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6-1.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E7%94%A8%E4%BE%8B%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6-2.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E9%9C%80%E6%B1%82%E7%9A%84%E4%B8%89%E4%B8%AA%E8%A7%86%E8%A7%92.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E5%AE%9E%E4%BD%93%E8%81%94%E7%B3%BB%E5%9B%BE%E7%9A%84%E5%9B%BE%E4%BE%8B.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%85%B3%E7%B3%BB-1.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%85%B3%E7%B3%BB-2.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%85%B3%E7%B3%BB-3.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE%E5%85%83%E7%B4%A0.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E6%B4%BB%E5%8A%A8%E5%9B%BE%E5%85%83%E7%B4%A0.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E6%B4%BB%E5%8A%A8%E5%9B%BE.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E6%B4%BB%E5%8A%A8%E5%9B%BE-%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BE.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/%E7%8A%B6%E6%80%81%E5%9B%BE%E5%85%83%E7%B4%A0.png?raw=true">
+<meta property="og:image" content="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%8A%B6%E6%80%81%E5%9B%BE.png?raw=true">
+<meta property="og:updated_time" content="2020-03-24T01:20:28.183Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件质量保障与测试--第三章 软件测试质量保障-需求文档与建模技术">
+<meta name="twitter:description" content="模型的概念 模型是已存在的现实或将要被创建的现实的抽象表现 模型特性： 表示特性：模型映射现实 归纳特性：模型化简和归纳所代表的的现实 使用特性：模型为特定的目的而构建    模型语言 句法：使用符号或符号组合 符号：模型基础元素 使用模型语言的先进之处： 减少歧义；清晰 相比自然语言描述   集中在需求的某一个角度 数据、功能、行为角度     模型语言与自然语言相结合 总体的模型描绘总体的架构">
+<meta name="twitter:image" content="https://github.com/thu-song/blog-pictures/blob/master/AND%20OR%20Tree.png?raw=true">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/软件质量保障与测试/软件质量保障与测试-2020-3-16">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>软件质量保障与测试--第三章 软件测试质量保障-需求文档与建模技术 | Song's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Song's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/软件质量保障与测试/软件质量保障与测试-2020-3-16">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YJ Song">
+      <meta itemprop="description" content="Show me code!">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Song's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件质量保障与测试--第三章 软件测试质量保障-需求文档与建模技术
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-16 20:17:00" itemprop="dateCreated datePublished" datetime="2020-03-16T20:17:00+08:00">2020-03-16</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="模型的概念"><a href="#模型的概念" class="headerlink" title="模型的概念"></a>模型的概念</h2><ol>
+<li>模型是已存在的现实或将要被创建的现实的抽象表现</li>
+<li>模型特性：<ul>
+<li>表示特性：模型映射现实</li>
+<li>归纳特性：模型化简和归纳所代表的的现实</li>
+<li>使用特性：模型为特定的目的而构建</li>
+</ul>
+</li>
+</ol>
+<h3 id="模型语言"><a href="#模型语言" class="headerlink" title="模型语言"></a>模型语言</h3><ol>
+<li>句法：使用符号或符号组合</li>
+<li>符号：模型基础元素</li>
+<li>使用模型语言的先进之处：<ul>
+<li>减少歧义；清晰<ul>
+<li>相比自然语言描述</li>
+</ul>
+</li>
+<li>集中在需求的某一个角度<ul>
+<li>数据、功能、行为角度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>模型语言与自然语言相结合<ul>
+<li>总体的模型描绘总体的架构</li>
+<li>细节用自然语言补充</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="目标模型-Goal-Models"><a href="#目标模型-Goal-Models" class="headerlink" title="目标模型(Goal Models)"></a>目标模型(Goal Models)</h2><ol>
+<li>目标是利益相关人所描述的，关于系统的目的、属性或者使用的意图</li>
+<li>系统愿景定义了系统的最高目标，其它目标都是对系统愿景的精华</li>
+<li>记录利益相关人的目标是需求分析最为基本的工作</li>
+<li>可以使用自然语言来描述系统目标</li>
+<li>可以使用模型语言来描述系统目标“与或树”（AND/OR tree）<ul>
+<li>一个AND/OR目标树由代表目标的结点和代表目标间AND分解与0R分解关系的有向边组成</li>
+<li>每一个结点（除根结点外）仅与一个父目标相关联</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用与或树-AND-OR-Tree"><a href="#使用与或树-AND-OR-Tree" class="headerlink" title="使用与或树(AND/OR Tree)"></a>使用与或树(AND/OR Tree)</h3><ol>
+<li><p> <img src="https://github.com/thu-song/blog-pictures/blob/master/AND%20OR%20Tree.png?raw=true" alt="AND/OR Tree"></p>
+</li>
+<li><p>OR分解表示只要有一个子目标实现了，就认为父目标实现了</p>
+</li>
+<li><p>AND分解表示只有所有的子目标被实现，才认为父目标实现了</p>
+</li>
+</ol>
+<h3 id="目标描述的七个原则-扩展知识"><a href="#目标描述的七个原则-扩展知识" class="headerlink" title="目标描述的七个原则(扩展知识)"></a>目标描述的七个原则(扩展知识)</h3><ol>
+<li>简明扼要地描述目标</li>
+<li>使用主动语态描述目标</li>
+<li>准确描述利益相关人意图</li>
+<li>分解高层目标<ul>
+<li>AND/OR分解</li>
+</ul>
+</li>
+<li>说明目标所创造的价值</li>
+<li>描述引入目标的原因</li>
+<li>在目标定义中避免不必要的约束<ul>
+<li>A require B，A目标要实现的话，必须首先实现B目标</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="用例-用况"><a href="#用例-用况" class="headerlink" title="用例/用况"></a>用例/用况</h2><ol>
+<li>用例/用况（Use Case）<ul>
+<li>描述可能在施动者和系统之间发生的交互，当系统执行时则提供附加价值</li>
+<li>从用户（或其它外部施动者）的角度来看，用例对系统做规格说明：<ul>
+<li>每一个用例都描述一些系统必须向用例中所涉及的施动者提供的功能。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>包括两个部分：<ul>
+<li>用例图</li>
+<li>用例规格说明书</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用UML建模语言的用例图"><a href="#使用UML建模语言的用例图" class="headerlink" title="使用UML建模语言的用例图"></a>使用UML建模语言的用例图</h3><ol>
+<li>统一建模语言：UWL(Unified Modeling Language)(OMG 2007)</li>
+<li>UML是一个通用的标准建模语言，可以对任何具有静态结构和动态行为的系统进行建模</li>
+<li>UML的目标是以面向对象图的方式来描述任何类型的系统，具有很宽的应用领域<ul>
+<li>其中最常用的是建立软件系统的模型</li>
+<li>但它同样可以用于描述非软件领域的系统，如机械系统、企业机构或业务过程，以及处理复杂数据的信息系统、具有实时要求的工业系统或工业过程等</li>
+</ul>
+</li>
+<li>类图<ul>
+<li>静态关系，在整个系统的生命周期中都是有效的，不会发生变化的</li>
+</ul>
+</li>
+<li>活动图<ul>
+<li>一个活动到另一个活动的流程，包括系统运行中并发的活动</li>
+</ul>
+</li>
+<li>用例图<ul>
+<li>用况和参与者进行关联</li>
+<li>从用户的角度描绘系统静态使用情况</li>
+</ul>
+</li>
+<li>状态图<ul>
+<li>由状态转换、事件和活动组成的</li>
+<li>描述类的对象的所有可能的状态以及事件发生时的转移条件</li>
+<li>可以认为是对类图的补充，需要为那些有多个状态的、行为随外部环境改变的类画状态图</li>
+</ul>
+</li>
+<li>此外，还有对象图、交互图、组件图，部署图等</li>
+</ol>
+<h3 id="UML用例图基本元素"><a href="#UML用例图基本元素" class="headerlink" title="UML用例图基本元素"></a>UML用例图基本元素</h3><ol>
+<li><p> <img src="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%94%A8%E4%BE%8B%E5%9B%BE%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0.png?raw=true" alt="UML用例图基本元素"></p>
+</li>
+<li><p>用例图（UseCaseDiagram），展现了一组用例、参与者（actor）以及它们之间的关系，它们之间的关系构成的用于描述系统功能的静态视图</p>
+<ul>
+<li>用例（use case）<ul>
+<li>可以有延伸要求，比如导航到目的地要求避免阻塞</li>
+<li>延伸要求可以不画，在规格说明中描述</li>
+</ul>
+</li>
+<li>参与者（actor）<ul>
+<li>人或者第三方系统</li>
+<li>系统边界之外</li>
+</ul>
+</li>
+<li>系统边界（system boundaries）</li>
+<li>扩展关系（extend relation）<ul>
+<li>用况B中有些占位符，使用用况A中特定的流程填充占位符</li>
+<li>【疑问】</li>
+</ul>
+</li>
+<li>包含关系（include relation）<ul>
+<li>用况A的执行过程包含了用况B的执行流程</li>
+</ul>
+</li>
+<li>参与者与用例之间的关系(relation between actors and use cases)<ul>
+<li>提供数据</li>
+<li>得到反馈结果</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="用例规格说明书"><a href="#用例规格说明书" class="headerlink" title="用例规格说明书"></a>用例规格说明书</h3><p><img src="https://github.com/thu-song/blog-pictures/blob/master/%E7%94%A8%E4%BE%8B%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6-1.png?raw=true" alt="用例规格说明书"><br><img src="https://github.com/thu-song/blog-pictures/blob/master/%E7%94%A8%E4%BE%8B%E8%A7%84%E6%A0%BC%E8%AF%B4%E6%98%8E%E4%B9%A6-2.png?raw=true" alt="用例规格说明书"></p>
+<hr>
+<h2 id="需求的三个视角"><a href="#需求的三个视角" class="headerlink" title="需求的三个视角"></a>需求的三个视角</h2><p><img src="https://github.com/thu-song/blog-pictures/blob/master/%E9%9C%80%E6%B1%82%E7%9A%84%E4%B8%89%E4%B8%AA%E8%A7%86%E8%A7%92.png?raw=true" alt="需求的三个视角"></p>
+<hr>
+<h2 id="基于数据视角的数据建模"><a href="#基于数据视角的数据建模" class="headerlink" title="基于数据视角的数据建模"></a>基于数据视角的数据建模</h2><ol>
+<li>实体联系图（Entity-Relationship Diagram）<ul>
+<li>Peter Chen（1976年提出），它在数据库设计领域得到了广泛的认同</li>
+</ul>
+</li>
+<li>统一建模语言-类图（UML Class Diagram）</li>
+</ol>
+<h3 id="实体联系图"><a href="#实体联系图" class="headerlink" title="实体联系图"></a>实体联系图</h3><ol>
+<li><p>实体联系图（E-R图）：实体、关系、属性三个基本概念概括数据的基本结构，从而描述静态数据结构的概念模式。</p>
+</li>
+<li><p>实体：具有相同属性的实体具有相同的特征和性质，用实体名及其属性名集合来抽象和刻画同类实体。例如，乘客；消费者；路径；导航仪。</p>
+</li>
+<li><p>属性：实体所具有的某一特性，一个实体可由若干个属性来刻画；例如：乘客这一实体，可以有“姓”，“名”，“ID”，“预定坐位”</p>
+</li>
+<li><p>联系：联系也称关系，信息世界中反映实体内部或实体之间的联系和联系的特征。实体内部的联系通常是指组成实体的各属性之间的联系；实体之间的联系通常是指不同实体之间的联系。同时在无向边旁标上联系的类型（1：1，1：n或m:n）</p>
+</li>
+<li><p>实体联系图图例：</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E5%AE%9E%E4%BD%93%E8%81%94%E7%B3%BB%E5%9B%BE%E7%9A%84%E5%9B%BE%E4%BE%8B.png?raw=true" alt="图例：实体联系图"></p>
+</li>
+</ol>
+<h3 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h3><ol>
+<li><p>UML类图基本元素：</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%9F%BA%E6%9C%AC%E5%85%83%E7%B4%A0.png?raw=true" alt="UML类图基本元素"></p>
+<ul>
+<li>复合(组合)是比聚合强的关联关系</li>
+</ul>
+</li>
+<li><p>UML类图关系：</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%85%B3%E7%B3%BB-1.png?raw=true" alt="UML类图关系-1"><br> <img src="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%85%B3%E7%B3%BB-2.png?raw=true" alt="UML类图关系-2"><br> <img src="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%B1%BB%E5%9B%BE%E5%85%B3%E7%B3%BB-3.png?raw=true" alt="UML类图关系-3"></p>
+<ul>
+<li><strong>更正：组合关系中，局部离开整体，局部不能完整存在</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="基于功能视角的数据建模"><a href="#基于功能视角的数据建模" class="headerlink" title="基于功能视角的数据建模"></a>基于功能视角的数据建模</h2><ol>
+<li>数据流图（Data Flow Diagram）<ul>
+<li>需求的功能视角要处理的是把从环境中接收到的输入数据转换成释放到系统环境中的输出数据</li>
+<li>通常情况下，例如在汤姆·戴马克（Tom DeMarco）所著的“结构化分析”（Structured Analysis）一书中，<strong>把数据流图用作功能模型</strong></li>
+<li>系统和系统环境的图形表示称为环境图（也称上下文图，context diagram），在特定情况下，如果数据流图是用来定义系统边界的话，数据流图也称为环境图</li>
+<li>由于在数据流图中没有控制流程，或者比如说进程的内部工作方式并没有显示出来，因此，数据流图要用附加的、结构化形式的说明加以补充</li>
+</ul>
+</li>
+</ol>
+<h3 id="数据流图"><a href="#数据流图" class="headerlink" title="数据流图"></a>数据流图</h3><ol>
+<li><p>数据流图元素:</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E6%95%B0%E6%8D%AE%E6%B5%81%E5%9B%BE%E5%85%83%E7%B4%A0.png?raw=true" alt="数据流图元素"></p>
+</li>
+</ol>
+<h3 id="活动图"><a href="#活动图" class="headerlink" title="活动图"></a>活动图</h3><ol>
+<li><p>活动图(UML Activity Diagram)</p>
+<ul>
+<li>从功能的角度，活动图适合对系统活动的顺序进行建模</li>
+<li>活动图模拟活动节点和活动节点之间的控制流</li>
+<li>对象流表示控制流的一种特殊形式。活动图中的同步条允许模拟并发控制和对象流</li>
+<li>可以使用判定节点来描述备选控制(alternative control)和对象流</li>
+</ul>
+</li>
+<li><p>活动图元素：</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E6%B4%BB%E5%8A%A8%E5%9B%BE%E5%85%83%E7%B4%A0.png?raw=true" alt="活动图元素"></p>
+</li>
+<li><p>活动图：</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E6%B4%BB%E5%8A%A8%E5%9B%BE.png?raw=true" alt="活动图"></p>
+</li>
+<li><p>活动图控制流图：</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E6%B4%BB%E5%8A%A8%E5%9B%BE-%E6%8E%A7%E5%88%B6%E6%B5%81%E5%9B%BE.png?raw=true" alt="活动图控制流图"></p>
+</li>
+</ol>
+<hr>
+<h2 id="基于行为视角的数据建模"><a href="#基于行为视角的数据建模" class="headerlink" title="基于行为视角的数据建模"></a>基于行为视角的数据建模</h2><ol>
+<li>在需求建模中，系统的动态行为是从行为的角度来建模的<ul>
+<li>从这个角度来看，重点在于能够发现一个系统的各种状态以及造成状态变化的事件</li>
+</ul>
+</li>
+<li>动态描述系统行为</li>
+<li>状态图包括系统的状态、状态间的转换、及触发状态转换的事件。</li>
+<li>一种是基于Mealy 1955年及Moore 1956年的状态图</li>
+<li>一种是UML State Diagrams（OMG2007）。它吸收到前一种的模式，并得到了加强。</li>
+</ol>
+<h3 id="状态图"><a href="#状态图" class="headerlink" title="状态图"></a>状态图</h3><ol>
+<li><p>状态图元素：</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/%E7%8A%B6%E6%80%81%E5%9B%BE%E5%85%83%E7%B4%A0.png?raw=true" alt="状态图元素"></p>
+</li>
+<li><p>UML状态(机)图：</p>
+<p> <img src="https://github.com/thu-song/blog-pictures/blob/master/UML%E7%8A%B6%E6%80%81%E5%9B%BE.png?raw=true" alt="UML状态图"></p>
+</li>
+<li><p>ECA规则：事件-条件-动作</p>
+</li>
+</ol>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>模型语言可以避免自然语言的缺点；</li>
+<li>模型语言可以专注于某一个方面的需求；</li>
+<li>模型语言应与自然语言联合使用；</li>
+<li>了解各种建模的适用范围，及各个元素和模型所要表达的内容。</li>
+</ol>
+<hr>
+<h2 id="课堂讨论"><a href="#课堂讨论" class="headerlink" title="课堂讨论"></a>课堂讨论</h2><ol>
+<li><p>你能举一个例子来说明变化的系统边界，变化的环境边界吗？</p>
+<ul>
+<li>系统边界变小：网上购物的支付<ul>
+<li>需要自己开发，到银行的接口</li>
+<li>直接调用外部的接口</li>
+</ul>
+</li>
+<li>环境边界变大：公司的财务系统<ul>
+<li>上市之前财务需要内部人员管理</li>
+<li>上市之后需要审计人员</li>
+<li>审计人员原来在无关环境中，之后加入到环境边界</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>你能通过示例来描述卡诺模型中的不同需求吗？</p>
+</li>
+<li><p>针对一个系统需求说明，尝试通过UML方式绘制其用况图，以及数据、功能和行为方面的需求（部分）。</p>
+<pre><code>网络的普及带给了人们更多的学习途径，随之而来的管理远程网络教学的“远程网络教学系统”诞生了。“远程网络教学系统”的功能需求如下：</code></pre></li>
+</ol>
+<ul>
+<li>一个专业包含多门课程，一门课程可有多个课件，一个课件可以录制多个教学视频。教师可以为特定的课件提供教学心得。学生只能属于一个专业，并且有本科生和研究生的区分，教师则可以跨专业授不同的课程。</li>
+<li>学生需要登录网站系统后，才可正常使用系统的功能，包括浏览课件、查找课件、下载课件、。如果忘记密码，可通过“找回密码”功能恢复密码。</li>
+<li>教师登录网站后，可以上传课件、上传教学视频、发布教学心得、修改教学心得。教师如果忘记密码，可以通过“找回密码”功能找回密码。</li>
+<li>以学生观看教学视频为例，学生需要先登录系统，通过输入关键字查找所需课程并选择，然后选择课程内的视频，最后播放该视频。</li>
+<li>以教师上传课件为例，课件首先在编写状态，编写完成后进入校验状态，检验通过后能够进入发布状态，否则进入修改状态，修改完成后再次进入校验状态。</li>
+</ul>
+<p>学生：登录 浏览课件 查找课件 下载课件 观看教学视频 找回密码</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+      <div>
+        <div>
+  
+    <div style="text-align:center;color:#bfbfbf;font-size:16px;">
+      <span>-------- 本文结束 </span>
+      <i class="fa fa-paw"></i>
+      <span> 感谢阅读 --------</span>
+    </div>
+  
+</div>
+      </div>
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/课堂笔记/" rel="tag"><i class="fa fa-tags"></i> 课堂笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/操作系统/操作系统Ⅰ-2020-3-18" rel="prev" title="操作系统Ⅰ--第二节(Chapter2：Operating-System Structures)">          
+                <i class="fa fa-chevron-left"></i> 操作系统Ⅰ--第二节(Chapter2：Operating-System Structures)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/系统程序设计/系统程序设计-2020-3-16" rel="next" title="系统程序设计--第五节(process evironment)">
+                系统程序设计--第五节(process evironment) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">YJ Song</p>
+              <p class="site-description motion-element" itemprop="description">Show me code!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/fdss-song" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://yearito.cn/" title="yearito" target="_blank">yearito</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型的概念"><span class="nav-text">模型的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型语言"><span class="nav-text">模型语言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标模型-Goal-Models"><span class="nav-text">目标模型(Goal Models)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用与或树-AND-OR-Tree"><span class="nav-text">使用与或树(AND/OR Tree)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标描述的七个原则-扩展知识"><span class="nav-text">目标描述的七个原则(扩展知识)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用例-用况"><span class="nav-text">用例/用况</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用UML建模语言的用例图"><span class="nav-text">使用UML建模语言的用例图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML用例图基本元素"><span class="nav-text">UML用例图基本元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用例规格说明书"><span class="nav-text">用例规格说明书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求的三个视角"><span class="nav-text">需求的三个视角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于数据视角的数据建模"><span class="nav-text">基于数据视角的数据建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实体联系图"><span class="nav-text">实体联系图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UML类图"><span class="nav-text">UML类图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于功能视角的数据建模"><span class="nav-text">基于功能视角的数据建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据流图"><span class="nav-text">数据流图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#活动图"><span class="nav-text">活动图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于行为视角的数据建模"><span class="nav-text">基于行为视角的数据建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态图"><span class="nav-text">状态图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#课堂讨论"><span class="nav-text">课堂讨论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YJ Song</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  <script src="/lib/pangu/dist/pangu.min.js?v=3.3"></script>
+  <script type="text/javascript">pangu.spacingPage();</script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('#header').wobbleWindow({
+            radius: 50,
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        
+
+        
+          $('#sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('#footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            offsetX: ,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+</body>
+</html>
