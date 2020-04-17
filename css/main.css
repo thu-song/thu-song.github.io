@@ -451,7 +451,7 @@ body {
 }
 .header-inner {
   margin: 0 auto;
-  padding: 100px 0 70px;
+  padding: 25px 0;
   width: 700px;
 }
 @media (min-width: 1200px) {
@@ -1129,8 +1129,8 @@ pre .javascript .function {
   position: relative;
   display: inline-block;
   padding: 0 40px;
-  color: #fff;
-  background: #222;
+  color: #222;
+  background: #fff;
   border-bottom: none;
 }
 .brand:hover {
@@ -1848,7 +1848,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2e60f2;
+  background: #34ff01;
 }
 .links-of-blogroll {
   font-size: 13px;
